@@ -1,23 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TMdbEasy
 {
-    public class EasyClient : IDisposable
+    public sealed class EasyClient : IDisposable
     {
+        #region Singleton stuff
+        private static readonly Lazy<EasyClient> lazy = new Lazy<EasyClient>(() => new EasyClient());
+
+        public static EasyClient Instance { get { return lazy.Value; } }
+
+        private EasyClient()
+        {
+        }
+        #endregion
         private const string TmdbUrl = "http://api.themoviedb.org/";
         private const string TmdbUrlSsl = "https://api.themoviedb.org/";
         private const string ApiVersion = "3";
 
-        public string ApiKey { get; private set; }
-        public bool Secured { get; private set; }
-        public string Url { get; private set; }
+        public string ApiKey { get; private set; } = null;
+        public bool Secured { get; private set; } = true;
+        public string Url { get; private set; } = TmdbUrlSsl;
 
-
-
+        private HttpWebRequest Request;
+        private HttpWebRequest Response; 
 
 
         /// <summary>
@@ -25,7 +35,7 @@ namespace TMdbEasy
         /// </summary>
         /// <param name="_apiKey">Tmdb Api key</param>
         /// <param name="_secure">Prefer ssl or not. Default set to true</param>
-        public EasyClient(string _apiKey, bool _secure = true)
+        public void SetupClient(string _apiKey, bool _secure = true)
         {
             Initialize(_apiKey, _secure);
         }
