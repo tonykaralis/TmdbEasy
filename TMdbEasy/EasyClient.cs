@@ -24,8 +24,8 @@ namespace TMdbEasy
         /// In order to use the client you must provide the api key
         /// </summary>
         /// <param name="_apiKey">Tmdb Api key</param>
-        /// <param name="_secure">Prefer ssl or not</param>
-        public EasyClient(string _apiKey, bool _secure)
+        /// <param name="_secure">Prefer ssl or not. Default set to true</param>
+        public EasyClient(string _apiKey, bool _secure = true)
         {
             Initialize(_apiKey, _secure);
         }
@@ -37,13 +37,14 @@ namespace TMdbEasy
         /// <param name="_secure"></param>
         private void Initialize(string _apikey, bool _secure)
         {
-            if(string.IsNullOrEmpty(_apikey))
+            if(string.IsNullOrEmpty(_apikey) || string.IsNullOrWhiteSpace(_apikey))
             {
                 throw new ArgumentException("_apikey");
             }
             else
             {
                 ApiKey = _apikey;
+                Secured = _secure;
             }
 
             Url = _secure ? TmdbUrlSsl : TmdbUrl;          
