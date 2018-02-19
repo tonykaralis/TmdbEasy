@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TMdbEasy
 {
-    public sealed class EasyClient : ClientBase
+    public sealed partial class EasyClient : ClientBase
     {
         private const string TmdbUrl = "http://api.themoviedb.org/";
         private const string TmdbUrlSsl = "https://api.themoviedb.org/";
@@ -16,9 +16,6 @@ namespace TMdbEasy
         public string ApiKey { get; private set; } = null;
         public bool Secured { get; private set; } = true;
         public string Url { get; private set; } = TmdbUrlSsl;
-
-        HttpWebRequest TmdbRequest;
-        HttpWebResponse TmdbResponse;
 
         /// <summary>
         /// In order to use the client you must provide the api key
@@ -50,6 +47,11 @@ namespace TMdbEasy
             Url = _secure ? TmdbUrlSsl : TmdbUrl;
         }                
 
-        
+        public async Task<Movie> GetMovieInfoAsync(string query)
+        {
+            var content = await CallApiAsync(query);
+            var movie = DeserializeJson<Movie>(content);
+            return movie;
+        }
     }
 }
