@@ -7,17 +7,8 @@ using System.Threading.Tasks;
 
 namespace TMdbEasy
 {
-    public sealed class EasyClient
+    public sealed class EasyClient : ClientBase
     {
-        #region Singleton stuff
-        private static readonly Lazy<EasyClient> lazy = new Lazy<EasyClient>(() => new EasyClient());
-
-        public static EasyClient Instance { get { return lazy.Value; } }
-
-        private EasyClient()
-        {
-        }
-        #endregion
         private const string TmdbUrl = "http://api.themoviedb.org/";
         private const string TmdbUrlSsl = "https://api.themoviedb.org/";
         private const string ApiVersion = "3";
@@ -25,13 +16,16 @@ namespace TMdbEasy
         public string ApiKey { get; private set; } = null;
         public bool Secured { get; private set; } = true;
         public string Url { get; private set; } = TmdbUrlSsl;
-                
+
+        HttpWebRequest TmdbRequest;
+        HttpWebResponse TmdbResponse;
+
         /// <summary>
         /// In order to use the client you must provide the api key
         /// </summary>
         /// <param name="_apiKey">Tmdb Api key</param>
         /// <param name="_secure">Prefer ssl or not. Default set to true</param>
-        public void SetupClient(string _apiKey, bool _secure = true)
+        public EasyClient(string _apiKey, bool _secure = true)
         {
             Initialize(_apiKey, _secure);
         }
@@ -53,7 +47,9 @@ namespace TMdbEasy
                 Secured = _secure;
             }
 
-            Url = _secure ? TmdbUrlSsl : TmdbUrl;          
+            Url = _secure ? TmdbUrlSsl : TmdbUrl;
         }                
+
+        
     }
 }
