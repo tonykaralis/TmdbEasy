@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TMdbEasy
 {
-    public sealed class EasyClient : IDisposable
+    public sealed class EasyClient
     {
         #region Singleton stuff
         private static readonly Lazy<EasyClient> lazy = new Lazy<EasyClient>(() => new EasyClient());
@@ -25,11 +25,7 @@ namespace TMdbEasy
         public string ApiKey { get; private set; } = null;
         public bool Secured { get; private set; } = true;
         public string Url { get; private set; } = TmdbUrlSsl;
-
-        private HttpWebRequest Request;
-        private HttpWebRequest Response; 
-
-
+                
         /// <summary>
         /// In order to use the client you must provide the api key
         /// </summary>
@@ -58,11 +54,6 @@ namespace TMdbEasy
             }
 
             Url = _secure ? TmdbUrlSsl : TmdbUrl;          
-        }
-        
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+        }                
     }
 }
