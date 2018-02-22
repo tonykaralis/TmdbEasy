@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SUT = TMdbEasy;
 using NUnit.Framework;
+using SUT = TMdbEasy;
 
 namespace TMdbEasy_Tests
 {
-    class EasyClientTest
+    class RequestEngineTest
     {
         [TestFixture]
         [Category("Initialization")]
@@ -30,8 +30,8 @@ namespace TMdbEasy_Tests
                 var obj = new SUT.EasyClient(_apikey, secure);
 
                 //Assert
-                Assert.AreEqual(obj.Secured, true);
-                Assert.AreEqual(obj.Url, "https://api.themoviedb.org/");
+                Assert.AreEqual(SUT.RequestEngine.Secured, true);
+                Assert.AreEqual(SUT.RequestEngine.Url, "https://api.themoviedb.org/");
             }
 
             [TestCase("123124", false)]
@@ -41,9 +41,26 @@ namespace TMdbEasy_Tests
                 var obj = new SUT.EasyClient(_apikey, secure);
 
                 //Assert
-                Assert.AreEqual(obj.Secured, false);
-                Assert.AreEqual(obj.Url, "http://api.themoviedb.org/");
-          }
+                Assert.AreEqual(SUT.RequestEngine.Secured, false);
+                Assert.AreEqual(SUT.RequestEngine.Url, "http://api.themoviedb.org/");
+            }
+        }
+
+
+        [TestFixture]
+        [Category("Http methods")]
+        public class DeserializeJsonTest
+        {
+            [TestCase(296096)]
+            public async Task CorrectQuery_DoesNotReturnNull(int id)
+            {
+                //arrange
+                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                //act
+                SUT.TmdbObjects.Movies.MovieDetails mov = await obj.MovieApi.GetDetailsAsync(id);
+                //assert
+                Assert.IsNotNull(mov);
+            }
         }
     }
 }

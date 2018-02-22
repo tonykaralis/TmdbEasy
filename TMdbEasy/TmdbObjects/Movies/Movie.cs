@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TMdbEasy
+namespace TMdbEasy.TmdbObjects.Movies
 {
     public class MovieSearchResult
     {
