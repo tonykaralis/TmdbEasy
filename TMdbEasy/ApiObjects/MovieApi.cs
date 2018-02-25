@@ -13,18 +13,18 @@ namespace TMdbEasy.ApiObjects
     {
         public async Task<MovieDetails> GetDetailsAsync(int movieId, string language = "en")
         {
-            //TBD buid strign externally
-            string query = "https://api.themoviedb.org/3/movie/"+$"{movieId}?api_key=6d4b546936310f017557b2fb498b370b&language={language}";
-            var content = await RequestEngine.CallApiAsync(query);
-            var movie = RequestEngine.DeserializeJson<MovieDetails>(content);
+            //TBD buid string externally
+            string query = $"{REngine.Url}3/movie/{movieId}?api_key={REngine.ApiKey}&language={language}";
+            var content = await REngine.CallApiAsync(query);
+            var movie = REngine.DeserializeJson<MovieDetails>(content);
             return movie;
         }
 
         public async Task<Images> GetImagesAsync(int movieId, string language = "en")
         {
-            string query = "https://api.themoviedb.org/3/movie/" + $"{movieId}?api_key=6d4b546936310f017557b2fb498b370b&language={language}";
-            var content = await RequestEngine.CallApiAsync(query);
-            var movie = RequestEngine.DeserializeJson<Images>(content);
+            string query = $"{REngine.Url}3/movie/{movieId}?api_key={REngine.ApiKey}&language={language}";
+            var content = await REngine.CallApiAsync(query);
+            var movie = REngine.DeserializeJson<Images>(content);
             return movie;
         }
 

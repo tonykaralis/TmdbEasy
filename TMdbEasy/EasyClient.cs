@@ -19,7 +19,7 @@ namespace TMdbEasy
         /// <param name="_secure">Prefer ssl or not. Default set to true</param>
         public EasyClient(string _apiKey, bool _secure = true)
         {
-            RequestEngine.Initialize(_apiKey, _secure);
+            REngine.Initialize(_apiKey, _secure);
         }
 
         #region Api Objects

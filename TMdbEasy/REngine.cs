@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace TMdbEasy
 {
-    public static class RequestEngine
+    public static class REngine
     {
         #region Core Object properties and methods
         private const string TmdbUrl = "http://api.themoviedb.org/";

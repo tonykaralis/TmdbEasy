@@ -30,8 +30,8 @@ namespace TMdbEasy_Tests
                 var obj = new SUT.EasyClient(_apikey, secure);
 
                 //Assert
-                Assert.AreEqual(SUT.RequestEngine.Secured, true);
-                Assert.AreEqual(SUT.RequestEngine.Url, "https://api.themoviedb.org/");
+                Assert.AreEqual(SUT.REngine.Secured, true);
+                Assert.AreEqual(SUT.REngine.Url, "https://api.themoviedb.org/");
             }
 
             [TestCase("123124", false)]
@@ -41,8 +41,8 @@ namespace TMdbEasy_Tests
                 var obj = new SUT.EasyClient(_apikey, secure);
 
                 //Assert
-                Assert.AreEqual(SUT.RequestEngine.Secured, false);
-                Assert.AreEqual(SUT.RequestEngine.Url, "http://api.themoviedb.org/");
+                Assert.AreEqual(SUT.REngine.Secured, false);
+                Assert.AreEqual(SUT.REngine.Url, "http://api.themoviedb.org/");
             }
         }
 
