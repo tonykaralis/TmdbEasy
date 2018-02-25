@@ -28,6 +28,15 @@ namespace TMdbEasy.ApiObjects
             return movie;
         }
 
+        public async Task<AlternativeTitle> GetAlternativeTitlesAsync(int id, string country = "en")
+        {
+            //TBD buid string externally
+            string query = $"{REngine.Url}movie/{id}/alternative_titles?api_key={REngine.ApiKey}&language={country}";
+            var content = await REngine.CallApiAsync(query);
+            var titles = REngine.DeserializeJson<AlternativeTitle>(content);
+            return titles;
+        }
+
         public MovieApi() { }
     }
 }

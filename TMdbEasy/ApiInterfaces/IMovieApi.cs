@@ -24,5 +24,12 @@ namespace TMdbEasy.ApiInterfaces
         /// <param name="language">Pass a ISO 639-1 value to display translated data for the fields that support it. Default is English</param>
         /// <returns></returns>
         Task<Images> GetImagesAsync(int id, string language = "en");
+        /// <summary>
+        /// Returns all alternative titles that belong to a movie.
+        /// </summary>
+        /// <param name="id">Typically taken from a previous api call</param>
+        /// <param name="country">Pass a ISO_3166_1 value to display translated data for the fields that support it. Default is Britain</param>
+        /// <returns></returns>
+        Task<AlternativeTitle> GetAlternativeTitlesAsync(int id, string country = "BR");
     }
 }

@@ -24,7 +24,7 @@ namespace TMdbEasy
 
         #region Api Objects
         public IMovieApi MovieApi { get; private set; } = new MovieApi();
-        
+        public ICollectionApi CollectionApi { get; private set; } = new Coll
         #endregion       
     }
 }
