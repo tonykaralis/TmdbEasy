@@ -47,7 +47,7 @@
     <Compile Include="ApiObjects\MovieApi.cs" />
     <Compile Include="REngine.cs" />
     <Compile Include="EasyClient.cs" />
-    <Compile Include="TmdbObjects\Collections.cs" />
+    <Compile Include="TmdbObjects\Collection\Collections.cs" />
     <Compile Include="TmdbObjects\Genre.cs" />
     <Compile Include="TmdbObjects\Images\Backdrop.cs" />
     <Compile Include="TmdbObjects\Images\Images.cs" />

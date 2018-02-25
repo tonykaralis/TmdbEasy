@@ -31,7 +31,7 @@ namespace TMdbEasy_Tests
 
                 //Assert
                 Assert.AreEqual(SUT.REngine.Secured, true);
-                Assert.AreEqual(SUT.REngine.Url, "https://api.themoviedb.org/");
+                Assert.AreEqual(SUT.REngine.Url, "https://api.themoviedb.org/3/");
             }
 
             [TestCase("123124", false)]
@@ -42,7 +42,7 @@ namespace TMdbEasy_Tests
 
                 //Assert
                 Assert.AreEqual(SUT.REngine.Secured, false);
-                Assert.AreEqual(SUT.REngine.Url, "http://api.themoviedb.org/");
+                Assert.AreEqual(SUT.REngine.Url, "http://api.themoviedb.org/3/");
             }
         }
 

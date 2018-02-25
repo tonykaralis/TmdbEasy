@@ -12,13 +12,13 @@ namespace TMdbEasy
     public static class REngine
     {
         #region Core Object properties and methods
-        private const string TmdbUrl = "http://api.themoviedb.org/";
-        private const string TmdbUrlSsl = "https://api.themoviedb.org/";
+        private const string TmdbUrl3 = "http://api.themoviedb.org/3/";
+        private const string TmdbUrl3Ssl = "https://api.themoviedb.org/3/";
         private const string ApiVersion = "3";
 
         public static string ApiKey { get; private set; } = null;
         public static bool Secured { get; private set; } = true;
-        public static string Url { get; private set; } = TmdbUrlSsl;
+        public static string Url { get; private set; } = TmdbUrl3Ssl;
 
         /// <summary>
         /// Setup the apikey and whether ssl is a choice or not
@@ -37,7 +37,7 @@ namespace TMdbEasy
                 Secured = _secure;
             }
 
-            Url = _secure ? TmdbUrlSsl : TmdbUrl;
+            Url = _secure ? TmdbUrl3Ssl : TmdbUrl3;
         }
         #endregion
 
