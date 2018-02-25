@@ -19,12 +19,19 @@ namespace TMdbEasy
         /// <param name="_secure">Prefer ssl or not. Default set to true</param>
         public EasyClient(string _apiKey, bool _secure = true)
         {
-            REngine.Initialize(_apiKey, _secure);
+            try
+            {
+                REngine.Initialize(_apiKey, _secure);
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         #region Api Objects
         public IMovieApi MovieApi { get; private set; } = new MovieApi();
-        public ICollectionApi CollectionApi { get; private set; } = new Coll
+        public ICollectionApi CollectionApi { get; private set; } = new CollectionApi();
         #endregion       
     }
 }

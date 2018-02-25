@@ -34,8 +34,8 @@ namespace TMdbEasy_Tests
                 Assert.AreEqual(SUT.REngine.Url, "https://api.themoviedb.org/3/");
             }
 
-            [TestCase("123124", false)]
-            public void SecuredParam_AssignsUnsecureUrl(string _apikey, bool secure = true)
+            [TestCase("6d4b546936310f017557b2fb498b370b", false)]
+            public void UnSecuredParam_AssignsUnsecureUrl(string _apikey, bool secure = false)
             {
                 //Arrange
                 var obj = new SUT.EasyClient(_apikey, secure);

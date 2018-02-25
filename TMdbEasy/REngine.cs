@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using TMdbEasy.TmdbObjects.Movies;
 
 namespace TMdbEasy
 {
@@ -29,15 +30,18 @@ namespace TMdbEasy
         {
             if (string.IsNullOrEmpty(_apikey) || string.IsNullOrWhiteSpace(_apikey))
             {
-                throw new ArgumentException("_apikey");
+                throw new ArgumentException("_apikey is null or empty");
             }
-            else
+            else if( CheckApiKeyValid(_apikey) == true )
             {
                 ApiKey = _apikey;
                 Secured = _secure;
+                Url = _secure ? TmdbUrl3Ssl : TmdbUrl3;
             }
-
-            Url = _secure ? TmdbUrl3Ssl : TmdbUrl3;
+            else
+            {
+                throw new Exception("Invalid ApiKey");
+            }            
         }
         #endregion
 
@@ -90,8 +94,19 @@ namespace TMdbEasy
             }
             catch
             {
-                return null;
+                throw new Exception("Movie Id does not exist");
             }            
-        }        
+        }     
+        
+        private static bool CheckApiKeyValid(string key)
+        {
+            string query = $"{Url}movie/296096?api_key={key}&language=en";
+            var content = CallApiAsync(query).Result;
+            
+            if (content != null)
+                return true;
+            else
+                return false;
+        }
     }
 }
