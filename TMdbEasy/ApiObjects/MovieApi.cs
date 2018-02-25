@@ -13,10 +13,8 @@ namespace TMdbEasy.ApiObjects
     {
         public async Task<MovieDetails> GetDetailsAsync(int id, string language = "en")
         {
-            //TBD buid string externally
             string query = $"{REngine.Url}movie/{id}?api_key={REngine.ApiKey}&language={language}";
             var content = await REngine.CallApiAsync(query);
-
             var movie = REngine.DeserializeJson<MovieDetails>(content);
             return movie;
         }
