@@ -30,18 +30,15 @@ namespace TMdbEasy
         {
             if (string.IsNullOrEmpty(_apikey) || string.IsNullOrWhiteSpace(_apikey))
             {
-                throw new ArgumentException("_apikey is null or empty");
+                throw new Exception("_apikey is null or empty");
             }
-            else if( CheckApiKeyValid(_apikey) == true )
+            else  
             {
+                CheckApiKeyValid(_apikey);
                 ApiKey = _apikey;
                 Secured = _secure;
                 Url = _secure ? TmdbUrl3Ssl : TmdbUrl3;
-            }
-            else
-            {
-                throw new Exception("Invalid ApiKey");
-            }            
+            }             
         }
         #endregion
 
@@ -98,15 +95,31 @@ namespace TMdbEasy
             }            
         }     
         
-        private static bool CheckApiKeyValid(string key)
+        private static void CheckApiKeyValid(string key)
         {
             string query = $"{Url}movie/296096?api_key={key}&language=en";
-            var content = CallApiAsync(query).Result;
-            
-            if (content != null)
-                return true;
-            else
-                return false;
+            string result;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(query);
+            request.Method = "GET";
+            //request.UserAgent = "Mozilla / 5.0(Windows NT 10.0; Win64; x64; rv: 57.0) Gecko / 20100101 Firefox / 57.0";
+            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+
+            WebResponse response;
+            try
+            {
+                response = request.GetResponse() as HttpWebResponse;
+                using (Stream stream = response.GetResponseStream())
+                {
+                    using (StreamReader sr = new StreamReader(stream))
+                    {
+                        result = sr.ReadToEnd();                       
+                    }
+                }
+            }
+            catch
+            {
+                throw new Exception("Invalid Api Key");
+            }
         }
     }
 }

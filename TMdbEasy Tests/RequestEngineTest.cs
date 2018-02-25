@@ -17,11 +17,12 @@ namespace TMdbEasy_Tests
             [TestCase(null)]
             [TestCase("")]
             [TestCase(" ")]
-            public void EmptyApiKey_ReturnsArgumentException(string _apikey)
+            [TestCase("kjysudgfi8764")]
+            public void InvalidApiKey_ReturnsArgumentException(string _apikey)
             {
                 //Assert
-                Assert.Throws<ArgumentException>(() => new SUT.EasyClient(_apikey));
-            }
+                Assert.Throws<Exception>(() => new SUT.EasyClient(_apikey));
+            }                     
 
             [TestCase("6d4b546936310f017557b2fb498b370b")]
             public void SecuredParam_AssignsSecureUrl(string _apikey, bool secure = true)
