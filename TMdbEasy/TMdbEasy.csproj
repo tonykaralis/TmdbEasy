@@ -47,8 +47,6 @@
     <Compile Include="ApiInterfaces\IMovieApi.cs" />
     <Compile Include="ApiObjects\CollectionApi.cs" />
     <Compile Include="ApiObjects\MovieApi.cs" />
-    <Compile Include="Errors\Error401.cs" />
-    <Compile Include="Errors\Error404.cs" />
     <Compile Include="REngine.cs" />
     <Compile Include="EasyClient.cs" />
     <Compile Include="TmdbObjects\Collection\Collections.cs" />

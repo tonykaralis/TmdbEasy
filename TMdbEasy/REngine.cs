@@ -89,10 +89,22 @@ namespace TMdbEasy
                     }
                 }
             }
-            catch
+            catch( WebException ex) when ((ex.Response as HttpWebResponse) ?.StatusCode == HttpStatusCode.NotFound )
             {
                 throw new Exception("Movie Id does not exist");
-            }            
+            }       
+            catch( WebException ex) when ((ex.Response as HttpWebResponse) ?.StatusCode == HttpStatusCode.ServiceUnavailable)
+            {
+                throw new Exception("Most likely exceeded your rate limit");
+            }
+            catch( WebException ex) when ((ex.Response as HttpWebResponse) ?.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                throw new Exception("Most likely you are using an invalid Api Key");
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }     
         
         private static void CheckApiKeyValid(string key)
@@ -116,9 +128,13 @@ namespace TMdbEasy
                     }
                 }
             }
-            catch
+            catch(WebException ex) when ((ex.Response as HttpWebResponse) ?.StatusCode == HttpStatusCode.Unauthorized)
             {
-                throw new Exception("Invalid Api Key");
+                throw new Exception("You are most likely using an invalid Api Key");
+            }
+            catch(Exception ex)
+            {
+                throw ex;
             }
         }
     }

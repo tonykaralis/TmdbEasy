@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SUT = TMdbEasy;
-using System.Threading.Tasks;
+
 
 namespace TMdbEasy_Tests.APItests
 {
