@@ -24,8 +24,8 @@ namespace TMdbEasy.ApiObjects
         {
             string query = $"{Url}movie/{id}?api_key={ApiKey}&language={language}";
             var content = await CallApiAsync(query);
-            var movie = DeserializeJson<Images>(content);
-            return movie;
+            var images = DeserializeJson<Images>(content);
+            return images;
         }
 
         public async Task<AlternativeTitle> GetAlternativeTitlesAsync(int id, string country = "en")

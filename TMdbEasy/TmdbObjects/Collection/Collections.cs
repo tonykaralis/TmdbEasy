@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TMdbEasy.TmdbObjects
+namespace TMdbEasy.TmdbObjects.Collection
 {
     public class Part
     {

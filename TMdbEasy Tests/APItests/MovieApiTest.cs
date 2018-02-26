@@ -11,7 +11,7 @@ namespace TMdbEasy_Tests.APItests
     class MovieApiTest
     {
         [TestFixture]
-        [Category("")]
+        [Category("MovieApi")]
         public class GetDetailsAsync
         {
             [TestCase(296096321)]
@@ -23,7 +23,8 @@ namespace TMdbEasy_Tests.APItests
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Movies.MovieDetails mov = obj.MovieApi.GetDetailsAsync(id).Result; });
             }
         }
-
+        [TestFixture]
+        [Category("MovieApi")]
         public class GetImagesAsync
         {
             [TestCase(296096321)]
@@ -32,10 +33,11 @@ namespace TMdbEasy_Tests.APItests
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Movies.MovieDetails mov = obj.MovieApi.GetDetailsAsync(id).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Images.Images ima = obj.MovieApi.GetImagesAsync(id).Result; });
             }
         }
-
+        [TestFixture]
+        [Category("MovieApi")]
         public class GetAlternativetitlesAsync
         {
             [TestCase(296096321)]
@@ -44,7 +46,7 @@ namespace TMdbEasy_Tests.APItests
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Movies.MovieDetails mov = obj.MovieApi.GetDetailsAsync(id).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Movies.AlternativeTitle tit = obj.MovieApi.GetAlternativeTitlesAsync(id).Result; });
             }
         }
     }

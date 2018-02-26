@@ -7,11 +7,11 @@ using NUnit.Framework;
 using SUT = TMdbEasy;
 
 namespace TMdbEasy_Tests
-{
+{    
     class RequestEngineTest
     {
         [TestFixture]
-        [Category("Initialization")]
+        [Category("RequestEngine")]
         public class InitializeTest
         {
             [TestCase(null)]
@@ -49,7 +49,7 @@ namespace TMdbEasy_Tests
 
 
         [TestFixture]
-        [Category("Http methods")]
+        [Category("Json")]
         public class DeserializeJsonTest
         {
             [TestCase(296096)]
