@@ -10,7 +10,7 @@ using TMdbEasy.TmdbObjects.Movies;
 
 namespace TMdbEasy
 {
-    public sealed partial class EasyClient
+    public sealed class EasyClient
     {
         /// <summary>
         /// In order to use the client you must provide the api key
@@ -25,6 +25,7 @@ namespace TMdbEasy
         #region Api Objects
         public IMovieApi MovieApi { get; } = new MovieApi();
         public ICollectionApi CollectionApi { get; } = new CollectionApi();
+        public IChangesApi ChangeApi { get; } = new ChangesApi();
         #endregion       
     }
 }
