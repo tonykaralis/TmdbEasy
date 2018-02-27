@@ -15,7 +15,6 @@ namespace TMdbEasy
         #region Core Object properties and methods
         private const string TmdbUrl3 = "http://api.themoviedb.org/3/";
         private const string TmdbUrl3Ssl = "https://api.themoviedb.org/3/";
-        private const string ApiVersion = "3";
 
         public static string ApiKey { get; private set; } = null;
         public static bool Secured { get; private set; } = true;
@@ -32,13 +31,13 @@ namespace TMdbEasy
             {
                 throw new Exception("_apikey is null or empty");
             }
-            else  
+            else
             {
                 CheckApiKeyValid(_apikey);
                 ApiKey = _apikey;
                 Secured = _secure;
                 Url = _secure ? TmdbUrl3Ssl : TmdbUrl3;
-            }             
+            }
         }
         #endregion
 
@@ -69,7 +68,6 @@ namespace TMdbEasy
         /// <returns></returns>
         internal async static Task<string> CallApiAsync(string query)
         {
-            string result;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(query);
             request.Method = "GET";
             //request.UserAgent = "Mozilla / 5.0(Windows NT 10.0; Win64; x64; rv: 57.0) Gecko / 20100101 Firefox / 57.0";
@@ -84,15 +82,14 @@ namespace TMdbEasy
                 {
                     using (StreamReader sr = new StreamReader(stream))
                     {
-                        result = sr.ReadToEnd();
-                        return result;
+                        return sr.ReadToEnd();
                     }
                 }
             }
             catch( WebException ex) when ((ex.Response as HttpWebResponse) ?.StatusCode == HttpStatusCode.NotFound )
             {
                 throw new Exception("Movie Id does not exist");
-            }       
+            }
             catch( WebException ex) when ((ex.Response as HttpWebResponse) ?.StatusCode == HttpStatusCode.ServiceUnavailable)
             {
                 throw new Exception("Most likely exceeded your rate limit");
@@ -101,12 +98,12 @@ namespace TMdbEasy
             {
                 throw new Exception("Most likely you are using an invalid Api Key");
             }
-            catch(Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
-        }     
-        
+        }
+
         private static void CheckApiKeyValid(string key)
         {
             string query = $"{Url}movie/296096?api_key={key}&language=en";
@@ -124,7 +121,7 @@ namespace TMdbEasy
                 {
                     using (StreamReader sr = new StreamReader(stream))
                     {
-                        result = sr.ReadToEnd();                       
+                        result = sr.ReadToEnd();
                     }
                 }
             }
@@ -132,9 +129,9 @@ namespace TMdbEasy
             {
                 throw new Exception("You are most likely using an invalid Api Key");
             }
-            catch(Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }

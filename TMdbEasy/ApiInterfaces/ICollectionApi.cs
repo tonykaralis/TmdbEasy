@@ -14,10 +14,10 @@ namespace TMdbEasy.ApiInterfaces
         /// <summary>
         /// Gets all the information about a specific movie.
         /// </summary>
-        /// <param name="movieId">Typically taken from a previous api call</param>
+        /// <param name="id">Typically taken from a previous api call</param>
         /// <param name="language">Pass a ISO 639-1 value to display translated data for the fields that support it. Default is English</param>
         /// <returns></returns>
-        Task<Collections> GetDetailsAsync(int movieId, string language = "en");
+        Task<Collections> GetDetailsAsync(int id, string language = "en");
         /// <summary>
         /// Returns all movies that belong to a movie.
         /// </summary>

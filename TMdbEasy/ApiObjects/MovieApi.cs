@@ -15,7 +15,7 @@ namespace TMdbEasy.ApiObjects
         public async Task<MovieDetails> GetDetailsAsync(int id, string language = "en")
         {
             string query = $"{Url}movie/{id}?api_key={ApiKey}&language={language}";
-            var content = await CallApiAsync(query);
+            var content = await CallApiAsync(query).ConfigureAwait(false);
             var movie = DeserializeJson<MovieDetails>(content);
             return movie;
         }
@@ -23,7 +23,7 @@ namespace TMdbEasy.ApiObjects
         public async Task<Images> GetImagesAsync(int id, string language = "en")
         {
             string query = $"{Url}movie/{id}?api_key={ApiKey}&language={language}";
-            var content = await CallApiAsync(query);
+            var content = await CallApiAsync(query).ConfigureAwait(false);
             var images = DeserializeJson<Images>(content);
             return images;
         }
@@ -32,7 +32,7 @@ namespace TMdbEasy.ApiObjects
         {
             //TBD buid string externally
             string query = $"{Url}movie/{id}/alternative_titles?api_key={ApiKey}&language={country}";
-            var content = await CallApiAsync(query);
+            var content = await CallApiAsync(query).ConfigureAwait(false);
             var titles = DeserializeJson<AlternativeTitle>(content);
             return titles;
         }

@@ -11,20 +11,20 @@ using TMdbEasy.TmdbObjects.Movies;
 namespace TMdbEasy
 {
     public sealed partial class EasyClient
-    {       
+    {
         /// <summary>
         /// In order to use the client you must provide the api key
         /// </summary>
         /// <param name="_apiKey">Tmdb Api key</param>
         /// <param name="_secure">Prefer ssl or not. Default set to true</param>
         public EasyClient(string _apiKey, bool _secure = true)
-        {            
-            REngine.Initialize(_apiKey, _secure);           
+        {
+            REngine.Initialize(_apiKey, _secure);
         }
 
         #region Api Objects
-        public IMovieApi MovieApi { get; private set; } = new MovieApi();
-        public ICollectionApi CollectionApi { get; private set; } = new CollectionApi();
+        public IMovieApi MovieApi { get; } = new MovieApi();
+        public ICollectionApi CollectionApi { get; } = new CollectionApi();
         #endregion       
     }
 }

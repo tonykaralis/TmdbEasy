@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace TMdbEasy.TmdbObjects.Images
 {
-
     public class Backdrop
     {
         public double Aspect_ratio { get; set; }
