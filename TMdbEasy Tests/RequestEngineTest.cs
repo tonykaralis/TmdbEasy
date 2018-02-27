@@ -7,8 +7,8 @@ using NUnit.Framework;
 using SUT = TMdbEasy;
 
 namespace TMdbEasy_Tests
-{    
-    class RequestEngineTest
+{
+    internal static class RequestEngineTest
     {
         [TestFixture]
         [Category("RequestEngine")]
@@ -22,7 +22,7 @@ namespace TMdbEasy_Tests
             {
                 //Assert
                 Assert.Throws<Exception>(() => new SUT.EasyClient(_apikey));
-            }                     
+            }
 
             [TestCase("6d4b546936310f017557b2fb498b370b")]
             public void SecuredParam_AssignsSecureUrl(string _apikey, bool secure = true)
@@ -47,7 +47,6 @@ namespace TMdbEasy_Tests
             }
         }
 
-
         [TestFixture]
         [Category("Json")]
         public class DeserializeJsonTest
@@ -58,7 +57,7 @@ namespace TMdbEasy_Tests
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
                 //act
-                SUT.TmdbObjects.Movies.MovieDetails mov = await obj.MovieApi.GetDetailsAsync(id);
+                SUT.TmdbObjects.Movies.MovieDetails mov = await obj.MovieApi.GetDetailsAsync(id).ConfigureAwait(false);
                 //assert
                 Assert.IsNotNull(mov);
             }
