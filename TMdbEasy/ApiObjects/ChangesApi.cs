@@ -17,13 +17,13 @@ namespace TMdbEasy.ApiObjects
             return DeserializeJson<ChangeList>(content);
         }
 
-        public async Task<ChangeList> GetPersonChangeListAsync(string end_date = null, string start_date = null, int page = default(int))
+        public async Task<ChangeList> GetPersonChangeListAsync(string end_date = null, string start_date = null, int page = 1)
         {
             var content = await CallApiAsync( BuildQuery(end_date, start_date, page, "person") ).ConfigureAwait(false);
             return DeserializeJson<ChangeList>(content);
         }
 
-        public async Task<ChangeList> GetTVChangeListAsync(string end_date, string start_date, int page)
+        public async Task<ChangeList> GetTVChangeListAsync(string end_date, string start_date, int page  = 1)
         {
             var content = await CallApiAsync( BuildQuery(end_date,start_date,page, "tv") ).ConfigureAwait(false);
             return DeserializeJson<ChangeList>(content);
@@ -33,15 +33,13 @@ namespace TMdbEasy.ApiObjects
         {
             var query = new StringBuilder();
             query.Append(Url).Append(type).Append("/changes?api_key=").Append(ApiKey);
-            if (end_date?.Contains("/") == true
-                && end_date.Length == 10)
+            if (end_date != null)
             {
                 query.Append("&");
                 query.Append("end_date=");
                 query.Append(end_date.Replace("/", "%2F"));
             }
-            if (start_date?.Contains("/") == true
-                && start_date.Length == 10)
+            if (start_date != null)
             {
                 query.Append("&");
                 query.Append("start_date=");
@@ -49,7 +47,7 @@ namespace TMdbEasy.ApiObjects
             }
             query.Append("&");
             query.Append("page=");
-            query.Append(page);
+            query.Append(page.ToString());
             return query.ToString();
         }
     }

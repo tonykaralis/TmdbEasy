@@ -100,7 +100,7 @@ namespace TMdbEasy
             }
             catch (Exception)
             {
-                throw;
+                throw new Exception("Most likely you are passing invalid parameter data");
             }
         }
 

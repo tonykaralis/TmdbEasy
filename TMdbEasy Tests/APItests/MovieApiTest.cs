@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using SUT = TMdbEasy;
 
-
 namespace TMdbEasy_Tests.APItests
 {
-    class MovieApiTest
+    internal static class MovieApiTest
     {
         [TestFixture]
         [Category("MovieApi")]
@@ -23,6 +22,7 @@ namespace TMdbEasy_Tests.APItests
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Movies.MovieDetails mov = obj.MovieApi.GetDetailsAsync(id).Result; });
             }
         }
+
         [TestFixture]
         [Category("MovieApi")]
         public class GetImagesAsync
@@ -36,6 +36,7 @@ namespace TMdbEasy_Tests.APItests
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Images.Images ima = obj.MovieApi.GetImagesAsync(id).Result; });
             }
         }
+
         [TestFixture]
         [Category("MovieApi")]
         public class GetAlternativetitlesAsync
