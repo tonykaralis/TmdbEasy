@@ -14,29 +14,20 @@ namespace TMdbEasy.ApiObjects
     {
         public async Task<MovieDetails> GetDetailsAsync(int id, string language = "en")
         {
-            string query = $"{Url}movie/{id}?api_key={ApiKey}&language={language}";
-            var content = await CallApiAsync(query).ConfigureAwait(false);
-            var movie = DeserializeJson<MovieDetails>(content);
-            return movie;
+            var content = await CallApiAsync($"{Url}movie/{id}?api_key={ApiKey}&language={language}").ConfigureAwait(false);
+            return DeserializeJson<MovieDetails>(content);
         }
 
         public async Task<Images> GetImagesAsync(int id, string language = "en")
         {
-            string query = $"{Url}movie/{id}?api_key={ApiKey}&language={language}";
-            var content = await CallApiAsync(query).ConfigureAwait(false);
-            var images = DeserializeJson<Images>(content);
-            return images;
+            var content = await CallApiAsync($"{Url}movie/{id}?api_key={ApiKey}&language={language}").ConfigureAwait(false);
+            return DeserializeJson<Images>(content);
         }
 
         public async Task<AlternativeTitle> GetAlternativeTitlesAsync(int id, string country = "en")
         {
-            //TBD buid string externally
-            string query = $"{Url}movie/{id}/alternative_titles?api_key={ApiKey}&language={country}";
-            var content = await CallApiAsync(query).ConfigureAwait(false);
-            var titles = DeserializeJson<AlternativeTitle>(content);
-            return titles;
+            var content = await CallApiAsync($"{Url}movie/{id}/alternative_titles?api_key={ApiKey}&language={country}").ConfigureAwait(false);
+            return DeserializeJson<AlternativeTitle>(content);
         }
-
-        public MovieApi() { }
     }
 }

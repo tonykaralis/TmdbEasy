@@ -13,22 +13,16 @@ namespace TMdbEasy.ApiObjects
 {
     internal class CollectionApi : ICollectionApi
     {
-        public CollectionApi() { }
-
         public async Task<Collections> GetDetailsAsync(int id, string language = "en")
         {
-            string query = $"{Url}collection/{id}?api_key={ApiKey}&language={language}";
-            var content = await CallApiAsync(query).ConfigureAwait(false);
-            var collections = DeserializeJson<Collections>(content);
-            return collections;
+            var content = await CallApiAsync($"{Url}collection/{id}?api_key={ApiKey}&language={language}").ConfigureAwait(false);
+            return DeserializeJson<Collections>(content);
         }
 
         public async Task<Images> GetImagesAsync(int id, string language = "en")
         {
-            string query = $"{Url}collection/{id}/images?api_key={ApiKey}&language={language}";
-            var content = await CallApiAsync(query).ConfigureAwait(false);
-            var images = DeserializeJson<Images>(content);
-            return images;
+            var content = await CallApiAsync($"{Url}collection/{id}/images?api_key={ApiKey}&language={language}").ConfigureAwait(false);
+            return DeserializeJson<Images>(content);
         }
     }
 }
