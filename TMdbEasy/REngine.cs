@@ -61,7 +61,7 @@ namespace TMdbEasy
         }
 
         /// <summary>
-        /// Accepts a ready built query string, calls the api async and 
+        /// Accepts a ready built query string, calls the api Asynchronouslyand 
         /// then returns the response output as a string.
         /// </summary>
         /// <param name="query"></param>
@@ -105,7 +105,7 @@ namespace TMdbEasy
         }
 
         /// <summary>
-        /// Accepts a ready built query string, calls the api async and 
+        /// Accepts a ready built query string, calls the api Synchronously and 
         /// then returns the response output as a string.
         /// </summary>
         /// <param name="query"></param>
@@ -151,7 +151,7 @@ namespace TMdbEasy
         private static void CheckApiKeyValid(string key)
         {
             string query = $"{Url}movie/296096?api_key={key}&language=en";
-            CallApi(query);            
+            CallApi(query);
         }
     }
 }
