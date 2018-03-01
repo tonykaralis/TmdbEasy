@@ -26,6 +26,7 @@ namespace TMdbEasy
         public IMovieApi MovieApi { get; } = new MovieApi();
         public ICollectionApi CollectionApi { get; } = new CollectionApi();
         public IChangesApi ChangeApi { get; } = new ChangesApi();
+        public ICompaniesApi CompanyApi { get; } = new CompaniesApi();
         #endregion       
     }
 }

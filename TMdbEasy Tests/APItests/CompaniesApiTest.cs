@@ -8,34 +8,34 @@ using SUT = TMdbEasy;
 
 namespace TMdbEasy_Tests.APItests
 {
-    [Category("CollectionApi")]
-    internal static class CollectionApiTest
+    [Category("CompaniesApi")]
+    internal static class CompaniesApiTest
     {
         [TestFixture]
-        [Category("CollectionApi")]
+        [Category("CompaniesApi")]
         public class GetDetailsAsync
         {
             [TestCase(296096321)]
-            public void IncorrectId_ThrowsException(int id, string language = "en")
+            public void IncorrectId_ThrowsException(int id)
             {
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Collection.Collections col = obj.CollectionApi.GetDetailsAsync(id, language).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Companies.CompanyDetails cd = obj.CompanyApi.GetDetailsAsync(id).Result; });
             }
         }
 
         [TestFixture]
-        [Category("CollectionApi")]
-        public class GetImagesAsync
+        [Category("CompaniesApi")]
+        public class GetMoviesAsync
         {
-            [TestCase(296096321)]
+            [TestCase(254665465)]
             public void IncorrectId_ThrowsException(int id, string language = "en")
             {
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Images.Images ima = obj.CollectionApi.GetImagesAsync(id, language).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Companies.MoviesByCompany mbc = obj.CompanyApi.GetMoviesAsync(id, language).Result; });
             }
         }
     }
