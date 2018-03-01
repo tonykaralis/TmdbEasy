@@ -68,7 +68,7 @@ namespace TMdbEasy
         /// <returns></returns>
         internal async static Task<string> CallApiAsync(string query)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(query);
+            var request = (HttpWebRequest)WebRequest.Create(query);
             request.Method = "GET";
             //request.UserAgent = "Mozilla / 5.0(Windows NT 10.0; Win64; x64; rv: 57.0) Gecko / 20100101 Firefox / 57.0";
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
@@ -80,7 +80,7 @@ namespace TMdbEasy
                     as HttpWebResponse;
                 using (Stream stream = response.GetResponseStream())
                 {
-                    using (StreamReader sr = new StreamReader(stream))
+                    using (var sr = new StreamReader(stream))
                     {
                         return sr.ReadToEnd();
                     }
@@ -104,11 +104,15 @@ namespace TMdbEasy
             }
         }
 
-        private static void CheckApiKeyValid(string key)
+        /// <summary>
+        /// Accepts a ready built query string, calls the api async and 
+        /// then returns the response output as a string.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        internal static string CallApi(string query)
         {
-            string query = $"{Url}movie/296096?api_key={key}&language=en";
-            string result;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(query);
+            var request = (HttpWebRequest)WebRequest.Create(query);
             request.Method = "GET";
             //request.UserAgent = "Mozilla / 5.0(Windows NT 10.0; Win64; x64; rv: 57.0) Gecko / 20100101 Firefox / 57.0";
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
@@ -116,23 +120,38 @@ namespace TMdbEasy
             WebResponse response;
             try
             {
-                response = request.GetResponse() as HttpWebResponse;
+                response = request.GetResponse()
+                    as HttpWebResponse;
                 using (Stream stream = response.GetResponseStream())
                 {
-                    using (StreamReader sr = new StreamReader(stream))
+                    using (var sr = new StreamReader(stream))
                     {
-                        result = sr.ReadToEnd();
+                        return sr.ReadToEnd();
                     }
                 }
             }
-            catch(WebException ex) when ((ex.Response as HttpWebResponse) ?.StatusCode == HttpStatusCode.Unauthorized)
+            catch (WebException ex) when ((ex.Response as HttpWebResponse)?.StatusCode == HttpStatusCode.NotFound)
             {
-                throw new Exception("You are most likely using an invalid Api Key");
+                throw new Exception("Movie Id does not exist");
+            }
+            catch (WebException ex) when ((ex.Response as HttpWebResponse)?.StatusCode == HttpStatusCode.ServiceUnavailable)
+            {
+                throw new Exception("Most likely exceeded your rate limit");
+            }
+            catch (WebException ex) when ((ex.Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                throw new Exception("Most likely you are using an invalid Api Key");
             }
             catch (Exception)
             {
-                throw;
+                throw new Exception("Most likely you are passing invalid parameter data");
             }
+        }
+
+        private static void CheckApiKeyValid(string key)
+        {
+            string query = $"{Url}movie/296096?api_key={key}&language=en";
+            CallApi(query);            
         }
     }
 }
