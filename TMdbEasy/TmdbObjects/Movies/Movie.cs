@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TMdbEasy.TmdbObjects.Movies
 {
-    public class MovieSearchResult
+    public class Movie
     {
         public int Vote_count { get; set; }
         public int Id { get; set; }
@@ -24,11 +24,11 @@ namespace TMdbEasy.TmdbObjects.Movies
         public string Release_date { get; set; }
     }
 
-    public class Movie
+    public class MovieList
     {
         public int Page { get; set; }
         public int Total_results { get; set; }
         public int Total_pages { get; set; }
-        public List<MovieSearchResult> Results { get; set; }
+        public List<Movie> Results { get; set; }
     }
 }
