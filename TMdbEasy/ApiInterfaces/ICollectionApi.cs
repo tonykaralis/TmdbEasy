@@ -12,14 +12,14 @@ namespace TMdbEasy.ApiInterfaces
     public interface ICollectionApi
     {
         /// <summary>
-        /// Gets all the information about a specific movie.
+        /// Get collection details by id.
         /// </summary>
         /// <param name="id">Typically taken from a previous api call</param>
         /// <param name="language">Pass a ISO 639-1 value to display translated data for the fields that support it. Default is English</param>
         /// <returns></returns>
         Task<Collections> GetDetailsAsync(int id, string language = "en");
         /// <summary>
-        /// Returns all movies that belong to a movie.
+        /// Get the images for a collection by id.
         /// </summary>
         /// <param name="id">Typically taken from a previous api call</param>
         /// <param name="language">Pass a ISO 639-1 value to display translated data for the fields that support it. Default is English</param>

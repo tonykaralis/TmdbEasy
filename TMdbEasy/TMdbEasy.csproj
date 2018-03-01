@@ -46,10 +46,12 @@
     <Compile Include="ApiInterfaces\IChangesApi.cs" />
     <Compile Include="ApiInterfaces\ICollectionApi.cs" />
     <Compile Include="ApiInterfaces\ICompaniesApi.cs" />
+    <Compile Include="ApiInterfaces\IConfigApi.cs" />
     <Compile Include="ApiInterfaces\IMovieApi.cs" />
     <Compile Include="ApiObjects\ChangesApi.cs" />
     <Compile Include="ApiObjects\CollectionApi.cs" />
     <Compile Include="ApiObjects\CompaniesApi.cs" />
+    <Compile Include="ApiObjects\ConfigApi.cs" />
     <Compile Include="ApiObjects\MovieApi.cs" />
     <Compile Include="REngine.cs" />
     <Compile Include="EasyClient.cs" />
