@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using TMdbEasy.ApiInterfaces;
+using TMdbEasy.ApiObjects;
 using SUT = TMdbEasy;
 
 namespace TMdbEasy_Tests
@@ -30,9 +32,12 @@ namespace TMdbEasy_Tests
                 //Arrange
                 var obj = new SUT.EasyClient(_apikey, secure);
 
+                var d = obj.GetApi<IMovieApi>().Value;
+
                 //Assert
                 Assert.AreEqual(SUT.REngine.Secured, true);
                 Assert.AreEqual(SUT.REngine.Url, "https://api.themoviedb.org/3/");
+                Assert.NotNull(d.GetDetailsAsync(500));
             }
 
             [TestCase("6d4b546936310f017557b2fb498b370b", false)]

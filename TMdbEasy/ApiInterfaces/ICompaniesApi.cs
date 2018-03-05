@@ -7,7 +7,7 @@ using TMdbEasy.TmdbObjects.Companies;
 
 namespace TMdbEasy.ApiInterfaces
 {
-    public interface ICompaniesApi
+    public interface ICompaniesApi : IBase
     {
         /// <summary>
         /// Get a companies details by id.

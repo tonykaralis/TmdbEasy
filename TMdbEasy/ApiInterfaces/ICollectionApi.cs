@@ -9,7 +9,7 @@ using TMdbEasy.TmdbObjects.Images;
 
 namespace TMdbEasy.ApiInterfaces
 {
-    public interface ICollectionApi
+    public interface ICollectionApi : IBase
     {
         /// <summary>
         /// Get collection details by id.

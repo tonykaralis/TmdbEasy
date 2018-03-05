@@ -10,7 +10,7 @@ using static TMdbEasy.REngine;
 
 namespace TMdbEasy.ApiObjects
 {
-    internal class MovieApi : IMovieApi
+    public sealed class MovieApi : IMovieApi
     {
         public async Task<MovieDetails> GetDetailsAsync(int id, string language = "en")
         {

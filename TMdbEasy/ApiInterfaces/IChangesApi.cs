@@ -7,7 +7,7 @@ using TMdbEasy.TmdbObjects.Changes;
 
 namespace TMdbEasy.ApiInterfaces
 {
-    public interface IChangesApi
+    public interface IChangesApi : IBase
     {
         /// <summary>
         /// Get a list of all of the movie ids that have been changed in the past 24 hours.

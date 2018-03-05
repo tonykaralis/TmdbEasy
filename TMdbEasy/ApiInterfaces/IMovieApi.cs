@@ -8,7 +8,7 @@ using TMdbEasy.TmdbObjects.Images;
 
 namespace TMdbEasy.ApiInterfaces
 {
-    public interface IMovieApi
+    public interface IMovieApi : IBase
     {
         /// <summary>
         /// Gets all the information about a specific movie.

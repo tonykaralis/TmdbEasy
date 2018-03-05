@@ -7,7 +7,7 @@ using TMdbEasy.TmdbObjects.Configuration;
 
 namespace TMdbEasy.ApiInterfaces
 {
-    public interface IConfigApi
+    public interface IConfigApi : IBase
     {
         /// <summary>
         /// Get the system wide configuration information. Some elements of the API require some knowledge of this configuration data. 

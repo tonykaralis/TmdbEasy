@@ -43,10 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiInterfaces\IBase.cs" />
     <Compile Include="ApiInterfaces\IChangesApi.cs" />
     <Compile Include="ApiInterfaces\ICollectionApi.cs" />
     <Compile Include="ApiInterfaces\ICompaniesApi.cs" />
     <Compile Include="ApiInterfaces\IConfigApi.cs" />
+    <Compile Include="ApiInterfaces\ICreator.cs" />
     <Compile Include="ApiInterfaces\IMovieApi.cs" />
     <Compile Include="ApiObjects\ChangesApi.cs" />
     <Compile Include="ApiObjects\CollectionApi.cs" />
