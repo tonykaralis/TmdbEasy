@@ -50,14 +50,16 @@
     <Compile Include="ApiInterfaces\ICompaniesApi.cs" />
     <Compile Include="ApiInterfaces\IConfigApi.cs" />
     <Compile Include="ApiInterfaces\ICreator.cs" />
-    <Compile Include="ApiInterfaces\ICredits.cs" />
+    <Compile Include="ApiInterfaces\ICreditApi.cs" />
     <Compile Include="ApiInterfaces\IMovieApi.cs" />
+    <Compile Include="ApiInterfaces\IReviewApi.cs" />
     <Compile Include="ApiObjects\ChangesApi.cs" />
     <Compile Include="ApiObjects\CollectionApi.cs" />
     <Compile Include="ApiObjects\CompaniesApi.cs" />
     <Compile Include="ApiObjects\ConfigApi.cs" />
     <Compile Include="ApiObjects\CreditApi.cs" />
     <Compile Include="ApiObjects\MovieApi.cs" />
+    <Compile Include="ApiObjects\ReviewApi.cs" />
     <Compile Include="REngine.cs" />
     <Compile Include="EasyClient.cs" />
     <Compile Include="TmdbObjects\Certifications\Certifications.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="TmdbObjects\Production\ProductionCompany.cs" />
     <Compile Include="TmdbObjects\Production\ProductionCountry.cs" />
     <Compile Include="TmdbObjects\Language\SpokenLanguage.cs" />
+    <Compile Include="TmdbObjects\Reviews.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
