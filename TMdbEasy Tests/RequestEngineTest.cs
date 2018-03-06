@@ -32,12 +32,9 @@ namespace TMdbEasy_Tests
                 //Arrange
                 var obj = new SUT.EasyClient(_apikey, secure);
 
-                var d = obj.GetApi<IMovieApi>().Value;
-
                 //Assert
                 Assert.AreEqual(SUT.REngine.Secured, true);
                 Assert.AreEqual(SUT.REngine.Url, "https://api.themoviedb.org/3/");
-                Assert.NotNull(d.GetDetailsAsync(500));
             }
 
             [TestCase("6d4b546936310f017557b2fb498b370b", false)]
@@ -61,8 +58,9 @@ namespace TMdbEasy_Tests
             {
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var d = obj.GetApi<IMovieApi>().Value;
                 //act
-                SUT.TmdbObjects.Movies.MovieDetails mov = await obj.MovieApi.GetDetailsAsync(id).ConfigureAwait(false);
+                SUT.TmdbObjects.Movies.MovieDetails mov = await d.GetDetailsAsync(id).ConfigureAwait(false);
                 //assert
                 Assert.IsNotNull(mov);
             }

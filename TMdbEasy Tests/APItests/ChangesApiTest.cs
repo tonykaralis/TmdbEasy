@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SUT = TMdbEasy;
+using TMdbEasy.ApiInterfaces;
 
 namespace TMdbEasy_Tests.APItests
 {
@@ -20,9 +21,10 @@ namespace TMdbEasy_Tests.APItests
             {
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var d = obj.GetApi<IChangesApi>().Value;
                 //assert
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Changes.ChangeList ch
-                    = obj.ChangeApi.GetMovieChangeListAsync(end_date,start_date,page).Result; });
+                    = d.GetMovieChangeListAsync(end_date,start_date,page).Result; });
             }
         }
 
@@ -36,11 +38,12 @@ namespace TMdbEasy_Tests.APItests
             {
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var d = obj.GetApi<IChangesApi>().Value;
                 //assert
                 Assert.Throws<AggregateException>(() =>
                 {
                     SUT.TmdbObjects.Changes.ChangeList ch
-                        = obj.ChangeApi.GetPersonChangeListAsync(end_date, start_date, page).Result;
+                        = d.GetPersonChangeListAsync(end_date, start_date, page).Result;
                 });
             }
         }
@@ -55,11 +58,12 @@ namespace TMdbEasy_Tests.APItests
             {
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var d = obj.GetApi<IChangesApi>().Value;
                 //assert
                 Assert.Throws<AggregateException>(() =>
                 {
                     SUT.TmdbObjects.Changes.ChangeList ch
-                        = obj.ChangeApi.GetTVChangeListAsync(end_date, start_date, page).Result;
+                        = d.GetTVChangeListAsync(end_date, start_date, page).Result;
                 });
             }
         }

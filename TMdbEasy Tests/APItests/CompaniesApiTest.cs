@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMdbEasy.ApiInterfaces;
 using SUT = TMdbEasy;
 
 namespace TMdbEasy_Tests.APItests
@@ -20,8 +21,9 @@ namespace TMdbEasy_Tests.APItests
             {
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var d = obj.GetApi<ICompaniesApi>().Value;
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Companies.CompanyDetails cd = obj.CompanyApi.GetDetailsAsync(id).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Companies.CompanyDetails cd = d.GetDetailsAsync(id).Result; });
             }
         }
 
@@ -34,8 +36,9 @@ namespace TMdbEasy_Tests.APItests
             {
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var d = obj.GetApi<ICompaniesApi>().Value;
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Companies.MoviesByCompany mbc = obj.CompanyApi.GetMoviesAsync(id, language).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Companies.MoviesByCompany mbc = d.GetMoviesAsync(id, language).Result; });
             }
         }
     }

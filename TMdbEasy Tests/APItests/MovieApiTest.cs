@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TMdbEasy.ApiInterfaces;
 using SUT = TMdbEasy;
 
 namespace TMdbEasy_Tests.APItests
@@ -13,13 +14,14 @@ namespace TMdbEasy_Tests.APItests
         [Category("MovieApi")]
         public class GetDetailsAsync
         {
-            [TestCase(296096321)]
+            [TestCase(5018857)]
             public void IncorrectId_ThrowsException(int id, string language = "en")
             {
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var d = obj.GetApi<IMovieApi>().Value;
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Movies.MovieDetails mov = obj.MovieApi.GetDetailsAsync(id).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Movies.MovieDetails mov = d.GetDetailsAsync(id).Result; });
             }
         }
 
@@ -32,8 +34,9 @@ namespace TMdbEasy_Tests.APItests
             {
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var d = obj.GetApi<IMovieApi>().Value;
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Images.Images ima = obj.MovieApi.GetImagesAsync(id).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Images.Images ima = d.GetImagesAsync(id).Result; });
             }
         }
 
@@ -46,8 +49,9 @@ namespace TMdbEasy_Tests.APItests
             {
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var d = obj.GetApi<IMovieApi>().Value;
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Movies.AlternativeTitle tit = obj.MovieApi.GetAlternativeTitlesAsync(id).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Movies.AlternativeTitle tit = d.GetAlternativeTitlesAsync(id).Result; });
             }
         }
     }

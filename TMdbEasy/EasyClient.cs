@@ -24,14 +24,6 @@ namespace TMdbEasy
             REngine.Initialize(_apiKey, _secure);
         }
 
-        #region Api Objects
-        public IMovieApi MovieApi { get; } = new MovieApi();
-        public ICollectionApi CollectionApi { get; } = new CollectionApi();
-        public IChangesApi ChangeApi { get; } = new ChangesApi();
-        public ICompaniesApi CompanyApi { get; } = new CompaniesApi();
-        public IConfigApi ConfigApi { get; } = new ConfigApi();
-        #endregion
-
         public Lazy<T> GetApi<T>() where T : IBase
         {
             var apiMapper = new ApiCreator();
@@ -49,7 +41,9 @@ namespace TMdbEasy
             SupportedDependencyTypeMap = new Dictionary<Type, Func<object>>
                 {
                     {typeof(IMovieApi), () => new MovieApi()},
-                    {typeof(ICollectionApi), () => new CollectionApi()}
+                    {typeof(ICollectionApi), () => new CollectionApi()},
+                    {typeof(ICompaniesApi), () => new CompaniesApi()},
+                    {typeof(IChangesApi), () => new ChangesApi()}
                 };
 
             TypeCtorMap = new ConcurrentDictionary<Type, ConstructorInfo>();

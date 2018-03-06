@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMdbEasy.ApiInterfaces;
 using SUT = TMdbEasy;
 
 namespace TMdbEasy_Tests.APItests
@@ -20,8 +21,9 @@ namespace TMdbEasy_Tests.APItests
             {
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var d = obj.GetApi<ICollectionApi>().Value;
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Collection.Collections col = obj.CollectionApi.GetDetailsAsync(id, language).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Collection.Collections col = d.GetDetailsAsync(id, language).Result; });
             }
         }
 
@@ -34,8 +36,9 @@ namespace TMdbEasy_Tests.APItests
             {
                 //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var d = obj.GetApi<ICollectionApi>().Value;
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Images.Images ima = obj.CollectionApi.GetImagesAsync(id, language).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Images.Images ima = d.GetImagesAsync(id, language).Result; });
             }
         }
     }
