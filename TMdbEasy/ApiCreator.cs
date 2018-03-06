@@ -14,6 +14,7 @@ namespace TMdbEasy
     {
         private static readonly IReadOnlyDictionary<Type, Func<object>> Mapper;
         private static readonly ConcurrentDictionary<Type, ConstructorInfo> CtorMapper;
+
         /// <summary>
         /// Maps All the Api interfaces to their corresponding concrete implementations.
         /// Currently only supports 1-1 mapping.
@@ -25,7 +26,8 @@ namespace TMdbEasy
                     {typeof(IMovieApi), () => new MovieApi()},
                     {typeof(ICollectionApi), () => new CollectionApi()},
                     {typeof(ICompaniesApi), () => new CompaniesApi()},
-                    {typeof(IChangesApi), () => new ChangesApi()}
+                    {typeof(IChangesApi), () => new ChangesApi()},
+                    {typeof(IConfigApi), () => new ConfigApi()}
                 };
 
             CtorMapper = new ConcurrentDictionary<Type, ConstructorInfo>();
@@ -69,6 +71,7 @@ namespace TMdbEasy
                 throw new InvalidOperationException("Multiple Constructor Support not available. Contact the author of the API for assistance.");
             }
         }
+
         /// <summary>
         /// Finds and returns all available constructors for a given TypeInfo object.
         /// Currently there is only support for a single constructor per ApiInterface
