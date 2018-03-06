@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TMdbEasy.ApiInterfaces
 {
     /// <summary>
-    /// Empty Contract to constrict all other types not inhertiting from this
+    /// Empty Contract to provide restriction on all our interface types
     /// </summary>
     public interface IBase
     {

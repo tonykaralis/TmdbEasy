@@ -50,11 +50,13 @@
     <Compile Include="ApiInterfaces\ICompaniesApi.cs" />
     <Compile Include="ApiInterfaces\IConfigApi.cs" />
     <Compile Include="ApiInterfaces\ICreator.cs" />
+    <Compile Include="ApiInterfaces\ICredits.cs" />
     <Compile Include="ApiInterfaces\IMovieApi.cs" />
     <Compile Include="ApiObjects\ChangesApi.cs" />
     <Compile Include="ApiObjects\CollectionApi.cs" />
     <Compile Include="ApiObjects\CompaniesApi.cs" />
     <Compile Include="ApiObjects\ConfigApi.cs" />
+    <Compile Include="ApiObjects\CreditApi.cs" />
     <Compile Include="ApiObjects\MovieApi.cs" />
     <Compile Include="REngine.cs" />
     <Compile Include="EasyClient.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="TmdbObjects\Configuration\Jobs.cs" />
     <Compile Include="TmdbObjects\Configuration\Languages.cs" />
     <Compile Include="TmdbObjects\Configuration\TimeZones.cs" />
+    <Compile Include="TmdbObjects\Credits.cs" />
     <Compile Include="TmdbObjects\Genre.cs" />
     <Compile Include="TmdbObjects\Images\Backdrop.cs" />
     <Compile Include="TmdbObjects\Images\Images.cs" />
