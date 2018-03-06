@@ -12,23 +12,22 @@ namespace TMdbEasy
 {
     internal class ApiCreator
     {
-        private static readonly IReadOnlyDictionary<Type, Func<object>> Mapper;
+        //private static readonly IReadOnlyDictionary<Type, Func<object>> Mapper;
         private static readonly ConcurrentDictionary<Type, ConstructorInfo> CtorMapper;
 
         /// <summary>
-        /// Maps All the Api interfaces to their corresponding concrete implementations.
-        /// Currently only supports 1-1 mapping.
+        /// Creates a concurrent dictionary
         /// </summary>
         static ApiCreator()
         {
-            Mapper = new Dictionary<Type, Func<object>>
-                {
-                    {typeof(IMovieApi), () => new MovieApi()},
-                    {typeof(ICollectionApi), () => new CollectionApi()},
-                    {typeof(ICompaniesApi), () => new CompaniesApi()},
-                    {typeof(IChangesApi), () => new ChangesApi()},
-                    {typeof(IConfigApi), () => new ConfigApi()}
-                };
+            //Mapper = new Dictionary<Type, Func<object>>
+            //    {
+            //        {typeof(IMovieApi), () => new MovieApi()},
+            //        {typeof(ICollectionApi), () => new CollectionApi()},
+            //        {typeof(ICompaniesApi), () => new CompaniesApi()},
+            //        {typeof(IChangesApi), () => new ChangesApi()},
+            //        {typeof(IConfigApi), () => new ConfigApi()}
+            //    };
 
             CtorMapper = new ConcurrentDictionary<Type, ConstructorInfo>();
         }
