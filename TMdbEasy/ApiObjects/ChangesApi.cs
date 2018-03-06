@@ -29,6 +29,14 @@ namespace TMdbEasy.ApiObjects
             return DeserializeJson<ChangeList>(content);
         }
 
+        /// <summary>
+        /// Build the api request query up. Wraps start and end date with %2F.
+        /// </summary>
+        /// <param name="end_date"></param>
+        /// <param name="start_date"></param>
+        /// <param name="page"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         private string BuildQuery(string end_date, string start_date, int page, string type)
         {
             var query = new StringBuilder();
