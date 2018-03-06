@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiCreator.cs" />
     <Compile Include="ApiInterfaces\IBase.cs" />
     <Compile Include="ApiInterfaces\IChangesApi.cs" />
     <Compile Include="ApiInterfaces\ICollectionApi.cs" />
