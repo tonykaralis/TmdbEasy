@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using TMdbEasy.ApiInterfaces;
-using TMdbEasy.ApiObjects;
-using TMdbEasy.TmdbObjects.Movies;
 
 namespace TMdbEasy
 {
@@ -24,6 +15,11 @@ namespace TMdbEasy
             REngine.Initialize(_apiKey, _secure);
         }
 
+        /// <summary>
+        /// Creates and returns an Api Interface of type Lazy<T>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public Lazy<T> GetApi<T>() where T : IBase
         {
             var apiMapper = new ApiCreator();

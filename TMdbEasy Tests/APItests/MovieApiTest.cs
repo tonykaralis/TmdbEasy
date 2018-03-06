@@ -29,7 +29,7 @@ namespace TMdbEasy_Tests.APItests
         [Category("MovieApi")]
         public class GetImagesAsync
         {
-            [TestCase(500)]
+            [TestCase(296096321)]
             public void IncorrectId_ThrowsException(int id, string language = "en")
             {
                 //arrange
