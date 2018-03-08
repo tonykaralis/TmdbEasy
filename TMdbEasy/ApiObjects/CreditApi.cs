@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMdbEasy.ApiInterfaces;
 using TMdbEasy.TmdbObjects;
+using TMdbEasy.TmdbObjects.Other;
 using static TMdbEasy.REngine;
 
 namespace TMdbEasy.ApiObjects

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TMdbEasy.TmdbObjects.Language;
+using TMdbEasy.TmdbObjects.Other;
 using TMdbEasy.TmdbObjects.Production;
 
 namespace TMdbEasy.TmdbObjects.Movies

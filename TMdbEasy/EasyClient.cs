@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using TMdbEasy.ApiInterfaces;
+using TMdbEasy.TmdbObjects.Other;
 
 namespace TMdbEasy
 {
@@ -24,6 +26,20 @@ namespace TMdbEasy
         {
             var apiMapper = new ApiCreator();
             return new Lazy<T>(apiMapper.CreateApi<T>);
+        }
+
+        /// <summary>
+        /// The find method makes it easy to search for objects in the database by an external id. For example, an IMDB ID.
+        /// This method will search all objects(movies, TV shows and people) and return the results in a single response.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="language">Default is english</param>
+        /// <param name="external_id"></param>
+        /// <returns></returns>
+        public async Task<ObjectCollection> Find(string id, string external_id, string language = "en")
+        {
+            var content = await REngine.CallApiAsync($"{REngine.Url}find/{id}?api_key={REngine.ApiKey}&language={language}&external_source={external_id}").ConfigureAwait(false);
+            return REngine.DeserializeJson<ObjectCollection>(content);
         }
     }
 }
