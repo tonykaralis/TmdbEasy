@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TMdbEasy.TmdbObjects
+namespace TMdbEasy.TmdbObjects.Other
 {
-    public class Networks
+    public class Genre
     {
         public int Id { get; set; }
         public string Name { get; set; }

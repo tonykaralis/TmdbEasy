@@ -23,7 +23,7 @@ namespace TMdbEasy_Tests.APItests
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
                 var d = obj.GetApi<ICreditApi>().Value;
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Credits cr = d.GetDetailsAsync(id).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Other.Credits cr = d.GetDetailsAsync(id).Result; });
             }
         }
     }

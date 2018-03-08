@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TMdbEasy.ApiInterfaces;
 using TMdbEasy.TmdbObjects;
 using static TMdbEasy.REngine;
+using TMdbEasy.TmdbObjects.Other;
 
 namespace TMdbEasy.ApiObjects
 {

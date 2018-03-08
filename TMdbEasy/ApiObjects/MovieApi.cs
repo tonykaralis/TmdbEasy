@@ -12,10 +12,10 @@ namespace TMdbEasy.ApiObjects
 {
     public sealed class MovieApi : IMovieApi
     {
-        public async Task<MovieDetails> GetDetailsAsync(int id, string language = "en")
+        public async Task<MovieFullDetails> GetDetailsAsync(int id, string language = "en")
         {
             var content = await CallApiAsync($"{Url}movie/{id}?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-            return DeserializeJson<MovieDetails>(content);
+            return DeserializeJson<MovieFullDetails>(content);
         }
 
         public async Task<Images> GetImagesAsync(int id, string language = "en")

@@ -23,7 +23,7 @@ namespace TMdbEasy_Tests.APItests
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
                 var d = obj.GetApi<INetworksApi>().Value;
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Networks nt = d.GetDetailsAsync(id).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Other.Network nt = d.GetDetailsAsync(id).Result; });
             }
         }
     }

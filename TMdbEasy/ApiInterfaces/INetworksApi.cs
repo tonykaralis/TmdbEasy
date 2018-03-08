@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TMdbEasy.TmdbObjects;
+using TMdbEasy.TmdbObjects.Other;
 
 namespace TMdbEasy.ApiInterfaces
 {
@@ -14,6 +15,6 @@ namespace TMdbEasy.ApiInterfaces
         /// </summary>
         /// <param name="id">Network Id, typically taken from a previous api call</param>       
         /// <returns></returns>
-        Task<Networks> GetDetailsAsync(int id);
+        Task<Network> GetDetailsAsync(int id);
     }
 }
