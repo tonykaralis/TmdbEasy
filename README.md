@@ -16,7 +16,7 @@ I have also tried to add as much intellisense support as I can for the moment.
 ## Using the library
 
 In order to make use of any of the features contained in this library you must create an instance of 'EasyClient' 
-and pass as the parameter the TMDB Api key acquired form the [themoviedb.org](https://www.themoviedb.org/). If you do not do so
+and pass as the parameter the TMDB Api key acquired from the [themoviedb.org](https://www.themoviedb.org/). If you do not do so
 any further usage will throw exceptions.
 
 You may see the 'EasyClient' object as your main entry point to the library, which makes things much simpler for you.
@@ -77,7 +77,7 @@ Since the GetApi method returns a Lazy<T> get the value and assign to a var.
 Most of the Interface specific methods accept various paramaters. I have tried to keep the parameters matching the actual 
 Api parameters as closely as possible. 
 
-All methods are simple and easy to understand and mimic the actual api as close as possible.
+All methods are simple and easy to understand and mimic the actual api closely.
 
 Reading [TMDb's docs](https://developers.themoviedb.org/3/getting-started/introduction) will help to understand the Api. 
 This library is extremely easy to understand and use should you not wish to expose yourself to that.
