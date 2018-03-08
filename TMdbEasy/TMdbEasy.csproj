@@ -74,6 +74,7 @@
     <Compile Include="TmdbObjects\Configuration\Jobs.cs" />
     <Compile Include="TmdbObjects\Configuration\Languages.cs" />
     <Compile Include="TmdbObjects\Configuration\TimeZones.cs" />
+    <Compile Include="TmdbObjects\Lists\ListDetails.cs" />
     <Compile Include="TmdbObjects\Other\Credits.cs" />
     <Compile Include="TmdbObjects\Other\Genre.cs" />
     <Compile Include="TmdbObjects\Images\Backdrop.cs" />

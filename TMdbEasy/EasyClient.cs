@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using TMdbEasy.ApiInterfaces;
+using TMdbEasy.TmdbObjects.Lists;
 using TMdbEasy.TmdbObjects.Other;
 
 namespace TMdbEasy
@@ -36,10 +37,22 @@ namespace TMdbEasy
         /// <param name="language">Default is english</param>
         /// <param name="external_id"></param>
         /// <returns></returns>
-        public async Task<ObjectCollection> Find(string id, string external_id, string language = "en")
+        public async Task<ObjectCollection> FindAsync(string id, string external_id, string language = "en")
         {
             var content = await REngine.CallApiAsync($"{REngine.Url}find/{id}?api_key={REngine.ApiKey}&language={language}&external_source={external_id}").ConfigureAwait(false);
             return REngine.DeserializeJson<ObjectCollection>(content);
+        }
+
+        /// <summary>
+        /// Get the details of a list.
+        /// </summary>
+        /// <param name="id">List Id</param>
+        /// <param name="language">Defaults is set to english</param>
+        /// <returns></returns>
+        public async Task<ListDetails> GetListDetailsAsync(string id, string language = "en")
+        {
+            var content = await REngine.CallApiAsync($"{REngine.Url}list/{id}?api_key={REngine.ApiKey}&language={language}").ConfigureAwait(false);
+            return REngine.DeserializeJson<ListDetails>(content);
         }
     }
 }
