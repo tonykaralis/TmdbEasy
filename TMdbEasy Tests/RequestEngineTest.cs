@@ -60,7 +60,7 @@ namespace TMdbEasy_Tests
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
                 var d = obj.GetApi<IMovieApi>().Value;
                 //act
-                SUT.TmdbObjects.Movies.MovieDetails mov = await d.GetDetailsAsync(id).ConfigureAwait(false);
+                SUT.TmdbObjects.Movies.MovieFullDetails mov = await d.GetDetailsAsync(id).ConfigureAwait(false);
                 //assert
                 Assert.IsNotNull(mov);
             }

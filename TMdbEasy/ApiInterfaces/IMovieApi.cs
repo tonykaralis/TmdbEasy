@@ -16,7 +16,7 @@ namespace TMdbEasy.ApiInterfaces
         /// <param name="id">Typically taken from a previous api call</param>
         /// <param name="language">Pass a ISO 639-1 value to display translated data for the fields that support it. Default is English</param>
         /// <returns></returns>
-        Task<MovieDetails> GetDetailsAsync(int id, string language = "en");
+        Task<MovieFullDetails> GetDetailsAsync(int id, string language = "en");
         /// <summary>
         /// Returns all movies that belong to a movie.
         /// </summary>

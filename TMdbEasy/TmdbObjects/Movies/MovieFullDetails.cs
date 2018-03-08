@@ -8,7 +8,7 @@ using TMdbEasy.TmdbObjects.Production;
 
 namespace TMdbEasy.TmdbObjects.Movies
 {
-    public class MovieDetails
+    public class MovieFullDetails
     {
         public bool Adult { get; set; }
         public string Backdrop_path { get; set; }

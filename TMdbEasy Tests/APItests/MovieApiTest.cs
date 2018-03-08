@@ -21,7 +21,7 @@ namespace TMdbEasy_Tests.APItests
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
                 var d = obj.GetApi<IMovieApi>().Value;
                 //assert
-                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Movies.MovieDetails mov = d.GetDetailsAsync(id).Result; });
+                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Movies.MovieFullDetails mov = d.GetDetailsAsync(id).Result; });
             }
         }
 

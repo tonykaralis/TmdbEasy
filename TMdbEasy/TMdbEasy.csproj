@@ -82,7 +82,7 @@
     <Compile Include="TmdbObjects\Movies\AlternativeTitle.cs" />
     <Compile Include="TmdbObjects\Movies\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TmdbObjects\Movies\MovieDetails.cs" />
+    <Compile Include="TmdbObjects\Movies\MovieFullDetails.cs" />
     <Compile Include="TmdbObjects\Networks.cs" />
     <Compile Include="TmdbObjects\Production\ProductionCompany.cs" />
     <Compile Include="TmdbObjects\Production\ProductionCountry.cs" />
