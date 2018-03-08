@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TMdbEasy.TmdbObjects
+namespace TMdbEasy.TmdbObjects.Other
 {
     public class Season
     {
@@ -23,12 +23,6 @@ namespace TMdbEasy.TmdbObjects
         public List<Season> Seasons { get; set; }
     }
 
-    public class Person
-    {
-        public string Name { get; set; }
-        public int Id { get; set; }
-    }
-
     public class Credits
     {
         public string Credit_type { get; set; }
@@ -37,6 +31,6 @@ namespace TMdbEasy.TmdbObjects
         public Media Media { get; set; }
         public string Media_type { get; set; }
         public string Id { get; set; }
-        public Person Person { get; set; }
+        public PersonBase Person { get; set; }
     }
 }
