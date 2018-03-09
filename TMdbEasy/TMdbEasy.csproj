@@ -62,10 +62,12 @@
     <Compile Include="ApiObjects\MovieApi.cs" />
     <Compile Include="ApiObjects\NetworksApi.cs" />
     <Compile Include="ApiObjects\ReviewApi.cs" />
+    <Compile Include="QueryBuilder.cs" />
     <Compile Include="REngine.cs" />
     <Compile Include="EasyClient.cs" />
     <Compile Include="TmdbObjects\Certifications\Certifications.cs" />
     <Compile Include="TmdbObjects\Changes\ChangeList.cs" />
+    <Compile Include="TmdbObjects\Changes\MovieChangeList.cs" />
     <Compile Include="TmdbObjects\Collection\Collections.cs" />
     <Compile Include="TmdbObjects\Companies\Companies.cs" />
     <Compile Include="TmdbObjects\Companies\CompanyDetails.cs" />
@@ -74,7 +76,10 @@
     <Compile Include="TmdbObjects\Configuration\Jobs.cs" />
     <Compile Include="TmdbObjects\Configuration\Languages.cs" />
     <Compile Include="TmdbObjects\Configuration\TimeZones.cs" />
+    <Compile Include="TmdbObjects\Language\Translations.cs" />
     <Compile Include="TmdbObjects\Lists\ListDetails.cs" />
+    <Compile Include="TmdbObjects\Movies\MovieReleaseDate.cs" />
+    <Compile Include="TmdbObjects\Movies\Videos.cs" />
     <Compile Include="TmdbObjects\Other\Credits.cs" />
     <Compile Include="TmdbObjects\Other\Genre.cs" />
     <Compile Include="TmdbObjects\Images\Backdrop.cs" />
@@ -84,6 +89,7 @@
     <Compile Include="TmdbObjects\Movies\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TmdbObjects\Movies\MovieFullDetails.cs" />
+    <Compile Include="TmdbObjects\Movies\MovieExternalId.cs" />
     <Compile Include="TmdbObjects\Other\Network.cs" />
     <Compile Include="TmdbObjects\Other\ObjectCollection.cs" />
     <Compile Include="TmdbObjects\Other\Person.cs" />
