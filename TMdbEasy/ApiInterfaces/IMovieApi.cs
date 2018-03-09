@@ -81,6 +81,65 @@ namespace TMdbEasy.ApiInterfaces
         /// <param name="language">Default is English</param>
         /// <param name="page">Default is 1</param>     
         /// <returns></returns>
-        Task<MovieList> GetRecommendationssAsync(int id, string language="en", int page=1);
+        Task<MovieList> GetRecommendationsAsync(int id, string language="en", int page=1);
+        /// <summary>
+        /// Get a list of similar movies. This is not the same as the "Recommendation" system you see on the website.
+        /// These items are assembled by looking at keywords and genres.
+        /// </summary>
+        /// <param name="id">Typically taken from a previous api call</param>
+        /// <param name="language">Default is English</param>
+        /// <param name="page">Default is 1</param>     
+        /// <returns></returns>
+        Task<MovieList> GetSimilarMoviesAsync(int id, string language = "en", int page = 1);
+        /// <summary>
+        /// Get the user reviews for a movie.
+        /// </summary>
+        /// <param name="id">Typically taken from a previous api call</param>
+        /// <param name="language">Default is English</param>
+        /// <param name="page">Default is 1</param>     
+        /// <returns></returns>
+        Task<UserReviews> GetUserReviewsAsync(int id, string language = "en", int page = 1);
+        /// <summary>
+        /// Get the most newly created movie. This is a live response and will continuously change.
+        /// </summary>      
+        /// <param name="language">Default is English</param>            
+        /// <returns></returns>
+        Task<MovieFullDetails> GetLatestAsync(string language = "en");
+        /// <summary>
+        /// Get a list of movies in theatres. This is a release type query that looks for all movies that have a release type of 2 or 3 within the specified date range.
+        /// You can optionally specify a region prameter which will narrow the search to only look for theatrical release dates within the specified country.
+        /// </summary>       
+        /// <param name="language">Default is English</param>
+        /// <param name="page">Default is 1</param>
+        /// <param name="region">ISO 3166-1 code. Default is US</param>     
+        /// <returns></returns>
+        Task<DatedMovieList> GetNowPlayingAsync(string language = "en", int page = 1, string region="US");
+        /// <summary>
+        /// Get a list of the current popular movies on TMDb. This list updates daily.
+        ///  /// You can optionally specify a region prameter which will narrow the search to only look for theatrical release dates within the specified country.
+        /// </summary>       
+        /// <param name="language">Default is English</param>
+        /// <param name="page">Default is 1</param>
+        /// <param name="region">ISO 3166-1 code. Default is US</param>     
+        /// <returns></returns>
+        Task<MovieList> GetPopularAsync(string language = "en", int page = 1, string region = "US");
+        /// <summary>
+        /// Get the top rated movies on TMDb.
+        ///  /// You can optionally specify a region prameter which will narrow the search to only look for theatrical release dates within the specified country.
+        /// </summary>       
+        /// <param name="language">Default is English</param>
+        /// <param name="page">Default is 1</param>
+        /// <param name="region">ISO 3166-1 code. Default is US</param>     
+        /// <returns></returns>
+        Task<MovieList> GetTopRatedAsync(string language = "en", int page = 1, string region = "US");
+        /// <summary>
+        /// Get a list of upcoming movies in theatres. This is a release type query that looks for all movies that have a release type of 2 or 3 within the specified date range.
+        /// You can optionally specify a region prameter which will narrow the search to only look for theatrical release dates within the specified country.
+        /// </summary>        
+        /// <param name="language">Default is English</param>
+        /// <param name="page">Default is 1</param>
+        /// <param name="region"></param>     
+        /// <returns>ISO 3166-1 code. Default is US</returns>
+        Task<DatedMovieList> GetUpcomingAsync(string language = "en", int page = 1, string region = "US");
     }
 }

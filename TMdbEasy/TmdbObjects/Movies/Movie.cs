@@ -24,11 +24,26 @@ namespace TMdbEasy.TmdbObjects.Movies
         public string Release_date { get; set; }
     }
 
+    public class Dates
+    {
+        public string Maximum { get; set; }
+        public string Minimum { get; set; }
+    }
+
     public class MovieList
     {
         public int Page { get; set; }
         public int Total_results { get; set; }
         public int Total_pages { get; set; }
         public List<Movie> Results { get; set; }
+    }
+
+    public class DatedMovieList
+    {
+        public int Page { get; set; }
+        public int Total_results { get; set; }
+        public int Total_pages { get; set; }
+        public List<Movie> Results { get; set; }
+        public Dates Dates { get; set; }
     }
 }

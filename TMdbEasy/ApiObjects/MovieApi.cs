@@ -72,10 +72,52 @@ namespace TMdbEasy.ApiObjects
             return DeserializeJson<TranslationsList>(content);
         }
         //not tested
-        public async Task<MovieList> GetRecommendationssAsync(int id, string language="en", int page=1)
+        public async Task<MovieList> GetRecommendationsAsync(int id, string language="en", int page=1)
         {
             var content = await CallApiAsync($"{Url}movie/{id}/recommendations?api_key={ApiKey}&language={language}&page={page}").ConfigureAwait(false);
             return DeserializeJson<MovieList>(content);
+        }
+        //not tested
+        public async Task<MovieList> GetSimilarMoviesAsync(int id, string language = "en", int page = 1)
+        {
+            var content = await CallApiAsync($"{Url}movie/{id}/similar?api_key={ApiKey}&language={language}&page={page}").ConfigureAwait(false);
+            return DeserializeJson<MovieList>(content);
+        }
+        //not tested
+        public async Task<UserReviews> GetUserReviewsAsync(int id, string language = "en", int page = 1)
+        {
+            var content = await CallApiAsync($"{Url}movie/{id}reviews?api_key={ApiKey}&language={language}&page={page}").ConfigureAwait(false);
+            return DeserializeJson<UserReviews>(content);
+        }
+        //not tested
+        public async Task<MovieFullDetails> GetLatestAsync(string language = "en")
+        {
+            var content = await CallApiAsync($"{Url}movie/latest?api_key={ApiKey}&language={language}").ConfigureAwait(false);
+            return DeserializeJson<MovieFullDetails>(content);
+        }
+        //not tested
+        public async Task<DatedMovieList> GetNowPlayingAsync(string language = "en", int page=1, string region="US")
+        {
+            var content = await CallApiAsync($"{Url}movie/now_playing?api_key={ApiKey}&language={language}&page={page}&region={region}").ConfigureAwait(false);
+            return DeserializeJson<DatedMovieList>(content);
+        }
+        //not tested
+        public async Task<MovieList> GetPopularAsync(string language = "en", int page=1, string region = "US")
+        {
+            var content = await CallApiAsync($"{Url}movie/popular?api_key={ApiKey}&language={language}&page={page}&region={region}").ConfigureAwait(false);
+            return DeserializeJson<MovieList>(content);
+        }
+        //not tested
+        public async Task<MovieList> GetTopRatedAsync(string language = "en", int page=1, string region = "US")
+        {
+            var content = await CallApiAsync($"{Url}movie/top_rated?api_key={ApiKey}&language={language}&page={page}&region={region}").ConfigureAwait(false);
+            return DeserializeJson<MovieList>(content);
+        }
+        //not tested
+        public async Task<DatedMovieList> GetUpcomingAsync(string language = "en", int page=1, string region = "US")
+        {
+            var content = await CallApiAsync($"{Url}movie/upcoming?api_key={ApiKey}&language={language}&page={page}&region={region}").ConfigureAwait(false);
+            return DeserializeJson<DatedMovieList>(content);
         }
     }
 }
