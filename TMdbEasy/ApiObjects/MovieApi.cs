@@ -119,5 +119,17 @@ namespace TMdbEasy.ApiObjects
             var content = await CallApiAsync($"{Url}movie/upcoming?api_key={ApiKey}&language={language}&page={page}&region={region}").ConfigureAwait(false);
             return DeserializeJson<DatedMovieList>(content);
         }
+        //not tested
+        public async Task<MovieList> SearchMoviesAsync(string query, string language = "en", int page = 1, bool include_adult = false, string region = "US", int year = 0, int primary_release_year = 0)
+        {
+            var content = await CallApiAsync($"{Url}search/movie?api_key={ApiKey}&language={language}&query={query}" +
+                $"&page={page}&include_adult={include_adult}&region={region}").ConfigureAwait(false);
+            if (year > 0 && primary_release_year > 0)
+            {
+                content += $"&year={year}&primary_release_year={primary_release_year}";
+            }
+
+            return DeserializeJson<MovieList>(content);
+        }
     }
 }

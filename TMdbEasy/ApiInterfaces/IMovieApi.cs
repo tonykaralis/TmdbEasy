@@ -141,5 +141,17 @@ namespace TMdbEasy.ApiInterfaces
         /// <param name="region"></param>     
         /// <returns>ISO 3166-1 code. Default is US</returns>
         Task<DatedMovieList> GetUpcomingAsync(string language = "en", int page = 1, string region = "US");
+        /// <summary>
+        /// Search for movies.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="language"></param>
+        /// <param name="page">Defaults to 1</param>
+        /// <param name="include_adult">Adult content, defaults to false</param>
+        /// <param name="region">ISO 3166-1, must be uppercase</param>
+        /// <param name="year"></param>
+        /// <param name="primary_release_year"></param>
+        /// <returns></returns>
+        Task<MovieList> SearchMoviesAsync( string query, string language = "en", int page = 1, bool include_adult=false, string region="US", int year=default(int), int primary_release_year=default(int));
     }
 }

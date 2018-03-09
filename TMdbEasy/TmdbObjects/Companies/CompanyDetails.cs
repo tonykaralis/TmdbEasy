@@ -16,4 +16,19 @@ namespace TMdbEasy.TmdbObjects.Companies
         public string Name { get; set; }
         public object Parent_company { get; set; }
     }
+
+    public class Company
+    {
+        public int Id { get; set; }
+        public string Logo_path { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class CompanyList
+    {
+        public int Page { get; set; }
+        public List<Company> Results { get; set; }
+        public int Total_pages { get; set; }
+        public int Total_results { get; set; }
+    }
 }
