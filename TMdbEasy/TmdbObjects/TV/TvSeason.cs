@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TMdbEasy.TmdbObjects.TV
 {
-    public class Crew
+    public class TvCrew
     {
         public int Id { get; set; }
         public string Credit_id { get; set; }
@@ -29,7 +29,7 @@ namespace TMdbEasy.TmdbObjects.TV
     public class Episode
     {
         public string Air_date { get; set; }
-        public List<Crew> Crew { get; set; }
+        public List<TvCrew> Crew { get; set; }
         public int Episode_number { get; set; }
         public List<GuestStar> Guest_stars { get; set; }
         public string Name { get; set; }
