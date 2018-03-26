@@ -41,7 +41,7 @@ of the given interface.
 ```
 
 The concept is simple, I have made a bunch of Interfaces available which can be placed 
-in the above method in place of <T>. The mothod will then generate the concrete implementation
+in the above method in place of T. The mothod will then generate the concrete implementation
 for you and return that object.
 
 From there you may make all the relevant requests that Interface has to offer.
