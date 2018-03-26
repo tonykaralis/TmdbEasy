@@ -25,11 +25,11 @@ There are a few public functions available via this object:
 ```C#    
   // The find method makes it easy to search for objects in the database by an external id. For example, an IMDB ID.
   // This method will search all objects(movies, TV shows and people) and return the results in a single response.       
-  public async Task<ObjectCollection> FindAsync(string id, string external_id, string language = "en")
+  public async Task<ObjectCollection> FindAsync(string id, string external_id, string language = "en");
      
   /// Get the details of a list.
   /// </summary>       
-  public async Task<ListDetails> GetListDetailsAsync(string id, string language = "en")      
+  public async Task<ListDetails> GetListDetailsAsync(string id, string language = "en");    
 ```
 A couple more functions may still be added.
 
