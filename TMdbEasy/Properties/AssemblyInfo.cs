@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("TMdbEasy")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("C# Wrapper library for TMDB")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Tony Karalis")]
 [assembly: AssemblyProduct("TMdbEasy")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
