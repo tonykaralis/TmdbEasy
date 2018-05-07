@@ -25,11 +25,11 @@ There are a few public functions available via this object:
 ```C#    
   // The find method makes it easy to search for objects in the database by an external id. For example, an IMDB ID.
   // This method will search all objects(movies, TV shows and people) and return the results in a single response.       
-  public async Task<ObjectCollection> FindAsync(string id, string external_id, string language = "en")
+  public async Task<ObjectCollection> FindAsync(string id, string external_id, string language = "en");
      
   /// Get the details of a list.
   /// </summary>       
-  public async Task<ListDetails> GetListDetailsAsync(string id, string language = "en")      
+  public async Task<ListDetails> GetListDetailsAsync(string id, string language = "en");    
 ```
 A couple more functions may still be added.
 
@@ -41,7 +41,7 @@ of the given interface.
 ```
 
 The concept is simple, I have made a bunch of Interfaces available which can be placed 
-in the above method in place of <T>. The mothod will then generate the concrete implementation
+in the above method in place of T. The mothod will then generate the concrete implementation
 for you and return that object.
 
 From there you may make all the relevant requests that Interface has to offer.
