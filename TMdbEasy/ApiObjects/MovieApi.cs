@@ -13,7 +13,7 @@ using static TMdbEasy.REngine;
 
 namespace TMdbEasy.ApiObjects
 {
-    public sealed class MovieApi : IMovieApi
+    sealed class MovieApi : IMovieApi
     {
         public async Task<MovieFullDetails> GetDetailsAsync(int id, string language = "en")
         {
@@ -128,6 +128,14 @@ namespace TMdbEasy.ApiObjects
             {
                 content += $"&year={year}&primary_release_year={primary_release_year}";
             }
+
+            return DeserializeJson<MovieList>(content);
+        }
+        //not tested
+        public async Task<MovieList> SearchByActorAsync(string query, string language = "en", int page = 1, bool include_adult = false, string region = "US")
+        {
+            var content = await CallApiAsync($"{Url}search/people?api_key={ApiKey}&language={language}&query={query}" +
+                $"&page={page}&include_adult={include_adult}&region={region}").ConfigureAwait(false);
 
             return DeserializeJson<MovieList>(content);
         }
