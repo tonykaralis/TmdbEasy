@@ -2,12 +2,12 @@
 
 Open Source class library that wraps The Movie Database Api. 
 Currently all interfaces that are made available support version 3 of the Api. This wrapper provides all the basic requests 
-and supports TheMovieDB's append_to_response functionality as well as filtering and sorting.
+and supports TheMovieDB's append_to_response functionality as well as filtering and sorting. Please keep in mind this is a work in progress, it is far from complete.
 
 ## Getting Started
 
-Currently just clone or fork the repo and include the reference in your project. 
-The package will be made available via nuget shortly.
+The package has been made available via nuget or
+just clone/fork the repo and include the reference in your project. 
 
 All methods that make requests to the TMDb Api are async.
 
