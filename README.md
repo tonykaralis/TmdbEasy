@@ -6,7 +6,7 @@ and supports TheMovieDB's append_to_response functionality as well as filtering 
 
 ## Getting Started
 
-The package has been made available via nuget or
+The package has been made available via [Nuget](https://www.nuget.org/packages/TMdbEasy/) or
 just clone/fork the repo and include the reference in your project. 
 
 All methods that make requests to the TMDb Api are async.
