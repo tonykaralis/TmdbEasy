@@ -13,7 +13,7 @@ namespace TMdbEasy.ApiObjects
     {
         public async Task<Configurations> GetConfigurationAsync()
         {
-            var content = await CallApiAsync($"{Url}configuration/?api_key={ApiKey}").ConfigureAwait(false);
+            var content = await CallApiAsync($"{Url}configuration?api_key={ApiKey}").ConfigureAwait(false);
             return DeserializeJson<Configurations>(content);
         }
 
