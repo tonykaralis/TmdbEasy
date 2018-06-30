@@ -88,7 +88,7 @@ namespace TMdbEasy
             }
             catch( WebException ex) when ((ex.Response as HttpWebResponse) ?.StatusCode == HttpStatusCode.NotFound )
             {
-                throw new Exception("Movie Id does not exist");
+                throw new Exception("Possibly Movie Id does not exist");
             }
             catch( WebException ex) when ((ex.Response as HttpWebResponse) ?.StatusCode == HttpStatusCode.ServiceUnavailable)
             {
