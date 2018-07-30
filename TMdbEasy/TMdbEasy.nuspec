@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>TMdbEasy</id>
-    <version>0.3.1</version>
+    <version>0.3.2</version>
     <title>TMdbEasy</title>
     <authors>Tony Karalis</authors>
     <owners>Tony Karlis</owners>
@@ -11,7 +11,7 @@
     <iconUrl>https://github.com/tonykaralis/TMdbEasy/blob/develop/imageedit_2_8953245971_zqJ_icon.ico</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>C# library that wraps the TMdb Api and makes it extremely easy to use</description>
-    <releaseNotes>Beta release.</releaseNotes>
+    <releaseNotes>Beta release. Added ITelevisionApi.</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>TMDB tmdb wrapper movie movies database api </tags>
   </metadata>
