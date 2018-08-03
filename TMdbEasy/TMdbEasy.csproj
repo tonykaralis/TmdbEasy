@@ -59,15 +59,18 @@
     <Compile Include="ApiObjects\CompaniesApi.cs" />
     <Compile Include="ApiObjects\ConfigApi.cs" />
     <Compile Include="ApiObjects\CreditApi.cs" />
+    <Compile Include="ApiInterfaces\ITelevisionApi.cs" />
     <Compile Include="ApiObjects\MovieApi.cs" />
     <Compile Include="ApiObjects\NetworksApi.cs" />
     <Compile Include="ApiObjects\ReviewApi.cs" />
+    <Compile Include="ApiObjects\TelevisionApi.cs" />
     <Compile Include="QueryBuilder.cs" />
     <Compile Include="REngine.cs" />
     <Compile Include="EasyClient.cs" />
     <Compile Include="TmdbObjects\Certifications\Certifications.cs" />
     <Compile Include="TmdbObjects\Changes\ChangeList.cs" />
     <Compile Include="TmdbObjects\Changes\MovieChangeList.cs" />
+    <Compile Include="TmdbObjects\Changes\TVChangeList.cs" />
     <Compile Include="TmdbObjects\Collection\Collections.cs" />
     <Compile Include="TmdbObjects\Companies\Companies.cs" />
     <Compile Include="TmdbObjects\Companies\CompanyDetails.cs" />
@@ -76,6 +79,7 @@
     <Compile Include="TmdbObjects\Configuration\Jobs.cs" />
     <Compile Include="TmdbObjects\Configuration\Languages.cs" />
     <Compile Include="TmdbObjects\Configuration\TimeZones.cs" />
+    <Compile Include="TmdbObjects\Images\Still.cs" />
     <Compile Include="TmdbObjects\Language\Translations.cs" />
     <Compile Include="TmdbObjects\Lists\ListDetails.cs" />
     <Compile Include="TmdbObjects\Movies\MovieReleaseDate.cs" />

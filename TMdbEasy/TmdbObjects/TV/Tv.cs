@@ -51,7 +51,15 @@ namespace TMdbEasy.TmdbObjects.TV
         public List<SeasonBase> Seasons { get; set; }
         public string Status { get; set; }
         public string Type { get; set; }
-        public int Vote_average { get; set; }
+        public double Vote_average { get; set; } // from int to double
         public int Vote_count { get; set; }
+    }
+
+    public class TVShowList
+    {
+        public int Page { get; set; }
+        public int Total_results { get; set; }
+        public int Total_pages { get; set; }
+        public List<Tv> Results { get; set; }
     }
 }
