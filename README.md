@@ -55,6 +55,7 @@ Below are some of the Interfaces available, I will be rolling more out as I go.
 * IChangesApi
 * IReviewApi
 * INetworkApi
+* ITelevisionApi (Thanks to [Petteri Kautonen](https://github.com/VPKSoft))
 
 ### Examples
 
@@ -90,8 +91,8 @@ used to deserialize all responses from the api calls.
 
 ## Authors
 
-* **Tony Karalis** - *Design and Coding* - [tonykaralis](https://github.com/tonykaralis)
-* **Petteri Kautonen** - *Coding* - [tonykaralis](https://github.com/VPKSoft)
+* **Tony Karalis** - *Design and Coding* - [DevTK](https://github.com/tonykaralis)
+* **Petteri Kautonen** - *Awesome Coding* - [VPKSoft](https://github.com/VPKSoft)
 ## License
 
 This project is licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 - see the [LICENSE.md](LICENSE.md) file for details.
