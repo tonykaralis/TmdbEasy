@@ -90,8 +90,8 @@ used to deserialize all responses from the api calls.
 
 ## Authors
 
-* **Tony Karalis** - *Design and Implementation* - [tonykaralis](https://github.com/tonykaralis)
-
+* **Tony Karalis** - *Design and Coding* - [tonykaralis](https://github.com/tonykaralis)
+* **Petteri Kautonen** - *Coding* - [tonykaralis](https://github.com/VPKSoft)
 ## License
 
 This project is licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 - see the [LICENSE.md](LICENSE.md) file for details.
