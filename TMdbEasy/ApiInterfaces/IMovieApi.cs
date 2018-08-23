@@ -152,6 +152,13 @@ namespace TMdbEasy.ApiInterfaces
         /// <param name="year"></param>
         /// <param name="primary_release_year"></param>
         /// <returns></returns>
-        Task<MovieList> SearchMoviesAsync( string query, string language = "en", int page = 1, bool include_adult=false, string region="US", int year=default(int), int primary_release_year=default(int));
+        Task<MovieList> SearchMoviesAsync(string query, string language = "en", int page = 1, bool include_adult=false, string region="US", int year=default(int), int primary_release_year=default(int));
+        /// <summary>
+        /// Search for actors.
+        /// </summary>
+        /// <param name="page">Defaults to 1</param>
+        /// <param name="include_adult">Adult content, defaults to false</param>
+        /// <param name="region">ISO 3166-1, must be uppercase</param>
+        Task<MovieList> SearchByActorAsync(string query, string language = "en", int page = 1, bool include_adult = false, string region = "US");
     }
 }
