@@ -96,3 +96,8 @@ used to deserialize all responses from the api calls.
 ## License
 
 This project is licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 - see the [LICENSE.md](LICENSE.md) file for details.
+
+## Attribution
+
+All the movie data gathered using this library is obtained from the TMDB.
+![alt text](https://github.com/tonykaralis/TMdbEasy/blob/master/408x161-powered-by-rectangle-green-bb4301c10ddc749b4e79463811a68afebeae66ef43d17bcfd8ff0e60ded7ce99.png)
