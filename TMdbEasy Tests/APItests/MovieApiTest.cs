@@ -69,6 +69,15 @@ namespace TMdbEasy_Tests.APItests
                 Assert.Throws<AggregateException>(() => {
                     SUT.TmdbObjects.Movies.MovieList tit = d.SearchByActorAsync(id).Result; });
             }
+
+            [TestCase("Brad Pitt")]
+            public void FamousActor_ReturnResults(string actorName)
+            {
+                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var d = obj.GetApi<IMovieApi>().Value;
+
+                CollectionAssert.IsNotEmpty(d.SearchByActorAsync(actorName).Result.Results);
+            }
         }
     }
 }
