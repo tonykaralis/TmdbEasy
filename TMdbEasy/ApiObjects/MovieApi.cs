@@ -134,7 +134,7 @@ namespace TMdbEasy.ApiObjects
         //not tested
         public async Task<MovieList> SearchByActorAsync(string query, string language = "en", int page = 1, bool include_adult = false, string region = "US")
         {
-            var content = await CallApiAsync($"{Url}search/people?api_key={ApiKey}&language={language}&query={query}" +
+            var content = await CallApiAsync($"{Url}search/person?api_key={ApiKey}&language={language}&query={query}" +
                 $"&page={page}&include_adult={include_adult}&region={region}").ConfigureAwait(false);
 
             return DeserializeJson<MovieList>(content);

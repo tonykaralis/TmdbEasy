@@ -59,15 +59,13 @@ namespace TMdbEasy_Tests.APItests
         [Category("MovieApi")]
         public class SearchByActorAsync
         {
-            [TestCase("125")]
-            public void IncorrectId_ThrowsException(string id, string language = "en")
+            [TestCase("Brad Pitt")]
+            public void FamousActor_ReturnResults(string actorName)
             {
-                //arrange
                 var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
                 var d = obj.GetApi<IMovieApi>().Value;
-                //assert
-                Assert.Throws<AggregateException>(() => {
-                    SUT.TmdbObjects.Movies.MovieList tit = d.SearchByActorAsync(id).Result; });
+
+                CollectionAssert.IsNotEmpty(d.SearchByActorAsync(actorName).Result.Results);
             }
         }
     }
