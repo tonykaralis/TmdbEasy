@@ -93,6 +93,7 @@ used to deserialize all responses from the api calls.
 
 * **Tony Karalis** - *Design and Coding* - [DevTK](https://github.com/tonykaralis)
 * **Petteri Kautonen** - *Awesome Coding* - [VPKSoft](https://github.com/VPKSoft)
+* **Tom PoLáKoSz** - *Good eye for detail as always* - [PoLáKoSz](https://github.com/PoLaKoSz)
 ## License
 
 This project is licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 - see the [LICENSE.md](LICENSE.md) file for details.
