@@ -23,7 +23,7 @@ namespace TMdbEasy.ApiObjects
 
         public async Task<Images> GetImagesAsync(int id, string language = "en")
         {
-            var content = await CallApiAsync($"{Url}movie/{id}?api_key={ApiKey}&language={language}").ConfigureAwait(false);
+            var content = await CallApiAsync($"{Url}movie/{id}/images?api_key={ApiKey}&language={language}").ConfigureAwait(false);
             return DeserializeJson<Images>(content);
         }
 

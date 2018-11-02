@@ -68,6 +68,7 @@
     <Compile Include="REngine.cs" />
     <Compile Include="EasyClient.cs" />
     <Compile Include="TmdbObjects\Certifications\Certifications.cs" />
+    <Compile Include="TmdbObjects\Certifications\TvContentRatings.cs" />
     <Compile Include="TmdbObjects\Changes\ChangeList.cs" />
     <Compile Include="TmdbObjects\Changes\MovieChangeList.cs" />
     <Compile Include="TmdbObjects\Changes\TVChangeList.cs" />
