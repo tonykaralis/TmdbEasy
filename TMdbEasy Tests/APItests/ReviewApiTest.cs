@@ -20,7 +20,7 @@ namespace TMdbEasy_Tests.APItests
             public void IncorrectId_ThrowsException(int id)
             {
                 //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var obj = new SUT.EasyClient(Constants.ValidApiKey);
                 var d = obj.GetApi<IReviewApi>().Value;
                 //assert
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Other.Reviews cr = d.GetDetailsAsync(id).Result; });

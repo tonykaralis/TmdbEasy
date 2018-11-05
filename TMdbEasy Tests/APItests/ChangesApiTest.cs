@@ -20,7 +20,7 @@ namespace TMdbEasy_Tests.APItests
             public void IncorrectDate_ThrowsException(string end_date = null, string start_date = null, int page = 1)
             {
                 //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var obj = new SUT.EasyClient(Constants.ValidApiKey);
                 var d = obj.GetApi<IChangesApi>().Value;
                 //assert
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Changes.ChangeList ch
@@ -37,7 +37,7 @@ namespace TMdbEasy_Tests.APItests
             public void IncorrectDate_ThrowsException(string end_date = null, string start_date = null, int page = 1)
             {
                 //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var obj = new SUT.EasyClient(Constants.ValidApiKey);
                 var d = obj.GetApi<IChangesApi>().Value;
                 //assert
                 Assert.Throws<AggregateException>(() =>
@@ -57,7 +57,7 @@ namespace TMdbEasy_Tests.APItests
             public void IncorrectDate_ThrowsException(string end_date = null, string start_date = null, int page = 1)
             {
                 //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
+                var obj = new SUT.EasyClient(Constants.ValidApiKey);
                 var d = obj.GetApi<IChangesApi>().Value;
                 //assert
                 Assert.Throws<AggregateException>(() =>
