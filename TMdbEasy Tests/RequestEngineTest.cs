@@ -56,12 +56,11 @@ namespace TMdbEasy_Tests
             [TestCase(296096)]
             public async Task CorrectQuery_DoesNotReturnNull(int id)
             {
-                //arrange
-                var obj = new SUT.EasyClient(Constants.ValidApiKey);
-                var d = obj.GetApi<IMovieApi>().Value;
+                var d = Constants.SecureTestClient.GetApi<IMovieApi>().Value;
+
                 //act
                 SUT.TmdbObjects.Movies.MovieFullDetails mov = await d.GetDetailsAsync(id).ConfigureAwait(false);
-                //assert
+
                 Assert.IsNotNull(mov);
             }
         }

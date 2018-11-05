@@ -19,10 +19,8 @@ namespace TMdbEasy_Tests.APItests
             [TestCase(296096321)]
             public void IncorrectId_ThrowsException(int id, string language = "en")
             {
-                //arrange
-                var obj = new SUT.EasyClient(Constants.ValidApiKey);
-                var d = obj.GetApi<ICollectionApi>().Value;
-                //assert
+                var d = Constants.SecureTestClient.GetApi<ICollectionApi>().Value;
+
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Collection.Collections col = d.GetDetailsAsync(id, language).Result; });
             }
         }
@@ -34,10 +32,8 @@ namespace TMdbEasy_Tests.APItests
             [TestCase(296096321)]
             public void IncorrectId_ThrowsException(int id, string language = "en")
             {
-                //arrange
-                var obj = new SUT.EasyClient(Constants.ValidApiKey);
-                var d = obj.GetApi<ICollectionApi>().Value;
-                //assert
+                var d = Constants.SecureTestClient.GetApi<ICollectionApi>().Value;
+
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Images.Images ima = d.GetImagesAsync(id, language).Result; });
             }
         }

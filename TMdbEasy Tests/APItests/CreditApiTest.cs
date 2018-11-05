@@ -19,10 +19,8 @@ namespace TMdbEasy_Tests.APItests
             [TestCase(296096321)]
             public void IncorrectId_ThrowsException(int id)
             {
-                //arrange
-                var obj = new SUT.EasyClient(Constants.ValidApiKey);
-                var d = obj.GetApi<ICreditApi>().Value;
-                //assert
+                var d = Constants.SecureTestClient.GetApi<ICreditApi>().Value;
+
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Other.Credits cr = d.GetDetailsAsync(id).Result; });
             }
         }
