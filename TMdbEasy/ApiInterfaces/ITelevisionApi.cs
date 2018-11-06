@@ -9,6 +9,7 @@ using TMdbEasy.TmdbObjects.Movies;
 using TMdbEasy.TmdbObjects.Changes;
 using TMdbEasy.TmdbObjects.Other;
 using TMdbEasy.TmdbObjects.Language;
+using TMdbEasy.TmdbObjects.Certifications;
 
 namespace TMdbEasy.ApiInterfaces
 {
@@ -28,6 +29,13 @@ namespace TMdbEasy.ApiInterfaces
         /// <param name="language">Pass a ISO 639-1 value to display translated data for the fields that support it. Default is English</param>
         /// <returns></returns>
         Task<Images> GetImagesAsync(int id, string language = "en");
+        /// <summary>
+        /// Returns the list of content ratings (certifications) that have been added to a TV show.
+        /// </summary>
+        /// <param name="id">Typically taken from a previous api call</param>
+        /// <param name="language">Pass a ISO 639-1 value to display translated data for the fields that support it. Default is English</param>
+        /// <returns></returns>
+        Task<TvRatingList> GetContentRatingsAsync(int id, string language = "en");
         /// <summary>
         /// Returns all alternative titles that belong to a TV show.
         /// </summary>
@@ -146,7 +154,7 @@ namespace TMdbEasy.ApiInterfaces
         /// <param name="seasonNumber">The season number.</param>
         /// <param name="language">Pass a ISO 639-1 value to display translated data for the fields that support it. Default is English</param>
         /// <returns></returns>
-        Task<Credits> GetSeasonCreditsAsync(int id, int seasonNumber, string language = "en");
+        Task<MovieCredits> GetSeasonCreditsAsync(int id, int seasonNumber, string language = "en");
         /// <summary>
         /// Get the external ids for a TV season. Support for facebook, instagram, twitter and IMDB.
         /// </summary>
@@ -186,7 +194,7 @@ namespace TMdbEasy.ApiInterfaces
         /// <param name="seasonNumber">The season number.</param>
         /// <param name="episodeNumber">The episode number.</param>
         /// <returns></returns>
-        Task<Credits> GetEpisodeCreditsAsync(int id, int seasonNumber, int episodeNumber);
+        Task<MovieCredits> GetEpisodeCreditsAsync(int id, int seasonNumber, int episodeNumber);
         /// <summary>
         /// Get the external ids for a TV episode. Support for facebook, instagram, twitter and IMDB.
         /// </summary>

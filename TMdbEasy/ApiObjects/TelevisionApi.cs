@@ -10,7 +10,9 @@ using TMdbEasy.TmdbObjects.Language;
 using TMdbEasy.TmdbObjects.Movies;
 using TMdbEasy.TmdbObjects.Other;
 using TMdbEasy.TmdbObjects.TV;
+using TMdbEasy.TmdbObjects.Certifications;
 using static TMdbEasy.REngine;
+
 
 namespace TMdbEasy.ApiObjects
 {
@@ -20,6 +22,12 @@ namespace TMdbEasy.ApiObjects
         {
             var content = await CallApiAsync($"{Url}tv/{id}?api_key={ApiKey}&language={language}").ConfigureAwait(false);
             return DeserializeJson<Tv>(content);
+        }
+
+        public async Task<TvRatingList> GetContentRatingsAsync(int id, string language = "en")
+        {
+            var content = await CallApiAsync($"{Url}tv/{id}/content_ratings?api_key={ApiKey}&language={language}").ConfigureAwait(false);
+            return DeserializeJson<TvRatingList>(content);
         }
 
         public async Task<Images> GetImagesAsync(int id, string language = "en")
@@ -121,10 +129,10 @@ namespace TMdbEasy.ApiObjects
             return DeserializeJson<TvSeason>(content);
         }
         //not tested
-        public async Task<Credits> GetSeasonCreditsAsync(int id, int seasonNumber, string language = "en")
+        public async Task<MovieCredits> GetSeasonCreditsAsync(int id, int seasonNumber, string language = "en")
         {
             var content = await CallApiAsync($"{Url}tv/{id}/season/{seasonNumber}/credits?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-            return DeserializeJson<Credits>(content);
+            return DeserializeJson<MovieCredits>(content);
         }
         //not tested
         public async Task<MovieExternalId> GetSeasonExternalIdsAsync(int id, int seasonNumber)
@@ -152,11 +160,11 @@ namespace TMdbEasy.ApiObjects
             return DeserializeJson<Episode>(content);
         }
         //not tested
-        public async Task<Credits> GetEpisodeCreditsAsync(int id, int seasonNumber, int episodeNumber)
+        public async Task<MovieCredits> GetEpisodeCreditsAsync(int id, int seasonNumber, int episodeNumber)
         {
             string query = $"{Url}tv/{id}/season/{seasonNumber}/episode/{episodeNumber}/credits?api_key={ApiKey}";
             var content = await CallApiAsync(query).ConfigureAwait(false);
-            return DeserializeJson<Credits>(content);
+            return DeserializeJson<MovieCredits>(content);
         }
         //not tested
         public async Task<MovieExternalId> GetEpisodeExternalIdsAsync(int id, int seasonNumber, int episodeNumber)
