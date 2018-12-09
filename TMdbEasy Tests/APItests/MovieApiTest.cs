@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TMdbEasy.ApiInterfaces;
+using TMdbEasy.TmdbObjects.Other;
 using SUT = TMdbEasy;
 
 namespace TMdbEasy_Tests.APItests
@@ -53,12 +54,30 @@ namespace TMdbEasy_Tests.APItests
         [Category("MovieApi")]
         public class SearchByActorAsync
         {
-            [TestCase("Brad Pitt")]
-            public void FamousActor_ReturnResults(string actorName)
+            [TestCase("Stephen Amell")]
+            public void Can_Deserialize_TV_Media_Type(string name)
             {
                 var d = Constants.SecureTestClient.GetApi<IMovieApi>().Value;
 
-                CollectionAssert.IsNotEmpty(d.SearchByActorAsync(actorName).Result.Results);
+
+                List<PersonFromSearch> people = d.SearchByActorAsync(name).Result.Results;
+
+
+                CollectionAssert.IsNotEmpty(people, "people.IsNotEmpty");
+                Assert.That(people.Count, Is.EqualTo(1), "people.Count");
+                Assert.That(people[0].KnownFor.Television.Count, Is.GreaterThanOrEqualTo(2), "KnownFor.Television.Count");
+            }
+
+            [TestCase("Brad Pitt")]
+            public void Can_Deserialize_Movie_Media_Type(string name)
+            {
+                var d = Constants.SecureTestClient.GetApi<IMovieApi>().Value;
+
+                List<PersonFromSearch> people = d.SearchByActorAsync(name).Result.Results;
+
+                CollectionAssert.IsNotEmpty(people, "people.IsNotEmpty");
+                Assert.That(people.Count, Is.EqualTo(1), "people.Count");
+                Assert.That(people[0].KnownFor.Movies.Count, Is.GreaterThanOrEqualTo(3), "KnownFor.Movies.Count");
             }
         }
     }

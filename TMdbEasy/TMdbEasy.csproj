@@ -64,6 +64,7 @@
     <Compile Include="ApiObjects\NetworksApi.cs" />
     <Compile Include="ApiObjects\ReviewApi.cs" />
     <Compile Include="ApiObjects\TelevisionApi.cs" />
+    <Compile Include="Parsers\SearchPersonParser.cs" />
     <Compile Include="QueryBuilder.cs" />
     <Compile Include="REngine.cs" />
     <Compile Include="EasyClient.cs" />
@@ -80,6 +81,8 @@
     <Compile Include="TmdbObjects\Configuration\Jobs.cs" />
     <Compile Include="TmdbObjects\Configuration\Languages.cs" />
     <Compile Include="TmdbObjects\Configuration\TimeZones.cs" />
+    <Compile Include="TmdbObjects\Images\Image.cs" />
+    <Compile Include="TmdbObjects\Images\ImageContainer.cs" />
     <Compile Include="TmdbObjects\Images\Still.cs" />
     <Compile Include="TmdbObjects\Language\Translations.cs" />
     <Compile Include="TmdbObjects\Lists\ListDetails.cs" />
@@ -97,16 +100,18 @@
     <Compile Include="TmdbObjects\Movies\MovieExternalId.cs" />
     <Compile Include="TmdbObjects\Other\Network.cs" />
     <Compile Include="TmdbObjects\Other\ObjectCollection.cs" />
-    <Compile Include="TmdbObjects\Other\Person.cs" />
+    <Compile Include="TmdbObjects\People\Person.cs" />
     <Compile Include="TmdbObjects\Production\ProductionCompany.cs" />
     <Compile Include="TmdbObjects\Production\ProductionCountry.cs" />
     <Compile Include="TmdbObjects\Language\SpokenLanguage.cs" />
     <Compile Include="TmdbObjects\Other\Reviews.cs" />
+    <Compile Include="TmdbObjects\ResponseContainer.cs" />
     <Compile Include="TmdbObjects\TV\Tv.cs" />
     <Compile Include="TmdbObjects\TV\TvSeason.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

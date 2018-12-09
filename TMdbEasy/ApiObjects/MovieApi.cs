@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TMdbEasy.ApiInterfaces;
+using TMdbEasy.Parsers;
+using TMdbEasy.TmdbObjects;
 using TMdbEasy.TmdbObjects.Changes;
 using TMdbEasy.TmdbObjects.Images;
 using TMdbEasy.TmdbObjects.Language;
@@ -131,21 +133,22 @@ namespace TMdbEasy.ApiObjects
 
             return DeserializeJson<MovieList>(content);
         }
+
         /// <summary>
-        /// Search by actor
+        /// Search for a person or people by their full or partial name.
         /// </summary>
-        /// <param name="query"></param>
-        /// <param name="language"></param>
-        /// <param name="page"></param>
-        /// <param name="include_adult"></param>
-        /// <param name="region"></param>
-        /// <returns></returns>
-        public async Task<MovieList> SearchByActorAsync(string query, string language = "en", int page = 1, bool include_adult = false, string region = "US")
+        /// <param name="query">Non null at least 1 character long string. Could be a full name or just a part of it.</param>
+        /// <param name="language">Non null ISO 639-1 value to get translated data for fields that support it. Default: en-US.</param>
+        /// <param name="page">Specify which page to query. Minimum: 1; Maximum: 1000; Default: 1.</param>
+        /// <param name="include_adult">True if You want to get adult results too, false otherwise.</param>
+        /// <param name="region">Non null string. Specify a ISO 3166-1 code to filter release dates. Must be uppercase.</param>
+        /// <exception cref="JsonException"></exception>
+        public async Task<ResponseContainer<PersonFromSearch>> SearchByActorAsync(string query, string language = "en", int page = 1, bool include_adult = false, string region = "US")
         {
             var content = await CallApiAsync($"{Url}search/person?api_key={ApiKey}&language={language}&query={query}" +
                 $"&page={page}&include_adult={include_adult}&region={region}").ConfigureAwait(false);
 
-            return DeserializeJson<MovieList>(content);
+            return DeserializeJson<ResponseContainer<PersonFromSearch>>(content);
         }
     }
 }

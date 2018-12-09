@@ -8,6 +8,7 @@ using TMdbEasy.TmdbObjects.Images;
 using TMdbEasy.TmdbObjects.Changes;
 using TMdbEasy.TmdbObjects.Other;
 using TMdbEasy.TmdbObjects.Language;
+using TMdbEasy.TmdbObjects;
 
 namespace TMdbEasy.ApiInterfaces
 {
@@ -153,12 +154,16 @@ namespace TMdbEasy.ApiInterfaces
         /// <param name="primary_release_year"></param>
         /// <returns></returns>
         Task<MovieList> SearchMoviesAsync(string query, string language = "en", int page = 1, bool include_adult=false, string region="US", int year=default(int), int primary_release_year=default(int));
+
         /// <summary>
-        /// Search for actors.
+        /// Search for a person or people by their full or partial name.
         /// </summary>
-        /// <param name="page">Defaults to 1</param>
-        /// <param name="include_adult">Adult content, defaults to false</param>
-        /// <param name="region">ISO 3166-1, must be uppercase</param>
-        Task<MovieList> SearchByActorAsync(string query, string language = "en", int page = 1, bool include_adult = false, string region = "US");
+        /// <param name="query">Non null at least 1 character long string. Could be a full name or just a part of it.</param>
+        /// <param name="language">Non null ISO 639-1 value to get translated data for fields that support it. Default: en-US.</param>
+        /// <param name="page">Specify which page to query. Minimum: 1; Maximum: 1000; Default: 1.</param>
+        /// <param name="include_adult">True if You want to get adult results too, false otherwise.</param>
+        /// <param name="region">Non null string. Specify a ISO 3166-1 code to filter release dates. Must be uppercase.</param>
+        /// <exception cref="JsonException"></exception>
+        Task<ResponseContainer<PersonFromSearch>> SearchByActorAsync(string query, string language = "en", int page = 1, bool include_adult = false, string region = "US");
     }
 }

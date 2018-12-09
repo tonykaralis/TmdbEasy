@@ -1,13 +1,64 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMdbEasy.TmdbObjects.Images;
 using TMdbEasy.TmdbObjects.Other;
 using TMdbEasy.TmdbObjects.Production;
 
 namespace TMdbEasy.TmdbObjects.TV
 {
+    public class BasicTvDetails
+    {
+        public string OriginalName { get; }
+        public int ID { get; }
+        public string Name { get; }
+        public int VoteCount { get; }
+        public double VoteAverage { get; }
+        public ImageContainer Poster { get; }
+        public DateTime FirstAirDate { get; }
+        public double Popularity { get; set; }
+        public int[] Genres { get; }
+        public string OriginalLanguage { get; }
+        public ImageContainer BackdropImage { get; }
+        public string Overview { get; }
+        public string[] OriginCountry { get; }
+
+
+
+        public BasicTvDetails(
+            [JsonProperty("original_name")] string originalName,
+            [JsonProperty("id")] int id,
+            [JsonProperty("name")] string name,
+            [JsonProperty("vote_count")] int voteCount,
+            [JsonProperty("vote_average")] double voteAverage,
+            [JsonProperty("poster_path")] string posterPath,
+            [JsonProperty("first_air_date")] DateTime firstAirDate,
+            [JsonProperty("popularity")] double popularity,
+            [JsonProperty("genre_ids")] int[] genreIDs,
+            [JsonProperty("original_language")] string originalLanguage,
+            [JsonProperty("backdrop_path")] string backdropImage,
+            [JsonProperty("overview")] string overview,
+            [JsonProperty("origin_country")] string[] originCountry)
+        {
+            OriginalName = originalName;
+            ID = id;
+            Name = name;
+            VoteCount = voteCount;
+            VoteAverage = voteAverage;
+            Poster = new ImageContainer(posterPath);
+            FirstAirDate = firstAirDate;
+            Popularity = popularity;
+            Genres = genreIDs;
+            OriginalLanguage = originalLanguage;
+            BackdropImage = new ImageContainer(backdropImage);
+            Overview = overview;
+            OriginCountry = originCountry;
+        }
+    }
+
     public class CreatedBy
     {
         public int Id { get; set; }

@@ -57,6 +57,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="RequestEngineTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TmdbObjects\Images\ImageContainerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TMdbEasy\TMdbEasy.csproj">
@@ -70,6 +71,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
