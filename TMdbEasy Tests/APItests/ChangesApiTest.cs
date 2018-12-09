@@ -19,10 +19,8 @@ namespace TMdbEasy_Tests.APItests
             [TestCase("20/02/2018", "2/02/2018")]
             public void IncorrectDate_ThrowsException(string end_date = null, string start_date = null, int page = 1)
             {
-                //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
-                var d = obj.GetApi<IChangesApi>().Value;
-                //assert
+                var d = Constants.SecureTestClient.GetApi<IChangesApi>().Value;
+
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Changes.ChangeList ch
                     = d.GetMovieChangeListAsync(end_date,start_date,page).Result; });
             }
@@ -36,10 +34,8 @@ namespace TMdbEasy_Tests.APItests
             [TestCase("20/02/2018", "24/022018")]
             public void IncorrectDate_ThrowsException(string end_date = null, string start_date = null, int page = 1)
             {
-                //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
-                var d = obj.GetApi<IChangesApi>().Value;
-                //assert
+                var d = Constants.SecureTestClient.GetApi<IChangesApi>().Value;
+
                 Assert.Throws<AggregateException>(() =>
                 {
                     SUT.TmdbObjects.Changes.ChangeList ch
@@ -56,10 +52,8 @@ namespace TMdbEasy_Tests.APItests
             [TestCase("20/02/2018", "2602/2018")]
             public void IncorrectDate_ThrowsException(string end_date = null, string start_date = null, int page = 1)
             {
-                //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
-                var d = obj.GetApi<IChangesApi>().Value;
-                //assert
+                var d = Constants.SecureTestClient.GetApi<IChangesApi>().Value;
+
                 Assert.Throws<AggregateException>(() =>
                 {
                     SUT.TmdbObjects.Changes.ChangeList ch

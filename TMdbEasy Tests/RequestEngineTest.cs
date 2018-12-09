@@ -26,7 +26,7 @@ namespace TMdbEasy_Tests
                 Assert.Throws<Exception>(() => new SUT.EasyClient(_apikey));
             }
 
-            [TestCase("6d4b546936310f017557b2fb498b370b")]
+            [TestCase(Constants.ValidApiKey)]
             public void SecuredParam_AssignsSecureUrl(string _apikey, bool secure = true)
             {
                 //Arrange
@@ -37,7 +37,7 @@ namespace TMdbEasy_Tests
                 Assert.AreEqual(SUT.REngine.Url, "https://api.themoviedb.org/3/");
             }
 
-            [TestCase("6d4b546936310f017557b2fb498b370b", false)]
+            [TestCase(Constants.ValidApiKey, false)]
             public void UnSecuredParam_AssignsUnsecureUrl(string _apikey, bool secure = false)
             {
                 //Arrange
@@ -56,12 +56,11 @@ namespace TMdbEasy_Tests
             [TestCase(296096)]
             public async Task CorrectQuery_DoesNotReturnNull(int id)
             {
-                //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
-                var d = obj.GetApi<IMovieApi>().Value;
+                var d = Constants.SecureTestClient.GetApi<IMovieApi>().Value;
+
                 //act
                 SUT.TmdbObjects.Movies.MovieFullDetails mov = await d.GetDetailsAsync(id).ConfigureAwait(false);
-                //assert
+
                 Assert.IsNotNull(mov);
             }
         }

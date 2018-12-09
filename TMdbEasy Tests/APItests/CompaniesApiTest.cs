@@ -19,10 +19,8 @@ namespace TMdbEasy_Tests.APItests
             [TestCase(296096321)]
             public void IncorrectId_ThrowsException(int id)
             {
-                //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
-                var d = obj.GetApi<ICompaniesApi>().Value;
-                //assert
+                var d = Constants.SecureTestClient.GetApi<ICompaniesApi>().Value;
+
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Companies.CompanyDetails cd = d.GetDetailsAsync(id).Result; });
             }
         }
@@ -34,10 +32,8 @@ namespace TMdbEasy_Tests.APItests
             [TestCase(254665465)]
             public void IncorrectId_ThrowsException(int id, string language = "en")
             {
-                //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
-                var d = obj.GetApi<ICompaniesApi>().Value;
-                //assert
+                var d = Constants.SecureTestClient.GetApi<ICompaniesApi>().Value;
+
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Companies.MoviesByCompany mbc = d.GetMoviesAsync(id, language).Result; });
             }
         }

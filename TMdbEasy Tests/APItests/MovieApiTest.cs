@@ -17,10 +17,8 @@ namespace TMdbEasy_Tests.APItests
             [TestCase(5018857)]
             public void IncorrectId_ThrowsException(int id, string language = "en")
             {
-                //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
-                var d = obj.GetApi<IMovieApi>().Value;
-                //assert
+                var d = Constants.SecureTestClient.GetApi<IMovieApi>().Value;
+
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Movies.MovieFullDetails mov = d.GetDetailsAsync(id).Result; });
             }
         }
@@ -32,10 +30,8 @@ namespace TMdbEasy_Tests.APItests
             [TestCase(296096321)]
             public void IncorrectId_ThrowsException(int id, string language = "en")
             {
-                //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
-                var d = obj.GetApi<IMovieApi>().Value;
-                //assert
+                var d = Constants.SecureTestClient.GetApi<IMovieApi>().Value;
+
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Images.Images ima = d.GetImagesAsync(id).Result; });
             }
         }
@@ -47,10 +43,8 @@ namespace TMdbEasy_Tests.APItests
             [TestCase(296096321)]
             public void IncorrectId_ThrowsException(int id, string language = "en")
             {
-                //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
-                var d = obj.GetApi<IMovieApi>().Value;
-                //assert
+                var d = Constants.SecureTestClient.GetApi<IMovieApi>().Value;
+
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Movies.AlternativeTitle tit = d.GetAlternativeTitlesAsync(id).Result; });
             }
         }
@@ -62,8 +56,7 @@ namespace TMdbEasy_Tests.APItests
             [TestCase("Brad Pitt")]
             public void FamousActor_ReturnResults(string actorName)
             {
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
-                var d = obj.GetApi<IMovieApi>().Value;
+                var d = Constants.SecureTestClient.GetApi<IMovieApi>().Value;
 
                 CollectionAssert.IsNotEmpty(d.SearchByActorAsync(actorName).Result.Results);
             }

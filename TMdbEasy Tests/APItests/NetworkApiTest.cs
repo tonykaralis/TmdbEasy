@@ -19,10 +19,8 @@ namespace TMdbEasy_Tests.APItests
             [TestCase(296096321)]
             public void IncorrectId_ThrowsException(int id)
             {
-                //arrange
-                var obj = new SUT.EasyClient("6d4b546936310f017557b2fb498b370b");
-                var d = obj.GetApi<INetworksApi>().Value;
-                //assert
+                var d = Constants.SecureTestClient.GetApi<INetworksApi>().Value;
+
                 Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Other.Network nt = d.GetDetailsAsync(id).Result; });
             }
         }

@@ -54,6 +54,7 @@
     <Compile Include="APItests\MovieApiTest.cs" />
     <Compile Include="APItests\NetworkApiTest.cs" />
     <Compile Include="APItests\ReviewApiTest.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="RequestEngineTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
