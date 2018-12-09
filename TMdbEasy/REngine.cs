@@ -46,7 +46,8 @@ namespace TMdbEasy
         /// </summary>
         /// <typeparam name="T">Tmdb object type</typeparam>
         /// <param name="content">api call reponse string</param>
-        /// <returns></returns>
+        /// <exception cref="JsonException">Occurs when the string can not
+        /// be parsed to the given type.</exception>
         internal static T DeserializeJson<T>(string content)
         {
             try
@@ -54,9 +55,10 @@ namespace TMdbEasy
                 var model = JsonConvert.DeserializeObject<T>(content);
                 return model;
             }
-            catch
+            catch (Exception ex)
             {
-                throw new JsonException();
+                throw new JsonException("Could not deserialize input string! " +
+                    "See InnerException for more details.", ex);
             }
         }
 
