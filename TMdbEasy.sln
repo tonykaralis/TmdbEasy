@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMdbEasy", "TMdbEasy\TMdbEasy.csproj", "{A2C67861-1839-4BE1-8674-1E8DA564E5A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMdbEasy", "src\TmdbEasy.csproj", "{A2C67861-1839-4BE1-8674-1E8DA564E5A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMdbEasy Tests", "TMdbEasy Tests\TMdbEasy Tests.csproj", "{B137D72D-9557-4D8F-A25E-27890483F885}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMdbEasy Tests", "tests\TmdbEasy.Tests.csproj", "{B137D72D-9557-4D8F-A25E-27890483F885}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
