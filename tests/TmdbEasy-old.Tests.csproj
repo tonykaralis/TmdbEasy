@@ -59,7 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TMdbEasy\TMdbEasy.csproj">
+    <ProjectReference Include="..\src-old\TmdbEasy-old.csproj">
       <Project>{a2c67861-1839-4be1-8674-1e8da564e5a9}</Project>
       <Name>TMdbEasy</Name>
     </ProjectReference>
