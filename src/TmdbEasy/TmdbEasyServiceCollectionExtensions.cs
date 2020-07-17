@@ -28,7 +28,6 @@ namespace TmdbEasy
 
             serviceCollection.AddScoped<IReviewApi, ReviewApi>();
 
-
             return serviceCollection;
         }
     }

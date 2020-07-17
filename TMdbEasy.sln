@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmdbEasy-old", "src-old\Tmd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmdbEasy-old.Tests", "tests\TmdbEasy-old.Tests.csproj", "{B137D72D-9557-4D8F-A25E-27890483F885}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmdbEasy", "src\TmdbEasy\TmdbEasy.csproj", "{1EA74703-7EAD-4702-BEBA-4C6C47401C42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TmdbEasy", "src\TmdbEasy\TmdbEasy.csproj", "{1EA74703-7EAD-4702-BEBA-4C6C47401C42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmdbEasy.Tests", "test\TmdbEasy.Tests\TmdbEasy.Tests.csproj", "{9049EBA4-B7A4-434D-AB28-A50C1225B4C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TmdbEasy.Tests", "test\TmdbEasy.Tests\TmdbEasy.Tests.csproj", "{9049EBA4-B7A4-434D-AB28-A50C1225B4C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmdbEasy.Integration.Tests", "TmdbEasy.Integration.Tests\TmdbEasy.Integration.Tests.csproj", "{967A8819-5FCC-4323-A146-2D1BF135AF84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9049EBA4-B7A4-434D-AB28-A50C1225B4C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9049EBA4-B7A4-434D-AB28-A50C1225B4C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9049EBA4-B7A4-434D-AB28-A50C1225B4C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{967A8819-5FCC-4323-A146-2D1BF135AF84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{967A8819-5FCC-4323-A146-2D1BF135AF84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{967A8819-5FCC-4323-A146-2D1BF135AF84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{967A8819-5FCC-4323-A146-2D1BF135AF84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
