@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiInterfaces\IBase.cs" />
     <Compile Include="ApiInterfaces\IChangesApi.cs" />
     <Compile Include="ApiInterfaces\ICollectionApi.cs" />
     <Compile Include="ApiInterfaces\ICompaniesApi.cs" />
@@ -52,7 +51,6 @@
     <Compile Include="ApiInterfaces\ICreditApi.cs" />
     <Compile Include="ApiInterfaces\IMovieApi.cs" />
     <Compile Include="ApiInterfaces\INetworksApi.cs" />
-    <Compile Include="ApiInterfaces\IReviewApi.cs" />
     <Compile Include="ApiObjects\ChangesApi.cs" />
     <Compile Include="ApiObjects\CollectionApi.cs" />
     <Compile Include="ApiObjects\CompaniesApi.cs" />
@@ -61,7 +59,6 @@
     <Compile Include="ApiInterfaces\ITelevisionApi.cs" />
     <Compile Include="ApiObjects\MovieApi.cs" />
     <Compile Include="ApiObjects\NetworksApi.cs" />
-    <Compile Include="ApiObjects\ReviewApi.cs" />
     <Compile Include="ApiObjects\TelevisionApi.cs" />
     <Compile Include="QueryBuilder.cs" />
     <Compile Include="REngine.cs" />
@@ -100,7 +97,6 @@
     <Compile Include="TmdbObjects\Production\ProductionCompany.cs" />
     <Compile Include="TmdbObjects\Production\ProductionCountry.cs" />
     <Compile Include="TmdbObjects\Language\SpokenLanguage.cs" />
-    <Compile Include="TmdbObjects\Other\Reviews.cs" />
     <Compile Include="TmdbObjects\TV\Tv.cs" />
     <Compile Include="TmdbObjects\TV\TvSeason.cs" />
   </ItemGroup>

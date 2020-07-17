@@ -2,6 +2,6 @@
 {
     public interface IApiFactory
     {
-        TApi GetApi<TApi>();
+        TApi GetApi<TApi>() where TApi : IBaseApi;
     }
 }

@@ -12,7 +12,7 @@ namespace TmdbEasy
             _serviceCollection = serviceCollection;
         }
 
-        public TApi GetApi<TApi>()
+        public TApi GetApi<TApi>() where TApi : IBaseApi
         {
             return _serviceCollection.BuildServiceProvider().GetService<TApi>();
         }
