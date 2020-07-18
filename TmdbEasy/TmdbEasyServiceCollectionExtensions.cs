@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using TmdbEasy.Apis;
+using TmdbEasy.Configurations;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy
@@ -13,7 +14,12 @@ namespace TmdbEasy
                     typeof(ITmdbEasyClient), c =>
                     {
                         var jsonDeserializer = c.GetService<IJsonDeserializer>();
-                        return new TmdbEasyClient(jsonDeserializer, options);
+
+                        if (options.ApiVersion == ApiVersion.v4)
+                            return new TmdbEasyClientv4(jsonDeserializer, options);
+
+                        return new TmdbEasyClientv3(jsonDeserializer, options);
+
                     }, ServiceLifetime.Singleton);
 
             serviceCollection.TryAdd(sessionDescriptor);

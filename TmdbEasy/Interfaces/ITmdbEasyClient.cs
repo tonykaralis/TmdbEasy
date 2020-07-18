@@ -1,13 +1,14 @@
 ﻿using System.Threading.Tasks;
+using TmdbEasy.Configurations;
 
 namespace TmdbEasy.Interfaces
 {
     public interface ITmdbEasyClient
     {
-        string GetApiKey();
+        string GetBaseUrl();
 
-        string GetUrl();
+        ApiVersion GetVersion();
 
-        Task<TmdbEasyModel> GetResponseAsync<TmdbEasyModel>(string query);
+        Task<TmdbEasyModel> GetResponseAsync<TmdbEasyModel>(string query, string userAuthToken);
     }
 }

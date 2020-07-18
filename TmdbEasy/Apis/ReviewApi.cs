@@ -13,11 +13,11 @@ namespace TmdbEasy.Apis
             _client = client;
         }
 
-        public async Task<Review> GetReviewDetailsAsync(string id)
+        public async Task<Review> GetReviewDetailsAsync(string id, string apiKey)
         {
-            string queryString = $"{_client.GetUrl()}review/{id}?{Query.ApiKeyVariable}{_client.GetApiKey()}";
+            string queryString = $"review/{id}";  //?{Query.ApiKeyVariable}{_client.GetApiKey()}
 
-            return await _client.GetResponseAsync<Review>(queryString).ConfigureAwait(false);
+            return await _client.GetResponseAsync<Review>(queryString, apiKey).ConfigureAwait(false);
         }
     }
 }

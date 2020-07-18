@@ -1,8 +1,8 @@
-﻿namespace TmdbEasy
+﻿namespace TmdbEasy.Configurations
 {
     public class TmdbEasyOptions
     {
-        public string ApiKey { get; set; }
         public bool UseSsl { get; set; }
+        public ApiVersion ApiVersion { get; set; }
     }
 }
