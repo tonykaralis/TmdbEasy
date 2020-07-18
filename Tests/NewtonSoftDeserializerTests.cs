@@ -5,7 +5,7 @@ using TmdbEasy;
 using TmdbEasy.Data.Reviews;
 using TmdbEasy.Interfaces;
 
-namespace TMdbEasy.Tests
+namespace TmdbEasy.Tests
 {
     [TestFixture]
     internal class NewtonSoftDeserializerTests
