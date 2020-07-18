@@ -3,8 +3,8 @@ using TmdbEasy.Data.Reviews;
 
 namespace TmdbEasy.Interfaces
 {
-    public interface IReviewApi
+    public interface IReviewApi : IBaseApi
     {
-        Task<Review> GetReviewDetailsAsync(string id);
+        Task<Review> GetReviewDetailsAsync(string id, string apiKey);
     }
 }

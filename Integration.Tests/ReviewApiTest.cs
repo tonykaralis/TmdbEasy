@@ -12,15 +12,18 @@ namespace TMdbEasy.Integration.Tests
     public class ReviewApiTest : TestBase
     {
         [TestCase("5488c29bc3a3686f4a00004a")]
-        public async Task GetDetailsAsync_ExistingId_ReturnsReview(string id)
+        public async Task V3_GetDetailsAsync_ExistingId_ReturnsReview(string id)
         {
-            ITmdbEasyClient client = GetTestClient();
+            var client = GetTestV3Client();
 
-            IReviewApi serviceUnderTest = new ReviewApi(client);            
+            var apiKey = GetApiKey();
 
-            Review result = await serviceUnderTest.GetReviewDetailsAsync(id);
+            IReviewApi serviceUnderTest = new ReviewApi(client);
+
+            Review result = await serviceUnderTest.GetReviewDetailsAsync(id, apiKey);
 
             Assert.IsNotNull(result);
+            Assert.AreEqual(id, result.Id);
         }
     }
 }

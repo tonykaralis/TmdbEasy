@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using TmdbEasy.Configurations;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy.Integration.Tests.TestFixtures
@@ -7,31 +8,62 @@ namespace TmdbEasy.Integration.Tests.TestFixtures
     public abstract class TestBase
     {
         private const string ApiKeyVariableName = "tmdbapikey";
+        private const string ApiBearerTokenVariableName = "tmdbapibearertoken";
 
-        public ITmdbEasyClient GetTestClient()
+        public ITmdbEasyClient GetTestV3Client()
         {
-            var options = GetTmdbEasyOptions();
-
             var jsonSerializer = new NewtonSoftDeserializer();
 
-            return new TmdbEasyClient(jsonSerializer, options);
+            return new TmdbEasyClientv3(jsonSerializer, GetDefaultV3Options());
         }
 
-        private TmdbEasyOptions GetTmdbEasyOptions()
+        public ITmdbEasyClient GetTestV4Client()
         {
-            EnvironmentVariableTarget environmentVariableTarget = EnvironmentVariableTarget.User;            
+            var jsonSerializer = new NewtonSoftDeserializer();
+
+            return new TmdbEasyClientv4(jsonSerializer, GetDefaultV4Options());
+        }
+
+        public TmdbEasyOptions GetDefaultV3Options()
+        {
+            return new TmdbEasyOptions()
+            {
+                UseSsl = true,
+                ApiVersion = ApiVersion.v3
+            };
+        }
+
+        public TmdbEasyOptions GetDefaultV4Options()
+        {
+            return new TmdbEasyOptions()
+            {
+                UseSsl = true,
+                ApiVersion = ApiVersion.v4
+            };
+        }
+
+        public string GetApiKey()
+        {
+            EnvironmentVariableTarget environmentVariableTarget = EnvironmentVariableTarget.User;
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                environmentVariableTarget = EnvironmentVariableTarget.Process;                
+                environmentVariableTarget = EnvironmentVariableTarget.Process;
             }
 
-            string apiKey = Environment.GetEnvironmentVariable(ApiKeyVariableName, environmentVariableTarget);
+            return Environment.GetEnvironmentVariable(ApiKeyVariableName, environmentVariableTarget);
+        }
 
-            return new TmdbEasyOptions()
+        public string GetApiBearerToken()
+        {
+            EnvironmentVariableTarget environmentVariableTarget = EnvironmentVariableTarget.User;
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                ApiKey = apiKey
-            };
+                environmentVariableTarget = EnvironmentVariableTarget.Process;
+            }
+
+            return Environment.GetEnvironmentVariable(ApiBearerTokenVariableName, environmentVariableTarget);
         }
     }
 }
