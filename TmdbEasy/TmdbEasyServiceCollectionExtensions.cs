@@ -15,9 +15,6 @@ namespace TmdbEasy
                     {
                         var jsonDeserializer = c.GetService<IJsonDeserializer>();
 
-                        if (options.ApiVersion == ApiVersion.v4)
-                            return new TmdbEasyClientv4(jsonDeserializer, options);
-
                         return new TmdbEasyClientv3(jsonDeserializer, options);
 
                     }, ServiceLifetime.Singleton);
@@ -27,7 +24,7 @@ namespace TmdbEasy
             return serviceCollection;
         }
 
-        public static IServiceCollection UseTmdbEasyApi(this IServiceCollection serviceCollection)
+        public static IServiceCollection UseTmdbEasyApiv3(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddScoped<IJsonDeserializer, NewtonSoftDeserializer>();
             serviceCollection.AddScoped<IApiFactory, ApiFactory>();

@@ -2,7 +2,7 @@
 
 namespace TmdbEasy.Apis
 {
-    public class BaseApi : IBaseApi
+    public class BaseApi
     {
         protected string ApiKey { get; private set; }
 

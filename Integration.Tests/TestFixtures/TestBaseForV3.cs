@@ -5,40 +5,24 @@ using TmdbEasy.Interfaces;
 
 namespace TmdbEasy.Integration.Tests.TestFixtures
 {
-    public abstract class TestBase
+    public abstract class TestBaseForV3
     {
         private const string ApiKeyVariableName = "tmdbapikey";
         private const string ApiBearerTokenVariableName = "tmdbapibearertoken";
 
-        public ITmdbEasyClient GetTestV3Client()
+        public ITmdbEasyClient GetTestV3Client(string sharedApiKey = null)
         {
             var jsonSerializer = new NewtonSoftDeserializer();
 
-            return new TmdbEasyClientv3(jsonSerializer, GetDefaultV3Options());
+            return new TmdbEasyClientv3(jsonSerializer, GetDefaultOptions(sharedApiKey));
         }
 
-        public ITmdbEasyClient GetTestV4Client()
-        {
-            var jsonSerializer = new NewtonSoftDeserializer();
-
-            return new TmdbEasyClientv4(jsonSerializer, GetDefaultV4Options());
-        }
-
-        public TmdbEasyOptions GetDefaultV3Options()
+        public TmdbEasyOptions GetDefaultOptions(string sharedApiKey)
         {
             return new TmdbEasyOptions()
             {
                 UseSsl = true,
-                ApiVersion = ApiVersion.v3
-            };
-        }
-
-        public TmdbEasyOptions GetDefaultV4Options()
-        {
-            return new TmdbEasyOptions()
-            {
-                UseSsl = true,
-                ApiVersion = ApiVersion.v4
+                ApiKey = sharedApiKey
             };
         }
 
