@@ -3,6 +3,6 @@
     public class TmdbEasyOptions
     {
         public bool UseSsl { get; set; }
-        public ApiVersion ApiVersion { get; set; }
+        public string ApiKey { get; set; }
     }
 }

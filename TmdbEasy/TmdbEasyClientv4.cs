@@ -2,12 +2,13 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using TmdbEasy.Configurations;
+using TmdbEasy.Constants;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy
 {
-    public class TmdbEasyClientv4 : ITmdbEasyClient
-    {        
+    internal class TmdbEasyClientv4
+    {
         private readonly IJsonDeserializer _jsonDeserializer;
         private readonly TmdbEasyOptions _options;
         private readonly HttpClient _httpClient;
@@ -25,12 +26,12 @@ namespace TmdbEasy
                 throw new ArgumentException($"{nameof(TmdbEasyClientv4)} query param null or empty");
 
             var request = new HttpRequestMessage()
-            {                
+            {
                 RequestUri = new Uri($"{GetBaseUrl()}{query}"),
                 Method = HttpMethod.Get,
             };
 
-            request.Headers.Add(Constants.AuthHeaderName, $"Bearer {userAuthToken}");
+            request.Headers.Add(UrlConstants.AuthHeaderName, $"Bearer {userAuthToken}");
 
             var responseMessage = await _httpClient.SendAsync(request);
 
@@ -39,14 +40,8 @@ namespace TmdbEasy
             return _jsonDeserializer.DeserializeTo<TmdbEasyModel>(jsonData);
         }
 
-        public ApiVersion GetVersion()
-        {
-            return _options.ApiVersion;
-        }
+        public ApiVersion GetVersion() => ApiVersion.v4;
 
-        public string GetBaseUrl()
-        {
-            return _options.UseSsl ? Constants.TmdbUrl4Ssl : Constants.TmdbUrl4;
-        }
+        public string GetBaseUrl() => _options.UseSsl ? UrlConstants.TmdbUrl4Ssl : UrlConstants.TmdbUrl4;
     }
 }

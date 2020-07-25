@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
+using System;
 using TmdbEasy.Configurations;
+using TmdbEasy.Constants;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy.Tests
@@ -15,7 +17,15 @@ namespace TmdbEasy.Tests
         }
 
         [Test]
-        public void OptionsWithSsl_Off_SetsCorrectVersionOfUrl_WithNoSsl()
+        public void NullOptions_Throws_ArgumentNullException()
+        {
+            TmdbEasyOptions options = null;
+
+            Assert.Throws<ArgumentNullException>(() => new TmdbEasyClientv3(_jsonDeserializer, options));
+        }
+
+        [Test]
+        public void OptionsWithSsl_Off_SetsCorrectVersionOfUrl_NoSsl()
         {
             var options = new TmdbEasyOptions()
             {
@@ -24,7 +34,7 @@ namespace TmdbEasy.Tests
 
             var client = new TmdbEasyClientv3(_jsonDeserializer, options);
 
-            Assert.AreEqual(Constants.TmdbUrl3, client.GetBaseUrl());
+            Assert.AreEqual(UrlConstants.TmdbUrl3, client.GetBaseUrl());
         }
 
         [Test]
@@ -37,7 +47,23 @@ namespace TmdbEasy.Tests
 
             var client = new TmdbEasyClientv3(_jsonDeserializer, options);
 
-            Assert.AreEqual(Constants.TmdbUrl3Ssl, client.GetBaseUrl());
+            Assert.AreEqual(UrlConstants.TmdbUrl3Ssl, client.GetBaseUrl());
+        }
+
+        [Test]
+        [TestCase("asdjhfbakjsdhb")]
+        [TestCase("")]
+        [TestCase(null)]
+        public void OptionsWithApiKey_SetsAndGetsApiKey(string apikey)
+        {
+            var options = new TmdbEasyOptions()
+            {
+                ApiKey = apikey
+            };
+
+            var client = new TmdbEasyClientv3(_jsonDeserializer, options);
+
+            Assert.AreEqual(options.ApiKey, client.GetApiKey());
         }
     }
 }

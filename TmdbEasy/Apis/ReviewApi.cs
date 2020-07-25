@@ -13,9 +13,9 @@ namespace TmdbEasy.Apis
             _client = client;
         }
 
-        public async Task<Review> GetReviewDetailsAsync(string id, string apiKey)
+        public async Task<Review> GetReviewDetailsAsync(string id, string apiKey = null)
         {
-            string queryString = $"review/{id}";  //?{Query.ApiKeyVariable}{_client.GetApiKey()}
+            string queryString = $"review/{id}";
 
             return await _client.GetResponseAsync<Review>(queryString, apiKey).ConfigureAwait(false);
         }

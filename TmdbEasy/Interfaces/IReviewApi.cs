@@ -5,6 +5,6 @@ namespace TmdbEasy.Interfaces
 {
     public interface IReviewApi : IBaseApi
     {
-        Task<Review> GetReviewDetailsAsync(string id, string apiKey);
+        Task<Review> GetReviewDetailsAsync(string id, string apiKey = null);
     }
 }
