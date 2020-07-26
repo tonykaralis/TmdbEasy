@@ -9,9 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmdbEasy-old.Tests", "tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TmdbEasy", "TmdbEasy\TmdbEasy.csproj", "{1EA74703-7EAD-4702-BEBA-4C6C47401C42}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\TmdbEasy.Tests.csproj", "{9049EBA4-B7A4-434D-AB28-A50C1225B4C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TmdbEasy.Tests", "Tests\TmdbEasy.Tests.csproj", "{9049EBA4-B7A4-434D-AB28-A50C1225B4C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integration.Tests", "Integration.Tests\TmdbEasy.Integration.Tests.csproj", "{967A8819-5FCC-4323-A146-2D1BF135AF84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TmdbEasy.Integration.Tests", "Integration.Tests\TmdbEasy.Integration.Tests.csproj", "{967A8819-5FCC-4323-A146-2D1BF135AF84}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{94E5C4B5-8B79-46EA-BAE0-89C74568D458}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

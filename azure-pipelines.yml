@@ -1,0 +1,28 @@
+
+trigger:
+  branches:
+      include:
+      - '*'
+
+pr:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Install .NET Core SDK'
+  inputs:
+    packageType: 'sdk'
+    version: '3.x'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build'
+  inputs:
+    command: 'build'
+    configuration: 'Release'
+    projects: 'TmdbEasy/TmdbEasy.csproj'
