@@ -1,14 +1,26 @@
-﻿using TmdbEasy.Interfaces;
+﻿using System;
+using TmdbEasy.Interfaces;
 
 namespace TmdbEasy.Apis
 {
-    public class BaseApi
+    public abstract class BaseApi
     {
-        protected string ApiKey { get; private set; }
+        protected readonly ITmdbEasyClient _client;
 
-        public void SetApiKey(string apiKey)
+        protected BaseApi(ITmdbEasyClient client)
         {
-            ApiKey = apiKey;
+            _client = client;
+        }
+
+        public string GetApiKey(string userApiKey = null)
+        {
+            if (string.IsNullOrEmpty(userApiKey))
+            {
+                return !string.IsNullOrEmpty(_client.GetApiKey()) ? _client.GetApiKey() :
+                    throw new ArgumentException("A valid api key is required in order to make requests to the TMDB api");
+            }
+
+            return userApiKey;
         }
     }
 }

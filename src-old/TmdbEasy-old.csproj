@@ -43,15 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiInterfaces\IChangesApi.cs" />
     <Compile Include="ApiInterfaces\ICollectionApi.cs" />
     <Compile Include="ApiInterfaces\ICompaniesApi.cs" />
     <Compile Include="ApiInterfaces\IConfigApi.cs" />
-    <Compile Include="ApiInterfaces\ICreator.cs" />
     <Compile Include="ApiInterfaces\ICreditApi.cs" />
     <Compile Include="ApiInterfaces\IMovieApi.cs" />
     <Compile Include="ApiInterfaces\INetworksApi.cs" />
-    <Compile Include="ApiObjects\ChangesApi.cs" />
     <Compile Include="ApiObjects\CollectionApi.cs" />
     <Compile Include="ApiObjects\CompaniesApi.cs" />
     <Compile Include="ApiObjects\ConfigApi.cs" />
@@ -65,9 +62,6 @@
     <Compile Include="EasyClient.cs" />
     <Compile Include="TmdbObjects\Certifications\Certifications.cs" />
     <Compile Include="TmdbObjects\Certifications\TvContentRatings.cs" />
-    <Compile Include="TmdbObjects\Changes\ChangeList.cs" />
-    <Compile Include="TmdbObjects\Changes\MovieChangeList.cs" />
-    <Compile Include="TmdbObjects\Changes\TVChangeList.cs" />
     <Compile Include="TmdbObjects\Collection\Collections.cs" />
     <Compile Include="TmdbObjects\Companies\Companies.cs" />
     <Compile Include="TmdbObjects\Companies\CompanyDetails.cs" />

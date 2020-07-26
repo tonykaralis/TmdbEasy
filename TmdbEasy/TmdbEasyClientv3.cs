@@ -25,12 +25,12 @@ namespace TmdbEasy
             };
         }
 
-        public async Task<TmdbEasyModel> GetResponseAsync<TmdbEasyModel>(string query, string userApiKey = null)
+        public async Task<TmdbEasyModel> GetResponseAsync<TmdbEasyModel>(string query)
         {
             if (string.IsNullOrEmpty(query) || string.IsNullOrWhiteSpace(query))
                 throw new ArgumentException($"{nameof(TmdbEasyClientv3)} query param null or empty");
 
-            var jsonResult = await _httpClient.GetStringAsync($"{query}?{QueryConstants.ApiKeyVariable}{GetApiKey(userApiKey)}");
+            var jsonResult = await _httpClient.GetStringAsync(query);
 
             return _jsonDeserializer.DeserializeTo<TmdbEasyModel>(jsonResult);
         }
@@ -44,17 +44,6 @@ namespace TmdbEasy
         private string GetUrl()
         {
             return _options.UseSsl ? UrlConstants.TmdbUrl3Ssl : UrlConstants.TmdbUrl3;
-        }
-
-        private string GetApiKey(string userApiKey)
-        {
-            if(string.IsNullOrEmpty(userApiKey))
-            {
-                return !string.IsNullOrEmpty(_options.ApiKey) ? _options.ApiKey :
-                    throw new ArgumentException("A valid api key is required in order to make requests to the TMDB api");
-            }
-
-            return userApiKey;
         }
     }
 }

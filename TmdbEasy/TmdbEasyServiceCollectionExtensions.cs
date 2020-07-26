@@ -30,6 +30,7 @@ namespace TmdbEasy
             serviceCollection.AddScoped<IApiFactory, ApiFactory>();
 
             serviceCollection.AddScoped<IReviewApi, ReviewApi>();
+            serviceCollection.AddScoped<IChangesApi, ChangesApi>();
 
             return serviceCollection;
         }

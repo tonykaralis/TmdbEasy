@@ -2,6 +2,6 @@
 {
     public interface IBaseApi
     {
-        void SetApiKey(string apiKey);
+        string GetApiKey(string userApiKey = null);
     }
 }
