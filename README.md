@@ -1,5 +1,8 @@
 # TMdbEasy
 
+[![Build Status](https://dev.azure.com/tkaralis/TmdbEasy/_apis/build/status/Build%20%26%20test?branchName=master)](https://dev.azure.com/tkaralis/TmdbEasy/_build/latest?definitionId=3&branchName=master)
+[![Nuget Package](https://badgen.net/nuget/v/TmdbEasy)](https://www.nuget.org/packages/TMdbEasy/)
+
 Open Source class library that wraps The Movie Database Api. 
 Currently all interfaces that are made available support version 3 of the Api. This wrapper provides all the basic requests 
 and supports TheMovieDB's append_to_response functionality as well as filtering and sorting. Please keep in mind this is a work in progress, it is far from complete.
