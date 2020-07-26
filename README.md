@@ -31,12 +31,9 @@ Copyright © Tony Karalis and contributors.
 TmdbEasy is provided as-is under the MIT license. For more information see [LICENSE](LICENSE).
 
 ## Attribution
-
-### TMDb
 All film-related data and metadata gathered via this library is supplied by [The Movie Database](https://www.themoviedb.org/) (TMDb).
 TmdbEasy uses the TMDb API but is not endorsed or certified in any way by TMDb.
 
 ![https://www.themoviedb.org/](https://github.com/tonykaralis/TMdbEasy/blob/v1-refactor/TheMovieDb-logo.png)
 
-### Contributor images
-Made with [contributors-img](https://contributors-img.web.app).
+Contributor images made with [contributors-img](https://contributors-img.web.app).
