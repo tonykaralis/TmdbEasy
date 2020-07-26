@@ -2,9 +2,10 @@
 
 [![Build Status](https://dev.azure.com/tkaralis/TmdbEasy/_apis/build/status/Build%20%26%20test?branchName=master)](https://dev.azure.com/tkaralis/TmdbEasy/_build/latest?definitionId=3&branchName=master)
 [![Nuget Package](https://badgen.net/nuget/v/TmdbEasy)](https://www.nuget.org/packages/TMdbEasy/)
+[![Nuget](https://img.shields.io/nuget/dt/TmdbEasy)](https://www.nuget.org/packages/TMdbEasy/)
 
-A simple and lightweight class library that wraps [The Movie Database](https://www.themoviedb.org/) api ad makes it extremely easy to use. 
-The library currently support version 3 of the API.
+A simple and lightweight class library that wraps [The Movie Database](https://www.themoviedb.org/) api and makes it extremely easy to use. 
+The library currently supports version 3 of the API.
 
 ## Getting Started
 
@@ -15,9 +16,10 @@ The library currently support version 3 of the API.
 ### Examples
 
 
-## JSON Deserialization
-The project currently depends only on the [Json.NET](https://www.newtonsoft.com/json) library which is
-used to deserialize all http responses. 
+## JSON Deserialization 
+[Newtonsoft](https://www.newtonsoft.com/json) is used for the deserialization of all http responses.
+
+If for whatever reason, you wish to use a different deserializer with TmdbEasy, this can be done easily by implementing the `IJsonDeserializer` interface and registering the implementation with your DI container.
 
 ## Author
 * [Tony Karalis](https://github.com/tonykaralis)
