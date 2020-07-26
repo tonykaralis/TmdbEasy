@@ -1,20 +1,21 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy
 {
     public class ApiFactory : IApiFactory
     {
-        private readonly IServiceCollection _serviceCollection;
+        private readonly IServiceProvider _serviceProvider;
 
-        public ApiFactory(IServiceCollection serviceCollection)
+        public ApiFactory(IServiceProvider serviceProvider)
         {
-            _serviceCollection = serviceCollection;
+            _serviceProvider = serviceProvider;
         }
 
         public TApi GetApi<TApi>() where TApi : IBaseApi
         {
-            return _serviceCollection.BuildServiceProvider().GetService<TApi>();
+            return _serviceProvider.GetService<TApi>();
         }
     }
 }
