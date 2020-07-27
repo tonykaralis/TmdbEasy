@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using System.Threading.Tasks;
 using TmdbEasy.Data.Changes;
-using TmdbEasy.Enums;
-using TmdbEasy.Interfaces;
+using TmdbEasy.DTO;
 using TmdbEasy.Extensions;
+using TmdbEasy.Interfaces;
 
 namespace TmdbEasy.Apis
 {
@@ -11,15 +11,15 @@ namespace TmdbEasy.Apis
     {
         public ChangesApi(ITmdbEasyClient client) : base(client) { }
 
-        public async Task<ChangeList> GetChangeListAsync(string userApiKey = null, string end_date = null, string start_date = null, int page = 1, ChangeType type = ChangeType.Movie)
+        public async Task<ChangeList> GetChangeListAsync(ChangeListRequest changeListRequest)
         {
             string queryString = new StringBuilder()
-            .Append(type.ToString().ToLower())
+            .Append(changeListRequest.Type.ToString().ToLower())
             .Append("/changes?api_key=")
-            .Append(GetApiKey(userApiKey))
-            .AppendEndDate(end_date)
-            .AppendStartDate(start_date)
-            .Append($"&page={page}")
+            .Append(GetApiKey(changeListRequest.UserApiKey))
+            .AppendEndDate(changeListRequest.End_date)
+            .AppendStartDate(changeListRequest.Start_date)
+            .Append($"&page={changeListRequest.Page}")
             .ToString();
 
             return await _client.GetResponseAsync<ChangeList>(queryString).ConfigureAwait(false);

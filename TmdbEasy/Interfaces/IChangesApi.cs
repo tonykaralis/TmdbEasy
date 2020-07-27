@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using TmdbEasy.Data.Changes;
-using TmdbEasy.Enums;
+using TmdbEasy.DTO;
 
 namespace TmdbEasy.Interfaces
 {
     public interface IChangesApi : IBaseApi
     {
-        Task<ChangeList> GetChangeListAsync(string userApiKey = null, string end_date = null, string start_date = null, int page = 1, ChangeType type = ChangeType.Movie);
+        Task<ChangeList> GetChangeListAsync(ChangeListRequest changeListRequest);
     }
 }

@@ -3,6 +3,6 @@
     public class ChangeResult
     {
         public int Id { get; set; }
-        public bool Adult { get; set; }
+        public bool? Adult { get; set; }
     }
 }
