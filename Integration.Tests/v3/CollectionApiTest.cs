@@ -10,18 +10,9 @@ using TmdbEasy.Interfaces;
 namespace TmdbEasy.Integration.Tests.v3
 {
     [TestFixture]
-    [Category("ChangesApi")]
+    [Category("CollectionApi")]
     public class CollectionApiTest : TestBaseForV3
     {
-        private readonly ITmdbEasyClient _client;
-        private readonly string _userApiKey;
-
-        public CollectionApiTest()
-        {
-            _client = GetTestV3Client();
-            _userApiKey = GetApiKey();
-        }
-
         [TestCase(10)]
         public async Task GetDetailsAsync_ValidId_ReturnsValidResult(int id)
         {        

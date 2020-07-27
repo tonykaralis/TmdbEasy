@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APItests\ChangesApiTest.cs" />
-    <Compile Include="APItests\CompaniesApiTest.cs" />
     <Compile Include="APItests\CreditApiTest.cs" />
     <Compile Include="APItests\MovieApiTest.cs" />
     <Compile Include="APItests\NetworkApiTest.cs" />
