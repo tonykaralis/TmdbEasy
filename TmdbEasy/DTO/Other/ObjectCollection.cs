@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using TmdbEasy.DTO.Movies;
 using TmdbEasy.DTO.Television;
-using TMdbEasy.TmdbObjects.TV;
+using TmdbEasy.DTO.TV;
 
 namespace TmdbEasy.DTO.Other
 {
