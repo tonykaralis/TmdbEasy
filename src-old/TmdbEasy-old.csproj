@@ -50,36 +50,11 @@
     <Compile Include="ApiObjects\MovieApi.cs" />
     <Compile Include="ApiObjects\NetworksApi.cs" />
     <Compile Include="ApiObjects\TelevisionApi.cs" />
-    <Compile Include="QueryBuilder.cs" />
-    <Compile Include="REngine.cs" />
-    <Compile Include="EasyClient.cs" />
-    <Compile Include="TmdbObjects\Certifications\Certifications.cs" />
-    <Compile Include="TmdbObjects\Certifications\TvContentRatings.cs" />
-    <Compile Include="TmdbObjects\Companies\Companies.cs" />
-    <Compile Include="TmdbObjects\Companies\CompanyDetails.cs" />
-    <Compile Include="TmdbObjects\Configuration\Configurations.cs" />
-    <Compile Include="TmdbObjects\Configuration\Countries.cs" />
-    <Compile Include="TmdbObjects\Configuration\Jobs.cs" />
-    <Compile Include="TmdbObjects\Configuration\Languages.cs" />
-    <Compile Include="TmdbObjects\Configuration\TimeZones.cs" />
-    <Compile Include="TmdbObjects\Language\Translations.cs" />
-    <Compile Include="TmdbObjects\Lists\ListDetails.cs" />
-    <Compile Include="TmdbObjects\Movies\MovieReleaseDate.cs" />
-    <Compile Include="TmdbObjects\Movies\Videos.cs" />
-    <Compile Include="TmdbObjects\Movies\AlternativeTitle.cs" />
-    <Compile Include="TmdbObjects\Movies\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TmdbObjects\Movies\MovieFullDetails.cs" />
-    <Compile Include="TmdbObjects\Movies\MovieExternalId.cs" />
-    <Compile Include="TmdbObjects\Other\ObjectCollection.cs" />
-    <Compile Include="TmdbObjects\Other\Person.cs" />
-    <Compile Include="TmdbObjects\Language\SpokenLanguage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TmdbObjects\TV\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
