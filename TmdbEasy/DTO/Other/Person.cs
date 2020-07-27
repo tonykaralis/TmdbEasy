@@ -2,12 +2,6 @@
 
 namespace TmdbEasy.DTO.Other
 {
-    public class PersonBase
-    {
-        public string Name { get; set; }
-        public int Id { get; set; }
-    }
-
     public class Person
     {
         public bool Adult { get; set; }
