@@ -16,10 +16,9 @@ namespace TmdbEasy.Interfaces
         /// </summary>
         Task<MoviesByCompany> GetMoviesAsync(IdRequest request, string language = "en");
         /// <summary>
-        /// Search for companies.
+        /// Search for companies with a custom query.
         /// </summary>
-        /// <param name="query">Uri encoded text query</param>
         /// <param name="page">Default is page 1</param>
-        Task<CompanyList> SearchAsync(string query, int page = 1);
+        Task<CompanyList> SearchAsync(CustomQueryRequest request, int page = 1);
     }
 }

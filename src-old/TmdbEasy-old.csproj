@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiObjects\CompaniesApi.cs" />
     <Compile Include="ApiObjects\ConfigApi.cs" />
     <Compile Include="ApiObjects\CreditApi.cs" />
     <Compile Include="ApiObjects\MovieApi.cs" />
