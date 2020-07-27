@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using TmdbEasy.DTO;
 using TmdbEasy.DTO.Other;
 
 namespace TmdbEasy.Interfaces
@@ -10,6 +11,6 @@ namespace TmdbEasy.Interfaces
         /// </summary>
         /// <param name="id">Network Id, typically taken from a previous api call</param>       
         /// <returns></returns>
-        Task<Network> GetDetailsAsync(int id);
+        Task<Network> GetDetailsAsync(IdRequest request);
     }
 }

@@ -14,28 +14,20 @@ namespace TmdbEasy.Interfaces
         /// <summary>
         /// Gets all the information about a specific movie.
         /// </summary>
-        Task<MovieFullDetails> GetDetailsAsync(IdLanguageRequest request);
+        Task<MovieFullDetails> GetDetailsAsync(IdRequest request, string language = "en");
         /// <summary>
         /// Returns all movies that belong to a movie.
         /// </summary>
-        Task<Images> GetImagesAsync(IdLanguageRequest request);
+        Task<Images> GetImagesAsync(IdRequest request, string language = "en");
         /// <summary>
         /// Returns all alternative titles that belong to a movie.
         /// </summary>
-        /// <param name="id">Typically taken from a previous api call</param>
-        /// <param name="country">Pass a ISO_3166_1 value to display translated data for the fields that support it. Default is Britain</param>
-        /// <returns></returns>
-        Task<AlternativeTitle> GetAlternativeTitlesAsync(int id, string country = "BR");
+        Task<AlternativeTitle> GetAlternativeTitlesAsync(IdCountryRequest request);
         /// <summary>
         /// Get the changes for a movie. By default only the last 24 hours are returned.
         /// You can query up to 14 days in a single query by using the start_date and end_date query parameters.
         /// </summary>
-        /// <param name="id">Typically taken from a previous api call</param>
-        /// <param name="start_date"></param>
-        /// <param name="end_date"></param>
-        /// <param name="page"></param>       
-        /// <returns></returns>
-        Task<MovieChangeList> GetChangesAsync(int id, string start_date, string end_date, int page);
+        Task<MovieChangeList> GetChangesAsync(PagedIdDateRequest request);
         /// <summary>
         /// Get the cast and crew for a movie.
         /// </summary>
@@ -59,22 +51,20 @@ namespace TmdbEasy.Interfaces
         /// <summary>
         /// Get a list of recommended movies for a movie.
         /// </summary>
-        Task<MovieList> GetRecommendationsAsync(PagedIdLanguageRequest request);
+        Task<MovieList> GetRecommendationsAsync(PagedIdRequest request, string language = "en");
         /// <summary>
         /// Get a list of similar movies. This is not the same as the "Recommendation" system you see on the website.
         /// These items are assembled by looking at keywords and genres.
         /// </summary>
-        Task<MovieList> GetSimilarMoviesAsync(PagedIdLanguageRequest request);
+        Task<MovieList> GetSimilarMoviesAsync(PagedIdRequest request, string language = "en");
         /// <summary>
         /// Get the user reviews for a movie.
         /// </summary>
-        Task<UserReview> GetUserReviewsAsync(PagedIdLanguageRequest request);
+        Task<UserReview> GetUserReviewsAsync(PagedIdRequest request, string language = "en");
         /// <summary>
         /// Get the most newly created movie. This is a live response and will continuously change.
         /// </summary>      
-        /// <param name="language">Default is English</param>            
-        /// <returns></returns>
-        Task<MovieFullDetails> GetLatestAsync(string language = "en");
+        Task<MovieFullDetails> GetLatestAsync(string userApiKey = null, string language = "en");
         /// <summary>
         /// Get a list of movies in theatres. This is a release type query that looks for all movies that have a release type of 2 or 3 within the specified date range.
         /// You can optionally specify a region prameter which will narrow the search to only look for theatrical release dates within the specified country.

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
-using TmdbEasy.Data.Reviews;
+using TmdbEasy.DTO.Reviews;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy.Tests

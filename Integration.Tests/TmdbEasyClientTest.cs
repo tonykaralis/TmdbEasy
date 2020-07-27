@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using TmdbEasy.Constants;
-using TmdbEasy.Data.Reviews;
+using TmdbEasy.DTO.Reviews;
 using TmdbEasy.Integration.Tests.TestFixtures;
 using TmdbEasy.Interfaces;
 

@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
 using System.Threading.Tasks;
 using TmdbEasy.Apis;
-using TmdbEasy.Data.Reviews;
+using TmdbEasy.DTO;
+using TmdbEasy.DTO.Reviews;
 using TmdbEasy.Integration.Tests.TestFixtures;
 using TmdbEasy.Interfaces;
 
@@ -20,7 +21,7 @@ namespace TMdbEasy.Integration.Tests.v3
 
             IReviewApi serviceUnderTest = new ReviewApi(client);
 
-            Review result = await serviceUnderTest.GetReviewDetailsAsync(reviewId, userApiKey);
+            Review result = await serviceUnderTest.GetReviewDetailsAsync(new ReviewRequest() { Id = reviewId, UserApiKey = userApiKey });
 
             Assert.IsNotNull(result);
             Assert.AreEqual(reviewId, result.Id);
@@ -31,11 +32,11 @@ namespace TMdbEasy.Integration.Tests.v3
         {
             string sharedApiKey = GetApiKey();
 
-            ITmdbEasyClient client = GetTestV3Client(sharedApiKey);            
+            ITmdbEasyClient client = GetTestV3Client(sharedApiKey);
 
             IReviewApi serviceUnderTest = new ReviewApi(client);
 
-            Review result = await serviceUnderTest.GetReviewDetailsAsync(reviewId);
+            Review result = await serviceUnderTest.GetReviewDetailsAsync(new ReviewRequest() { Id = reviewId });
 
             Assert.IsNotNull(result);
             Assert.AreEqual(reviewId, result.Id);

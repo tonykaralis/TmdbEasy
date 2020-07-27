@@ -1,9 +1,8 @@
 ﻿using NUnit.Framework;
 using System.Threading.Tasks;
 using TmdbEasy.Apis;
-using TmdbEasy.Data.Changes;
-using TmdbEasy.Data.Reviews;
 using TmdbEasy.DTO;
+using TmdbEasy.DTO.Changes;
 using TmdbEasy.Enums;
 using TmdbEasy.Integration.Tests.TestFixtures;
 using TmdbEasy.Interfaces;

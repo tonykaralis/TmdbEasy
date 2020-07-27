@@ -1,10 +1,10 @@
 ﻿namespace TmdbEasy.DTO
 {
-    public class IdRequest : BaseRequest
+    public class ReviewRequest : BaseRequest
     {
         /// <summary>
         /// Required parameter
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
     }
 }
