@@ -2,9 +2,9 @@
 
 namespace TmdbEasy.DTO.Configuration
 {
-    public class Jobs
+    public class JobsByDepartment
     {
         public string Department { get; set; }
-        public List<string> JobNames { get; set; }
+        public List<string> Jobs { get; set; }
     }
 }

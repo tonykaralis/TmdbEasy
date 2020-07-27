@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Threading.Tasks;
 using TmdbEasy.Apis;
 using TmdbEasy.DTO;

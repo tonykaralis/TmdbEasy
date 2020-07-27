@@ -19,9 +19,9 @@ namespace TmdbEasy.Integration.Tests.v3
 
             string userApiKey = GetApiKey();
 
-            IReviewApi serviceUnderTest = new ReviewApi(client);
+            IReviewApi apiUnderTest = new ReviewApi(client);
 
-            Review result = await serviceUnderTest.GetReviewDetailsAsync(new ReviewRequest() { Id = reviewId, UserApiKey = userApiKey });
+            Review result = await apiUnderTest.GetReviewDetailsAsync(new ReviewRequest() { Id = reviewId, UserApiKey = userApiKey });
 
             Assert.IsNotNull(result);
             Assert.AreEqual(reviewId, result.Id);
@@ -34,9 +34,9 @@ namespace TmdbEasy.Integration.Tests.v3
 
             ITmdbEasyClient client = GetTestV3Client(sharedApiKey);
 
-            IReviewApi serviceUnderTest = new ReviewApi(client);
+            IReviewApi apiUnderTest = new ReviewApi(client);
 
-            Review result = await serviceUnderTest.GetReviewDetailsAsync(new ReviewRequest() { Id = reviewId });
+            Review result = await apiUnderTest.GetReviewDetailsAsync(new ReviewRequest() { Id = reviewId });
 
             Assert.IsNotNull(result);
             Assert.AreEqual(reviewId, result.Id);

@@ -1,6 +1,6 @@
 ﻿namespace TmdbEasy.DTO
 {
-    public abstract class BaseRequest
+    public class BaseRequest
     {
         /// <summary>
         /// Optional parameter. You would only use this parameter if you were providing a user specific api key
