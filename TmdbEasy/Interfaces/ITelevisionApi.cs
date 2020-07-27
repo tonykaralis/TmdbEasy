@@ -1,7 +1,13 @@
 ﻿using System.Threading.Tasks;
+using TmdbEasy.DTO.Certifications;
 using TmdbEasy.DTO.Changes;
+using TmdbEasy.DTO.Images;
+using TmdbEasy.DTO.Language;
+using TmdbEasy.DTO.Movies;
+using TmdbEasy.DTO.Other;
+using TmdbEasy.DTO.Reviews;
 using TmdbEasy.DTO.Television;
-using TMdbEasy.TmdbObjects.TV;
+using TmdbEasy.DTO.TV;
 
 namespace TmdbEasy.Interfaces
 {
@@ -70,7 +76,7 @@ namespace TmdbEasy.Interfaces
         /// </summary>
         /// <param name="id">Typically taken from a previous api call</param>       
         /// <returns></returns>
-        Task<TranslationsList> GetTranslationsAsync(int id);
+        Task<TranslationList> GetTranslationsAsync(int id);
         /// <summary>
         /// Get a list of recommended movies for a movie.
         /// </summary>
@@ -95,7 +101,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="language">Default is English</param>
         /// <param name="page">Default is 1</param>     
         /// <returns></returns>
-        Task<UserReviews> GetUserReviewsAsync(int id, string language = "en", int page = 1);
+        Task<UserReview> GetUserReviewsAsync(int id, string language = "en", int page = 1);
         /// <summary>
         /// Get the most newly created TV show. This is a live response and will continuously change.
         /// </summary>      
@@ -210,7 +216,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="seasonNumber">The season number.</param>
         /// <param name="episodeNumber">The episode number.</param>
         /// <returns></returns>
-        Task<TranslationsList> GetEpisodeTranslationsAsync(int id, int seasonNumber, int episodeNumber);
+        Task<TranslationList> GetEpisodeTranslationsAsync(int id, int seasonNumber, int episodeNumber);
         /// <summary>
         /// Returns all the videos that have been added to a TV episode.
         /// </summary>
