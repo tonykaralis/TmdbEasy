@@ -47,11 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APItests\ChangesApiTest.cs" />
     <Compile Include="APItests\CreditApiTest.cs" />
     <Compile Include="APItests\MovieApiTest.cs" />
     <Compile Include="APItests\NetworkApiTest.cs" />
-    <Compile Include="APItests\ReviewApiTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
