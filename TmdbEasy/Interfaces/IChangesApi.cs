@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using TmdbEasy.Data.Changes;
+using TmdbEasy.DTO.Changes;
 using TmdbEasy.DTO;
 
 namespace TmdbEasy.Interfaces

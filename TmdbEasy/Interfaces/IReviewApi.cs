@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using TmdbEasy.Data.Reviews;
+using TmdbEasy.DTO.Reviews;
 
 namespace TmdbEasy.Interfaces
 {

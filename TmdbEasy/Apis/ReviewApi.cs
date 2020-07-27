@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using TmdbEasy.Constants;
-using TmdbEasy.Data.Reviews;
+using TmdbEasy.DTO.Reviews;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy.Apis
