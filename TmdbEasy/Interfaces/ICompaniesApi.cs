@@ -14,7 +14,7 @@ namespace TmdbEasy.Interfaces
         /// Get the movies of a company by id.
         /// We highly recommend using Movie Discover instead of this method as it is much more flexible.
         /// </summary>
-        Task<MoviesByCompany> GetMoviesAsync(IdLanguageRequest request);
+        Task<MoviesByCompany> GetMoviesAsync(IdRequest request, string language = "en");
         /// <summary>
         /// Search for companies.
         /// </summary>

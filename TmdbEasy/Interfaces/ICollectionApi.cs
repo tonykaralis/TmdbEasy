@@ -10,10 +10,10 @@ namespace TmdbEasy.Interfaces
         /// <summary>
         /// Get collection details by id.
         /// </summary>
-        Task<Collections> GetDetailsAsync(IdLanguageRequest request);
+        Task<Collections> GetDetailsAsync(IdRequest request, string language = "en");
         /// <summary>
         /// Get the images for a collection by id.
         /// </summary>
-        Task<Images> GetImagesAsync(IdLanguageRequest request);
+        Task<Images> GetImagesAsync(IdRequest request, string language = "en");
     }
 }
