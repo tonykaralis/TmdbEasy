@@ -2,9 +2,9 @@
 
 namespace TmdbEasy.DTO.Configuration
 {
-    public class Configurations
+    public class Configuration
     {
-        public Images Images { get; set; }
+        public ImageConfig Images { get; set; }
         public List<string> Change_keys { get; set; }
     }
 }

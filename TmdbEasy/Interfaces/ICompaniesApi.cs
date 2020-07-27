@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using TmdbEasy.DTO.Companies;
 
 namespace TmdbEasy.Interfaces
 {
@@ -24,6 +25,6 @@ namespace TmdbEasy.Interfaces
         /// <param name="query">Uri encoded text query</param>
         /// <param name="page">Default is page 1</param>
         /// <returns></returns>
-        Task<CompanyList> SearchAsync(string query,int page=1);
+        Task<CompanyList> SearchAsync(string query, int page = 1);
     }
 }
