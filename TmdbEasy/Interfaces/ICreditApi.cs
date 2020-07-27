@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using TmdbEasy.DTO.Other;
 
 namespace TmdbEasy.Interfaces
 {

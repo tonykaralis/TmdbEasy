@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using TmdbEasy.DTO.Configuration;
 
 namespace TmdbEasy.Interfaces
 {
@@ -11,7 +12,7 @@ namespace TmdbEasy.Interfaces
         /// This method currently holds the data relevant to building image URLs as well as the change key map.
         /// </summary>
         /// <returns></returns>
-        Task<Configurations> GetConfigurationAsync();
+        Task<Configuration> GetConfigurationAsync();
         /// <summary>
         /// Get the list of countries (ISO 3166-1 tags) used throughout TMDb.
         /// </summary>
