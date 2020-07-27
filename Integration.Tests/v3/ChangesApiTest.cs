@@ -7,7 +7,7 @@ using TmdbEasy.Enums;
 using TmdbEasy.Integration.Tests.TestFixtures;
 using TmdbEasy.Interfaces;
 
-namespace TMdbEasy.Integration.Tests.v3
+namespace TmdbEasy.Integration.Tests.v3
 {
     [TestFixture]
     [Category("ChangesApi")]
