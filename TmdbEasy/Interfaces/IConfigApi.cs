@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using TmdbEasy.DTO.Configuration;
 
 namespace TmdbEasy.Interfaces
@@ -11,22 +12,22 @@ namespace TmdbEasy.Interfaces
         /// check for updates every few days.
         /// This method currently holds the data relevant to building image URLs as well as the change key map.
         /// </summary>
-        Task<Configuration> GetConfigurationAsync();
+        Task<Configuration> GetConfigurationAsync(string userApiKey = null);
         /// <summary>
         /// Get the list of countries (ISO 3166-1 tags) used throughout TMDb.
         /// </summary>
-        Task<Countries> GetCountriesAsync();
+        Task<List<Country>> GetCountriesAsync(string userApiKey = null);
         /// <summary>
         /// Get a list of the jobs and departments we use on TMDb.
         /// </summary>
-        Task<Jobs> GetJobsAsync();
+        Task<List<JobsByDepartment>> GetJobsAsync(string userApiKey = null);
         /// <summary>
         /// Get the list of languages (ISO 639-1 tags) used throughout TMDb.
         /// </summary>
-        Task<Languages> GetLanguagesAsync();
+        Task<List<Language>> GetLanguagesAsync(string userApiKey = null);
         /// <summary>
         /// Get the list of timezones used throughout TMDb.
         /// </summary>
-        Task<TimeZones> GetTimeZonesAsync();
+        Task<List<TimeZones>> GetTimeZonesAsync(string userApiKey = null);
     }
 }

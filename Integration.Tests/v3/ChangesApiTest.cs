@@ -16,20 +16,16 @@ namespace TmdbEasy.Integration.Tests.v3
         [Test]
         public async Task GetChangeListAsync_SpecificDateRange_ReturnsChangeList()
         {
-            ITmdbEasyClient client = GetTestV3Client();
-
-            string userApiKey = GetApiKey();
-
-            IChangesApi serviceUnderTest = new ChangesApi(client);
+            IChangesApi apiUnderTest = new ChangesApi(_client);
 
             var request = new ChangeListRequest()
             {
-                UserApiKey = userApiKey,
+                UserApiKey = _userApiKey,
                 Start_date = "25/07/2020",
                 End_date = "26/07/2020"
             };
 
-            ChangeList changeList = await serviceUnderTest.GetChangeListAsync(request);
+            ChangeList changeList = await apiUnderTest.GetChangeListAsync(request);
 
             Assert.IsNotNull(changeList);
             Assert.IsNotEmpty(changeList.Results);
@@ -38,21 +34,17 @@ namespace TmdbEasy.Integration.Tests.v3
         [Test]
         public async Task GetChangeListAsync_SpecificType_ReturnsChangeList()
         {
-            ITmdbEasyClient client = GetTestV3Client();
-
-            string userApiKey = GetApiKey();
-
-            IChangesApi serviceUnderTest = new ChangesApi(client);
+            IChangesApi apiUnderTest = new ChangesApi(_client);
 
             var request = new ChangeListRequest()
             {
-                UserApiKey = userApiKey,
+                UserApiKey = _userApiKey,
                 Start_date = "25/07/2020",
                 End_date = "26/07/2020",
                 Type = ChangeType.TV
             };
 
-            ChangeList changeList = await serviceUnderTest.GetChangeListAsync(request);
+            ChangeList changeList = await apiUnderTest.GetChangeListAsync(request);
 
             Assert.IsNotNull(changeList);
             Assert.IsNotEmpty(changeList.Results);
