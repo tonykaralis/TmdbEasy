@@ -1,11 +1,16 @@
 ﻿using System.Threading.Tasks;
-using TmdbEasy.DTO;
 using TmdbEasy.DTO.Reviews;
 
 namespace TmdbEasy.Interfaces
 {
-    public interface IReviewApi : IBaseApi
+    public interface IReviewApi
     {
-        Task<Review> GetReviewDetailsAsync(ReviewRequest request);
+        /// <summary>
+        /// Get review details by Id
+        /// </summary>
+        /// <param name="reviewId"></param>
+        /// <param name="apiKey"></param>
+        /// <returns></returns>
+        Task<Review> GetReviewDetailsAsync(string reviewId, string apiKey = null);
     }
 }

@@ -6,16 +6,17 @@ using TmdbEasy.Interfaces;
 namespace TmdbEasy.Integration.Tests.TestFixtures
 {
     public abstract class TestBaseForV3
-    {
-        public readonly ITmdbEasyClient _client;
-        public readonly string _userApiKey;
+    {                
         private const string ApiKeyVariableName = "tmdbapikey";
+        protected readonly ITmdbEasyClient _client;
 
         protected TestBaseForV3()
         {
             _client = GetTestV3Client();
             _userApiKey = GetApiKey();
         }
+
+        public readonly string _userApiKey;
 
         public ITmdbEasyClient GetTestV3Client(string sharedApiKey = null)
         {
@@ -29,7 +30,8 @@ namespace TmdbEasy.Integration.Tests.TestFixtures
             return new TmdbEasyOptions()
             {
                 UseSsl = true,
-                ApiKey = sharedApiKey
+                ApiKey = sharedApiKey,
+                DefaultLanguage = "en"
             };
         }
 

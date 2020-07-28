@@ -1,28 +1,32 @@
-﻿using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using TmdbEasy.DTO.Changes;
-using TmdbEasy.DTO;
+using TmdbEasy.Enums;
 using TmdbEasy.Extensions;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy.Apis
 {
-    public class ChangesApi : BaseApi, IChangesApi
+    public class ChangesApi : IChangesApi
     {
-        public ChangesApi(ITmdbEasyClient client) : base(client) { }
+        private readonly IRequestHandler _requestHandler;
 
-        public async Task<ChangeList> GetChangeListAsync(ChangeListRequest changeListRequest)
+        public ChangesApi(IRequestHandler requestHandler)
         {
-            string queryString = new StringBuilder()
-            .Append(changeListRequest.Type.ToString().ToLower())
-            .Append("/changes?api_key=")
-            .Append(GetApiKey(changeListRequest.UserApiKey))
-            .AppendEndDate(changeListRequest.End_date)
-            .AppendStartDate(changeListRequest.Start_date)
-            .Append($"&page={changeListRequest.Page}")
-            .ToString();
+            _requestHandler = requestHandler;
+        }
 
-            return await _client.GetResponseAsync<ChangeList>(queryString).ConfigureAwait(false);
-        }       
+        public async Task<ChangeList> GetChangeListAsync(ChangeType type, string end_date = null, string start_date = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment(type.ToString().ToLower())
+                .AddUrlSegment($"changes")
+                .AddPage(page)
+                .AddApiKey(apiKey)
+                .AddStartDate(start_date)
+                .AddEndDate(end_date);
+
+            return await _requestHandler.ExecuteRequestAsync<ChangeList>(restRequest);
+        }
     }
 }

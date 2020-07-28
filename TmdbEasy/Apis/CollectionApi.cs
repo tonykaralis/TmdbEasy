@@ -1,28 +1,40 @@
 ﻿using System.Threading.Tasks;
-using TmdbEasy.Constants;
-using TmdbEasy.DTO;
 using TmdbEasy.DTO.Images;
 using TmdbEasy.DTO.Other;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy.Apis
 {
-    public class CollectionApi : BaseApi, ICollectionApi
+    public class CollectionApi : ICollectionApi
     {
-        public CollectionApi(ITmdbEasyClient client) : base(client) { }
+        private readonly IRequestHandler _requestHandler;
 
-        public async Task<Collections> GetDetailsAsync(IdRequest request, string language = "en")
+        public CollectionApi(IRequestHandler requestHandler)
         {
-            string queryString = $"collection/{request.Id}?{QueryConstants.ApiKeyVariable}{GetApiKey(request.UserApiKey)}&language={language}";
-
-            return await _client.GetResponseAsync<Collections>(queryString).ConfigureAwait(false);
+            _requestHandler = requestHandler;
         }
 
-        public async Task<Images> GetImagesAsync(IdRequest request, string language = "en")
+        public async Task<Collections> GetDetailsAsync(int collectionId, string apiKey = null, string language = null)
         {
-            string queryString = $"collection/{request.Id}/images?{QueryConstants.ApiKeyVariable}{GetApiKey(request.UserApiKey)}&language={language}";
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment($"collection/{collectionId}")
+                .AddLanguage(language)
+                .AddApiKey(apiKey);
 
-            return await _client.GetResponseAsync<Images>(queryString).ConfigureAwait(false);
+            return await _requestHandler.ExecuteRequestAsync<Collections>(restRequest);
+        }
+
+        public async Task<Images> GetImagesAsync(int collectionId, string apiKey = null, string language = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment($"collection/{collectionId}")
+               .AddUrlSegment($"images")
+               .AddLanguage(language)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteRequestAsync<Images>(restRequest);
         }
     }
 }

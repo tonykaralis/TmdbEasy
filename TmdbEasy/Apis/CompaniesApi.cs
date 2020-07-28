@@ -1,34 +1,50 @@
 ﻿using System.Threading.Tasks;
-using TmdbEasy.Constants;
-using TmdbEasy.DTO;
 using TmdbEasy.DTO.Companies;
+using TmdbEasy.Extensions;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy.Apis
 {
-    public class CompaniesApi : BaseApi, ICompaniesApi
+    public class CompaniesApi : ICompaniesApi
     {
-        public CompaniesApi(ITmdbEasyClient client) : base(client) { }
+        private readonly IRequestHandler _requestHandler;
 
-        public async Task<CompanyDetails> GetDetailsAsync(IdRequest request)
+        public CompaniesApi(IRequestHandler requestHandler)
         {
-            string queryString = $"company/{request.Id}?{QueryConstants.ApiKeyVariable}{GetApiKey(request.UserApiKey)}";
-
-            return await _client.GetResponseAsync<CompanyDetails>(queryString).ConfigureAwait(false);
+            _requestHandler = requestHandler;
         }
 
-        public async Task<MoviesByCompany> GetMoviesAsync(IdRequest request, string language = "en")
+        public async Task<CompanyDetails> GetDetailsAsync(int companyId, string apiKey = null)
         {
-            string queryString = $"company/{request.Id}?{QueryConstants.ApiKeyVariable}{GetApiKey(request.UserApiKey)}";
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment($"company/{companyId}")
+                .AddApiKey(apiKey);
 
-            return await _client.GetResponseAsync<MoviesByCompany>(queryString).ConfigureAwait(false);
+            return await _requestHandler.ExecuteRequestAsync<CompanyDetails>(restRequest);
         }
 
-        public async Task<CompanyList> SearchAsync(CustomQueryRequest request, int page = 1)
+        public async Task<MoviesByCompany> GetMoviesAsync(int companyId, string apiKey = null, string language = null)
         {
-            string queryString = $"search/company?{QueryConstants.ApiKeyVariable}{GetApiKey(request.UserApiKey)}&query={request.Query}&page={page}";
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment($"company/{companyId}")
+                .AddLanguage(language)
+                .AddApiKey(apiKey);
 
-            return await _client.GetResponseAsync<CompanyList>(queryString).ConfigureAwait(false);
+            return await _requestHandler.ExecuteRequestAsync<MoviesByCompany>(restRequest);
+        }
+
+        public async Task<CompanyList> SearchAsync(string customQuery, string apiKey = null, int page = 1)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment($"search/company")                
+                .AddApiKey(apiKey)
+                .AddCustomQuery(customQuery)
+                .AddPage(page);
+
+            return await _requestHandler.ExecuteRequestAsync<CompanyList>(restRequest);
         }
     }
 }

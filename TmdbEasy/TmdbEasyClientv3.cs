@@ -21,7 +21,7 @@ namespace TmdbEasy
 
             _httpClient = new HttpClient()
             {
-                BaseAddress = new Uri(GetUrl())
+                BaseAddress = new Uri(_options.UseSsl ? UrlConstants.TmdbUrl3Ssl : UrlConstants.TmdbUrl3)
             };
         }
 
@@ -41,9 +41,6 @@ namespace TmdbEasy
 
         public string GetApiKey() => _options.ApiKey;
 
-        private string GetUrl()
-        {
-            return _options.UseSsl ? UrlConstants.TmdbUrl3Ssl : UrlConstants.TmdbUrl3;
-        }
+        public string GetDefaultLanguage() => _options.DefaultLanguage;
     }
 }

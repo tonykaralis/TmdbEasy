@@ -26,7 +26,8 @@ namespace TmdbEasy
 
         public static IServiceCollection UseTmdbEasyApiv3(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<IJsonDeserializer, NewtonSoftDeserializer>();
+            serviceCollection.AddScoped<IRequestHandler, RequestHandler>();
+            serviceCollection.AddScoped<IJsonDeserializer, NewtonSoftDeserializer>();            
 
             serviceCollection.AddScoped<IReviewApi, ReviewApi>();
             serviceCollection.AddScoped<IChangesApi, ChangesApi>();

@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Threading.Tasks;
 using TmdbEasy.Apis;
-using TmdbEasy.DTO;
 using TmdbEasy.DTO.Companies;
 using TmdbEasy.Integration.Tests.TestFixtures;
 using TmdbEasy.Interfaces;
@@ -15,15 +14,11 @@ namespace TmdbEasy.Integration.Tests.v3
         [TestCase(1)]
         public async Task GetDetailsAsync_ValidId_ReturnsValidResult(int id)
         {
-            ICompaniesApi apiUnderTest = new CompaniesApi(_client);
+            var _requestHandler = new RequestHandler(_client);
 
-            var request = new IdRequest()
-            {
-                UserApiKey = _userApiKey,
-                Id = id
-            };
+            ICompaniesApi apiUnderTest = new CompaniesApi(_requestHandler);
 
-            CompanyDetails details = await apiUnderTest.GetDetailsAsync(request);
+            CompanyDetails details = await apiUnderTest.GetDetailsAsync(id, _userApiKey);
 
             Assert.IsNotNull(details);
             Assert.AreEqual(id, details.Id);
@@ -32,15 +27,11 @@ namespace TmdbEasy.Integration.Tests.v3
         [TestCase(1)]
         public async Task GetMoviesAsync_ValidId_ReturnsValidResult(int id)
         {
-            ICompaniesApi apiUnderTest = new CompaniesApi(_client);
+            var _requestHandler = new RequestHandler(_client);
 
-            var request = new IdRequest()
-            {
-                UserApiKey = _userApiKey,
-                Id = id
-            };
+            ICompaniesApi apiUnderTest = new CompaniesApi(_requestHandler);
 
-            MoviesByCompany details = await apiUnderTest.GetMoviesAsync(request);
+            MoviesByCompany details = await apiUnderTest.GetMoviesAsync(id, _userApiKey);
 
             Assert.IsNotNull(details);
             Assert.AreEqual(id, details.Id);
