@@ -65,5 +65,21 @@ namespace TmdbEasy.Tests
 
             Assert.AreEqual(options.ApiKey, client.GetApiKey());
         }
+
+        [Test]
+        [TestCase("en")]
+        [TestCase("")]
+        [TestCase(null)]
+        public void OptionsWithDefaultLanguage_SetsAndGetsLanguage(string language)
+        {
+            var options = new TmdbEasyOptions()
+            {
+                DefaultLanguage = language
+            };
+
+            var client = new TmdbEasyClientv3(_jsonDeserializer, options);
+
+            Assert.AreEqual(options.DefaultLanguage, client.GetDefaultLanguage());
+        }
     }
 }

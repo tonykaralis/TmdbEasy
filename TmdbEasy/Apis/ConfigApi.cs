@@ -1,48 +1,67 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using TmdbEasy.Constants;
 using TmdbEasy.DTO.Configuration;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy.Apis
 {
-    public class ConfigApi : BaseApi, IConfigApi
+    public class ConfigApi : IConfigApi
     {
-        public ConfigApi(ITmdbEasyClient client) : base(client) { }
+        private readonly IRequestHandler _requestHandler;
+
+        public ConfigApi(IRequestHandler requestHandler)
+        {
+            _requestHandler = requestHandler;
+        }
 
         public async Task<Configuration> GetConfigurationAsync(string userApiKey = null)
         {
-            string queryString = $"configuration?{QueryConstants.ApiKeyVariable}{GetApiKey(userApiKey)}";
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("configuration")
+               .AddApiKey(userApiKey);
 
-            return await _client.GetResponseAsync<Configuration>(queryString).ConfigureAwait(false);
+            return await _requestHandler.ExecuteRequestAsync<Configuration>(restRequest);
         }
 
         public async Task<List<Country>> GetCountriesAsync(string userApiKey = null)
         {
-            string queryString = $"configuration/countries?{QueryConstants.ApiKeyVariable}{GetApiKey(userApiKey)}";
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("configuration/countries")
+               .AddApiKey(userApiKey);
 
-            return await _client.GetResponseAsync<List<Country>>(queryString).ConfigureAwait(false);
+            return await _requestHandler.ExecuteRequestAsync<List<Country>>(restRequest);
         }
 
         public async Task<List<JobsByDepartment>> GetJobsAsync(string userApiKey = null)
         {
-            string queryString = $"configuration/jobs?{QueryConstants.ApiKeyVariable}{GetApiKey(userApiKey)}";
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment("configuration/jobs")
+                .AddApiKey(userApiKey);
 
-            return await _client.GetResponseAsync<List<JobsByDepartment>>(queryString).ConfigureAwait(false);
+            return await _requestHandler.ExecuteRequestAsync<List<JobsByDepartment>>(restRequest);
         }
 
         public async Task<List<Language>> GetLanguagesAsync(string userApiKey = null)
         {
-            string queryString = $"configuration/languages?{QueryConstants.ApiKeyVariable}{GetApiKey(userApiKey)}";
+            var restRequest = _requestHandler
+                 .CreateRequest()
+                 .AddUrlSegment("configuration/languages")
+                 .AddApiKey(userApiKey);
 
-            return await _client.GetResponseAsync<List<Language>>(queryString).ConfigureAwait(false);
+            return await _requestHandler.ExecuteRequestAsync<List<Language>>(restRequest);
         }
 
         public async Task<List<TimeZones>> GetTimeZonesAsync(string userApiKey = null)
         {
-            string queryString = $"configuration/timezones?{QueryConstants.ApiKeyVariable}{GetApiKey(userApiKey)}";
+            var restRequest = _requestHandler
+                 .CreateRequest()
+                 .AddUrlSegment("configuration/timezones")
+                 .AddApiKey(userApiKey);
 
-            return await _client.GetResponseAsync<List<TimeZones>>(queryString).ConfigureAwait(false);
+            return await _requestHandler.ExecuteRequestAsync<List<TimeZones>>(restRequest);
         }
     }
 }

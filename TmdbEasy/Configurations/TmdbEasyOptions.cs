@@ -3,6 +3,9 @@
     public class TmdbEasyOptions
     {
         public bool UseSsl { get; set; }
+
         public string ApiKey { get; set; }
+
+        public string DefaultLanguage { get; set; }
     }
 }

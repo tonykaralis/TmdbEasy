@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Threading.Tasks;
 using TmdbEasy.Apis;
-using TmdbEasy.DTO;
 using TmdbEasy.DTO.Changes;
 using TmdbEasy.Enums;
 using TmdbEasy.Integration.Tests.TestFixtures;
@@ -16,16 +15,11 @@ namespace TmdbEasy.Integration.Tests.v3
         [Test]
         public async Task GetChangeListAsync_SpecificDateRange_ReturnsChangeList()
         {
-            IChangesApi apiUnderTest = new ChangesApi(_client);
+            var _requestHandler = new RequestHandler(_client);
 
-            var request = new ChangeListRequest()
-            {
-                UserApiKey = _userApiKey,
-                Start_date = "25/07/2020",
-                End_date = "26/07/2020"
-            };
+            IChangesApi apiUnderTest = new ChangesApi(_requestHandler);
 
-            ChangeList changeList = await apiUnderTest.GetChangeListAsync(request);
+            ChangeList changeList = await apiUnderTest.GetChangeListAsync(ChangeType.Movie, "26/07/2020", "25/07/2020", 1, _userApiKey);
 
             Assert.IsNotNull(changeList);
             Assert.IsNotEmpty(changeList.Results);
@@ -34,17 +28,11 @@ namespace TmdbEasy.Integration.Tests.v3
         [Test]
         public async Task GetChangeListAsync_SpecificType_ReturnsChangeList()
         {
-            IChangesApi apiUnderTest = new ChangesApi(_client);
+            var _requestHandler = new RequestHandler(_client);
 
-            var request = new ChangeListRequest()
-            {
-                UserApiKey = _userApiKey,
-                Start_date = "25/07/2020",
-                End_date = "26/07/2020",
-                Type = ChangeType.TV
-            };
+            IChangesApi apiUnderTest = new ChangesApi(_requestHandler);
 
-            ChangeList changeList = await apiUnderTest.GetChangeListAsync(request);
+            ChangeList changeList = await apiUnderTest.GetChangeListAsync(ChangeType.TV, "26/07/2020", "25/07/2020", 1, _userApiKey);
 
             Assert.IsNotNull(changeList);
             Assert.IsNotEmpty(changeList.Results);

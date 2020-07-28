@@ -4,7 +4,7 @@ using TmdbEasy.DTO.Configuration;
 
 namespace TmdbEasy.Interfaces
 {
-    public interface IConfigApi : IBaseApi
+    public interface IConfigApi
     {
         /// <summary>
         /// Get the system wide configuration information. Some elements of the API require some knowledge of this configuration data. 

@@ -11,6 +11,8 @@ namespace TmdbEasy.Interfaces
 
         ApiVersion GetVersion();
 
+        string GetDefaultLanguage();
+
         Task<TmdbEasyModel> GetResponseAsync<TmdbEasyModel>(string query);
     }
 }

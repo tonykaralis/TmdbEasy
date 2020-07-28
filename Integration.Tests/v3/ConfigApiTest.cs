@@ -16,7 +16,9 @@ namespace TmdbEasy.Integration.Tests.v3
         [Test]
         public async Task GetConfigurationAsync_ReturnsConfiguration()
         {
-            IConfigApi apiUnderTest = new ConfigApi(_client);
+            var _requestHandler = new RequestHandler(_client);
+
+            IConfigApi apiUnderTest = new ConfigApi(_requestHandler);
 
             Configuration configuration = await apiUnderTest.GetConfigurationAsync(_userApiKey);
 
@@ -28,7 +30,9 @@ namespace TmdbEasy.Integration.Tests.v3
         [Test]
         public async Task GetCountriesAsync_SpecificType_ReturnsChangeList()
         {
-            IConfigApi serviceUnderTest = new ConfigApi(_client);
+            var _requestHandler = new RequestHandler(_client);
+
+            IConfigApi serviceUnderTest = new ConfigApi(_requestHandler);
 
             List<Country> countries = await serviceUnderTest.GetCountriesAsync(_userApiKey);
 
@@ -38,7 +42,9 @@ namespace TmdbEasy.Integration.Tests.v3
         [Test]
         public async Task GetJobsAsync_SpecificType_ReturnsChangeList()
         {
-            IConfigApi serviceUnderTest = new ConfigApi(_client);
+            var _requestHandler = new RequestHandler(_client);
+
+            IConfigApi serviceUnderTest = new ConfigApi(_requestHandler);
 
             List<JobsByDepartment> jobs = await serviceUnderTest.GetJobsAsync(_userApiKey);
 
@@ -49,7 +55,9 @@ namespace TmdbEasy.Integration.Tests.v3
         [Test]
         public async Task GetLanguagesAsync_SpecificType_ReturnsChangeList()
         {
-            IConfigApi serviceUnderTest = new ConfigApi(_client);
+            var _requestHandler = new RequestHandler(_client);
+
+            IConfigApi serviceUnderTest = new ConfigApi(_requestHandler);
 
             List<Language> languages = await serviceUnderTest.GetLanguagesAsync(_userApiKey);
 
@@ -59,7 +67,9 @@ namespace TmdbEasy.Integration.Tests.v3
         [Test]
         public async Task GetTimeZonesAsync_SpecificType_ReturnsChangeList()
         {
-            IConfigApi serviceUnderTest = new ConfigApi(_client);
+            var _requestHandler = new RequestHandler(_client);
+
+            IConfigApi serviceUnderTest = new ConfigApi(_requestHandler);
 
             List<TimeZones> timeZones = await serviceUnderTest.GetTimeZonesAsync(_userApiKey);
 
