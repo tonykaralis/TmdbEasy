@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using TmdbEasy.Apis;
 using TmdbEasy.DTO.Images;
 using TmdbEasy.DTO.Other;
-using TmdbEasy.Integration.Tests.TestFixtures;
+using TmdbEasy.Tests.Integration.Tests.TestFixtures;
 using TmdbEasy.Interfaces;
 
-namespace TmdbEasy.Integration.Tests.v3
+namespace TmdbEasy.Tests.Integration.Tests.v3
 {
     [TestFixture]
     [Category("CollectionApi")]
