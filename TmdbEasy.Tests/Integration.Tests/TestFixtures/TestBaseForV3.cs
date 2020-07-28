@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using TmdbEasy.Configurations;
 using TmdbEasy.Interfaces;
 
-namespace TmdbEasy.Integration.Tests.TestFixtures
+namespace TmdbEasy.Tests.Integration.Tests.TestFixtures
 {
     public abstract class TestBaseForV3
     {                
