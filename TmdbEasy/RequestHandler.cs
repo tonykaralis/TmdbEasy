@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using TmdbEasy.Configurations;
 using TmdbEasy.Interfaces;
 
@@ -9,10 +10,10 @@ namespace TmdbEasy
         private readonly ITmdbEasyClient _client;
         private readonly TmdbEasyOptions _options;
 
-        public RequestHandler(ITmdbEasyClient client, TmdbEasyOptions options)
+        public RequestHandler(ITmdbEasyClient client)
         {
-            _client = client;
-            _options = options;
+            _client = client ?? throw new ArgumentNullException(nameof(client));
+            _options = _client.Options;
         }
 
         public Request CreateRequest()

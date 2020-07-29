@@ -1,8 +1,6 @@
-﻿using NSubstitute;
+﻿using System;
 using NUnit.Framework;
-using System.Threading.Tasks;
 using TmdbEasy.Configurations;
-using TmdbEasy.Interfaces;
 
 namespace TmdbEasy.Tests
 {
@@ -10,34 +8,20 @@ namespace TmdbEasy.Tests
     public class RequestHandlerTests
     {
         [Test]
+        public void Constructor_WithNullClient_ShouldThrowArgumentNullException()
+        {
+            var exception = Assert.Throws<ArgumentNullException>(() => new RequestHandler(null));
+            Assert.That(exception.Message, Is.EqualTo("Value cannot be null. (Parameter 'client')"));
+        }
+
+        [Test]
         public void CreateRequest_CreatesValidRequest()
         {
-            var handlerUnderTest = new RequestHandler(null, new TmdbEasyOptions("apiKey"));
+            var handlerUnderTest = new RequestHandler(new TmdbEasyClientv3(null, new TmdbEasyOptions("apiKey")));
 
             Request request = handlerUnderTest.CreateRequest();
 
             Assert.IsNotNull(request);
-        }
-
-        [Test]
-        public async Task ExecuteRequest_CallsClient_WithCorrectUri()
-        {
-            // Arrange
-            string expectedURL = "users";
-            string expectedResult = "fakeReturnvalue";
-            ITmdbEasyClient subClient = Substitute.For<ITmdbEasyClient>();
-            subClient.GetResponseAsync<string>(expectedURL).Returns(expectedResult);
-
-            var options = new TmdbEasyOptions(apiKey: "secret");
-            var handlerUnderTest = new RequestHandler(subClient, options);
-            Request request = handlerUnderTest.CreateRequest();
-            request.AddUrlSegment("users");
-
-            // Act
-            var result = await handlerUnderTest.ExecuteAsync<string>(request);
-
-            Assert.AreEqual(expectedResult, result);
-            await subClient.Received().GetResponseAsync<string>(expectedURL);
         }
     }
 }

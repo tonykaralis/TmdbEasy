@@ -9,20 +9,21 @@ namespace TmdbEasy
     public class TmdbEasyClientv3 : ITmdbEasyClient
     {
         private readonly IJsonDeserializer _jsonDeserializer;
-        private readonly TmdbEasyOptions _options;
         private readonly HttpClient _httpClient;
 
         public TmdbEasyClientv3(IJsonDeserializer jsonDeserializer, TmdbEasyOptions options)
         {
             _jsonDeserializer = jsonDeserializer;
 
-            _options = options ?? throw new ArgumentNullException($"{nameof(TmdbEasyOptions)}");
+            Options = options ?? throw new ArgumentNullException(nameof(options));
 
             _httpClient = new HttpClient()
             {
                 BaseAddress = new Uri(options.BaseUri)
             };
         }
+
+        public TmdbEasyOptions Options { get; }
 
         public async Task<TmdbEasyModel> GetResponseAsync<TmdbEasyModel>(string query)
         {

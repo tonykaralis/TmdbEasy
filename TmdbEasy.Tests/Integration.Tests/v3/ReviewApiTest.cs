@@ -14,8 +14,7 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
         [TestCase("5488c29bc3a3686f4a00004a")]
         public async Task GetDetailsAsync_WithUserApiKey_ExistingId_ReturnsReview(string reviewId)
         {
-            var options = GetDefaultOptions(GetApiKey());
-            var _requestHandler = new RequestHandler(_client, options);
+            var _requestHandler = new RequestHandler(_client);
 
             string userApiKey = GetApiKey();
 
@@ -34,8 +33,7 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
 
             ITmdbEasyClient client = GetTestV3Client(sharedApiKey);
 
-            var options = GetDefaultOptions(sharedApiKey);
-            var _requestHandler = new RequestHandler(_client, options);
+            var _requestHandler = new RequestHandler(client);
 
             IReviewApi apiUnderTest = new ReviewApi(_requestHandler);
 

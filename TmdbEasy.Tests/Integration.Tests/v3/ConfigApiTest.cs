@@ -16,8 +16,7 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
         [Test]
         public async Task GetConfigurationAsync_ReturnsConfiguration()
         {
-            var options = GetDefaultOptions(GetApiKey());
-            var _requestHandler = new RequestHandler(_client, options);
+            var _requestHandler = new RequestHandler(_client);
 
             IConfigApi apiUnderTest = new ConfigApi(_requestHandler);
 
@@ -31,8 +30,7 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
         [Test]
         public async Task GetCountriesAsync_SpecificType_ReturnsChangeList()
         {
-            var options = GetDefaultOptions(GetApiKey());
-            var _requestHandler = new RequestHandler(_client, options);
+            var _requestHandler = new RequestHandler(_client);
 
             IConfigApi serviceUnderTest = new ConfigApi(_requestHandler);
 
@@ -44,8 +42,7 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
         [Test]
         public async Task GetJobsAsync_SpecificType_ReturnsChangeList()
         {
-            var options = GetDefaultOptions(GetApiKey());
-            var _requestHandler = new RequestHandler(_client, options);
+            var _requestHandler = new RequestHandler(_client);
 
             IConfigApi serviceUnderTest = new ConfigApi(_requestHandler);
 
@@ -58,8 +55,7 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
         [Test]
         public async Task GetLanguagesAsync_SpecificType_ReturnsChangeList()
         {
-            var options = GetDefaultOptions(GetApiKey());
-            var _requestHandler = new RequestHandler(_client, options);
+            var _requestHandler = new RequestHandler(_client);
 
             IConfigApi serviceUnderTest = new ConfigApi(_requestHandler);
 
@@ -71,8 +67,7 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
         [Test]
         public async Task GetTimeZonesAsync_SpecificType_ReturnsChangeList()
         {
-            var options = GetDefaultOptions(GetApiKey());
-            var _requestHandler = new RequestHandler(_client, options);
+            var _requestHandler = new RequestHandler(_client);
 
             IConfigApi serviceUnderTest = new ConfigApi(_requestHandler);
 
