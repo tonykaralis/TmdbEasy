@@ -6,6 +6,6 @@ namespace TmdbEasy.Interfaces
     {
         Request CreateRequest();
 
-        Task<TmdbEasyModel> ExecuteRequestAsync<TmdbEasyModel>(Request request);
+        Task<TmdbEasyModel> ExecuteAsync<TmdbEasyModel>(Request request);
     }
 }

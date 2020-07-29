@@ -26,7 +26,7 @@ namespace TmdbEasy.Apis
                 .AddStartDate(start_date)
                 .AddEndDate(end_date);
 
-            return await _requestHandler.ExecuteRequestAsync<ChangeList>(restRequest);
+            return await _requestHandler.ExecuteAsync<ChangeList>(restRequest);
         }
     }
 }

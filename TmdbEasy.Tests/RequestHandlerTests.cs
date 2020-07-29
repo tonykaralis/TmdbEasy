@@ -1,55 +1,27 @@
-﻿using NSubstitute;
+﻿using System;
 using NUnit.Framework;
-using System.Threading.Tasks;
-using TmdbEasy.Interfaces;
+using TmdbEasy.Configurations;
 
 namespace TmdbEasy.Tests
 {
     [TestFixture]
     public class RequestHandlerTests
     {
-        private readonly ITmdbEasyClient _subClient;
-
-        public RequestHandlerTests()
+        [Test]
+        public void Constructor_WithNullClient_ShouldThrowArgumentNullException()
         {
-            _subClient = Substitute.For<ITmdbEasyClient>();
+            var exception = Assert.Throws<ArgumentNullException>(() => new RequestHandler(null));
+            Assert.That(exception.Message, Is.EqualTo("Value cannot be null. (Parameter 'client')"));
         }
 
         [Test]
-        public void CreateRequest_CreatesValidRequest_SetsBaseUrl()
+        public void CreateRequest_CreatesValidRequest()
         {
-            string testBaseUrl = "https://baseurl";
-
-            _subClient.GetBaseUrl().Returns(testBaseUrl);
-
-            var handlerUnderTest = new RequestHandler(_subClient);
-
-            Request request = handlerUnderTest.CreateRequest();
-            
-            string result = request.GetUri();
-
-            Assert.AreEqual(testBaseUrl, result);
-        }
-
-        [Test]
-        public async Task ExecuteRequest_CallsClient_WithCorrectUri()
-        {
-            string testBaseUrl = "https://baseurl";
-
-            string expectedResult = "fakeReturnvalue";
-
-            _subClient.GetBaseUrl().Returns(testBaseUrl);
-            _subClient.GetResponseAsync<string>(testBaseUrl).Returns(expectedResult);
-
-            var handlerUnderTest = new RequestHandler(_subClient);
+            var handlerUnderTest = new RequestHandler(new TmdbEasyClientv3(null, new TmdbEasyOptions("apiKey")));
 
             Request request = handlerUnderTest.CreateRequest();
 
-            var result = await handlerUnderTest.ExecuteRequestAsync<string>(request);
-
-            Assert.AreEqual(expectedResult, result);
-
-            await _subClient.Received().GetResponseAsync<string>(testBaseUrl);
+            Assert.IsNotNull(request);
         }
     }
 }

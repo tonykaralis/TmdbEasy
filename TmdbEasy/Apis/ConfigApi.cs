@@ -21,7 +21,7 @@ namespace TmdbEasy.Apis
                .AddUrlSegment("configuration")
                .AddApiKey(userApiKey);
 
-            return await _requestHandler.ExecuteRequestAsync<Configuration>(restRequest);
+            return await _requestHandler.ExecuteAsync<Configuration>(restRequest);
         }
 
         public async Task<List<Country>> GetCountriesAsync(string userApiKey = null)
@@ -31,7 +31,7 @@ namespace TmdbEasy.Apis
                .AddUrlSegment("configuration/countries")
                .AddApiKey(userApiKey);
 
-            return await _requestHandler.ExecuteRequestAsync<List<Country>>(restRequest);
+            return await _requestHandler.ExecuteAsync<List<Country>>(restRequest);
         }
 
         public async Task<List<JobsByDepartment>> GetJobsAsync(string userApiKey = null)
@@ -41,7 +41,7 @@ namespace TmdbEasy.Apis
                 .AddUrlSegment("configuration/jobs")
                 .AddApiKey(userApiKey);
 
-            return await _requestHandler.ExecuteRequestAsync<List<JobsByDepartment>>(restRequest);
+            return await _requestHandler.ExecuteAsync<List<JobsByDepartment>>(restRequest);
         }
 
         public async Task<List<Language>> GetLanguagesAsync(string userApiKey = null)
@@ -51,7 +51,7 @@ namespace TmdbEasy.Apis
                  .AddUrlSegment("configuration/languages")
                  .AddApiKey(userApiKey);
 
-            return await _requestHandler.ExecuteRequestAsync<List<Language>>(restRequest);
+            return await _requestHandler.ExecuteAsync<List<Language>>(restRequest);
         }
 
         public async Task<List<TimeZones>> GetTimeZonesAsync(string userApiKey = null)
@@ -61,7 +61,7 @@ namespace TmdbEasy.Apis
                  .AddUrlSegment("configuration/timezones")
                  .AddApiKey(userApiKey);
 
-            return await _requestHandler.ExecuteRequestAsync<List<TimeZones>>(restRequest);
+            return await _requestHandler.ExecuteAsync<List<TimeZones>>(restRequest);
         }
     }
 }

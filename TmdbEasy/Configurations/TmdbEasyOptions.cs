@@ -2,10 +2,17 @@
 {
     public class TmdbEasyOptions
     {
-        public bool UseSsl { get; set; }
+        public TmdbEasyOptions(string apiKey, bool useSsl = true, string defaultLanguage = "en")
+        {
+            ApiKey = apiKey;
+            UseSsl = useSsl;
+            DefaultLanguage = defaultLanguage;
+        }
 
-        public string ApiKey { get; set; }
+        internal string ApiKey { get; }
 
-        public string DefaultLanguage { get; set; }
+        internal bool UseSsl { get; }
+
+        internal string DefaultLanguage { get; }
     }
 }
