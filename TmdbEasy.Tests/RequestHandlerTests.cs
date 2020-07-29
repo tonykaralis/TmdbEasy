@@ -10,6 +10,16 @@ namespace TmdbEasy.Tests
     public class RequestHandlerTests
     {
         [Test]
+        public void CreateRequest_CreatesValidRequest()
+        {
+            var handlerUnderTest = new RequestHandler(null, null);
+
+            Request request = handlerUnderTest.CreateRequest();
+
+            Assert.IsNotNull(request);
+        }
+
+        [Test]
         public async Task ExecuteRequest_CallsClient_WithCorrectUri()
         {
             // Arrange
