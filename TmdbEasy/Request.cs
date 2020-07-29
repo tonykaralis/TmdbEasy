@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using TmdbEasy.Configurations;
 
 namespace TmdbEasy
@@ -11,6 +12,9 @@ namespace TmdbEasy
 
         public Request(TmdbEasyOptions options)
         {
+            if (options == null)
+                throw new ArgumentNullException(nameof(options));
+
             _requestBuilder = new StringBuilder();
             _options = options;
         }
@@ -22,8 +26,13 @@ namespace TmdbEasy
         /// <returns></returns>
         public Request AddUrlSegment(string segment)
         {
-            if (!string.IsNullOrEmpty(segment))
-                _requestBuilder.Append($"/{segment}");
+            if (string.IsNullOrEmpty(segment))
+                return this;
+
+            if (_requestBuilder.ToString().Length == 0)
+                _requestBuilder.Append(segment);
+            else
+                _requestBuilder.Append("/").Append(segment);
 
             return this;
         }

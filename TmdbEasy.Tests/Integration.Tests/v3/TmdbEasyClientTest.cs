@@ -20,7 +20,7 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
             ITmdbEasyClient client = GetTestV3Client();
             var options = GetDefaultOptions(sharedApiKey: null);
 
-            string queryString = $"/review/{reviewId}?api_key={GetApiKey()}";
+            string queryString = $"review/{reviewId}?api_key={GetApiKey()}";
 
             var result = await client.GetResponseAsync<Review>(queryString);
 
@@ -34,7 +34,7 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
             ITmdbEasyClient clientWithNoApiKey = GetTestV3Client();
             var options = GetDefaultOptions(sharedApiKey: null);
 
-            string queryStringWithNoApiKey = $"/review/{reviewId}";
+            string queryStringWithNoApiKey = $"review/{reviewId}";
 
             var exception = Assert.ThrowsAsync<HttpRequestException>(() => clientWithNoApiKey.GetResponseAsync<Review>(queryStringWithNoApiKey));
 

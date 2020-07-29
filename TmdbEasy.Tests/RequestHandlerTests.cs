@@ -12,7 +12,7 @@ namespace TmdbEasy.Tests
         [Test]
         public void CreateRequest_CreatesValidRequest()
         {
-            var handlerUnderTest = new RequestHandler(null, null);
+            var handlerUnderTest = new RequestHandler(null, new TmdbEasyOptions("apiKey"));
 
             Request request = handlerUnderTest.CreateRequest();
 
@@ -23,7 +23,7 @@ namespace TmdbEasy.Tests
         public async Task ExecuteRequest_CallsClient_WithCorrectUri()
         {
             // Arrange
-            string expectedURL = "/users";
+            string expectedURL = "users";
             string expectedResult = "fakeReturnvalue";
             ITmdbEasyClient subClient = Substitute.For<ITmdbEasyClient>();
             subClient.GetResponseAsync<string>(expectedURL).Returns(expectedResult);

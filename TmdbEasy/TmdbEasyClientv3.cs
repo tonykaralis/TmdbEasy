@@ -18,7 +18,10 @@ namespace TmdbEasy
 
             _options = options ?? throw new ArgumentNullException($"{nameof(TmdbEasyOptions)}");
 
-            _httpClient = new HttpClient();
+            _httpClient = new HttpClient()
+            {
+                BaseAddress = new Uri(options.BaseUri)
+            };
         }
 
         public async Task<TmdbEasyModel> GetResponseAsync<TmdbEasyModel>(string query)
@@ -26,7 +29,6 @@ namespace TmdbEasy
             if (string.IsNullOrEmpty(query) || string.IsNullOrWhiteSpace(query))
                 throw new ArgumentException($"{nameof(TmdbEasyClientv3)} query param null or empty");
 
-            query = _options.BaseUri + query;
             string jsonResult = await _httpClient.GetStringAsync(query);
 
             return _jsonDeserializer.DeserializeTo<TmdbEasyModel>(jsonResult);

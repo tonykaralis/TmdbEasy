@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using TmdbEasy.Configurations;
 
 namespace TmdbEasy.Tests
@@ -20,11 +21,10 @@ namespace TmdbEasy.Tests
         }
 
         [Test]
-        public void RequestConstructor_InValidParams_Creates_NonNullInstance()
+        public void RequestConstructor_InValidParams_ThrowsArgumentNullException()
         {
-            var request = new Request(null);
-
-            Assert.IsNotNull(request);
+            var exception = Assert.Throws<ArgumentNullException>(() => new Request(null));
+            Assert.That(exception.Message, Is.EqualTo("Value cannot be null. (Parameter 'options')"));
         }
 
         [Test]
@@ -36,7 +36,18 @@ namespace TmdbEasy.Tests
 
             request.AddUrlSegment(segment);
 
-            Assert.AreEqual($"{request.GetUri()}", $"/{segment}");
+            Assert.AreEqual(segment, request.GetUri());
+        }
+
+        [Test]
+        public void AddUrlSegment_WhenCalledSecondTime_ShouldPrefixSecondSegmentWithSlash()
+        {
+            var request = new Request(GetPlaceholderOptions());
+
+            request.AddUrlSegment("users");
+            request.AddUrlSegment("6");
+
+            Assert.AreEqual("users/6", request.GetUri());
         }
 
         [Test]
@@ -61,7 +72,7 @@ namespace TmdbEasy.Tests
 
             request.AddParameter(parameterKey, parameterValue);
 
-            Assert.AreEqual($"{request.GetUri()}", $"?{parameterKey}={parameterValue}");
+            Assert.AreEqual(request.GetUri(), $"?{parameterKey}={parameterValue}");
         }
 
         [Test]
@@ -123,7 +134,7 @@ namespace TmdbEasy.Tests
 
             int expectedPositionOfPrefix = 12;
 
-            Assert.AreEqual($"{request.GetUri()}", $"?{parameterKey1}={parameterValue1}&{parameterKey2}={parameterValue2}");
+            Assert.AreEqual(request.GetUri(), $"?{parameterKey1}={parameterValue1}&{parameterKey2}={parameterValue2}");
             Assert.AreEqual(expectedPositionOfPrefix, request.GetUri().IndexOf("&"));
         }
 
