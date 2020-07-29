@@ -15,7 +15,8 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
         [Test]
         public async Task GetChangeListAsync_SpecificDateRange_ReturnsChangeList()
         {
-            var _requestHandler = new RequestHandler(_client);
+            var options = GetDefaultOptions(GetApiKey());
+            var _requestHandler = new RequestHandler(_client, options);
 
             IChangesApi apiUnderTest = new ChangesApi(_requestHandler);
 
@@ -28,7 +29,8 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
         [Test]
         public async Task GetChangeListAsync_SpecificType_ReturnsChangeList()
         {
-            var _requestHandler = new RequestHandler(_client);
+            var options = GetDefaultOptions(GetApiKey());
+            var _requestHandler = new RequestHandler(_client, options);
 
             IChangesApi apiUnderTest = new ChangesApi(_requestHandler);
 

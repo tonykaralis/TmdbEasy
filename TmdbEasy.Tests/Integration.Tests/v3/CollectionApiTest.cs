@@ -15,7 +15,8 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
         [TestCase(10)]
         public async Task GetDetailsAsync_ValidId_ReturnsValidResult(int id)
         {
-            var _requestHandler = new RequestHandler(_client);
+            var options = GetDefaultOptions(GetApiKey());
+            var _requestHandler = new RequestHandler(_client, options);
 
             ICollectionApi apiUnderTest = new CollectionApi(_requestHandler);
 
@@ -29,7 +30,8 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
         [TestCase(10)]
         public async Task GetImagesAsync_ValidId_ReturnsValidResult(int id)
         {
-            var _requestHandler = new RequestHandler(_client);
+            var options = GetDefaultOptions(GetApiKey());
+            var _requestHandler = new RequestHandler(_client, options);
 
             ICollectionApi apiUnderTest = new CollectionApi(_requestHandler);
 
@@ -39,7 +41,7 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
             Assert.AreEqual(id, images.Id);
             Assert.IsNotEmpty(images.Posters);
             Assert.IsNull(images.Stills);
-            Assert.IsNotEmpty(images.Backdrops);            
+            Assert.IsNotEmpty(images.Backdrops);
         }
     }
 }

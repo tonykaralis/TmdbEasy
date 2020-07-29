@@ -1,19 +1,18 @@
 ﻿using System.Text;
+using TmdbEasy.Configurations;
 
 namespace TmdbEasy
 {
     public sealed class Request
     {
         private readonly StringBuilder _requestBuilder;
-        private readonly string _defaultApiKey;
-        private readonly string _defaultLanguage;
+        private readonly TmdbEasyOptions _options;
         private bool _firstParameterAdded;
 
-        public Request(string baseUrl, string defaultApiKey, string defaultLanguage)
+        public Request(string baseUrl, TmdbEasyOptions options)
         {
             _requestBuilder = new StringBuilder(baseUrl);
-            _defaultApiKey = defaultApiKey;
-            _defaultLanguage = defaultLanguage;
+            _options = options;
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace TmdbEasy
         }
 
         /// <summary>
-        /// Adds the given key and value if both are not null or empty. 
+        /// Adds the given key and value if both are not null or empty.
         /// Appends either ? or & depending on whether another parameter was previously added.
         /// </summary>
         /// <param name="key"></param>
@@ -57,13 +56,13 @@ namespace TmdbEasy
         }
 
         /// <summary>
-        /// Adds the given language. 
+        /// Adds the given language.
         /// If the lanugage is null or empty, it will attempt to add the default language
         /// </summary>
         /// <returns></returns>
         public Request AddLanguage(string language = null)
         {
-            string languageToAdd = !string.IsNullOrEmpty(language) ? language : _defaultLanguage;
+            string languageToAdd = !string.IsNullOrEmpty(language) ? language : _options.DefaultLanguage;
 
             return AddParameter("language", languageToAdd);
         }
@@ -74,7 +73,7 @@ namespace TmdbEasy
         /// <returns></returns>
         public Request AddApiKey(string apiKey = null)
         {
-            string apiKeyToAdd = !string.IsNullOrEmpty(apiKey) ? apiKey : _defaultApiKey;
+            string apiKeyToAdd = !string.IsNullOrEmpty(apiKey) ? apiKey : _options.ApiKey;
 
             return AddParameter("api_key", apiKeyToAdd);
         }

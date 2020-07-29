@@ -1,6 +1,7 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 using System.Threading.Tasks;
+using TmdbEasy.Configurations;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy.Tests
@@ -19,13 +20,14 @@ namespace TmdbEasy.Tests
         public void CreateRequest_CreatesValidRequest_SetsBaseUrl()
         {
             string testBaseUrl = "https://baseurl";
+            var options = new TmdbEasyOptions() { ApiKey = "secret", DefaultLanguage = "en" };
 
             _subClient.GetBaseUrl().Returns(testBaseUrl);
 
-            var handlerUnderTest = new RequestHandler(_subClient);
+            var handlerUnderTest = new RequestHandler(_subClient, options);
 
             Request request = handlerUnderTest.CreateRequest();
-            
+
             string result = request.GetUri();
 
             Assert.AreEqual(testBaseUrl, result);
@@ -35,13 +37,14 @@ namespace TmdbEasy.Tests
         public async Task ExecuteRequest_CallsClient_WithCorrectUri()
         {
             string testBaseUrl = "https://baseurl";
+            var options = new TmdbEasyOptions() { ApiKey = "secret", DefaultLanguage = "en" };
 
             string expectedResult = "fakeReturnvalue";
 
             _subClient.GetBaseUrl().Returns(testBaseUrl);
             _subClient.GetResponseAsync<string>(testBaseUrl).Returns(expectedResult);
 
-            var handlerUnderTest = new RequestHandler(_subClient);
+            var handlerUnderTest = new RequestHandler(_subClient, options);
 
             Request request = handlerUnderTest.CreateRequest();
 

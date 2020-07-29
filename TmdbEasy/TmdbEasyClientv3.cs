@@ -38,9 +38,5 @@ namespace TmdbEasy
         public ApiVersion GetVersion() => ApiVersion.v3;
 
         public string GetBaseUrl() => _httpClient.BaseAddress.ToString();
-
-        public string GetApiKey() => _options.ApiKey;
-
-        public string GetDefaultLanguage() => _options.DefaultLanguage;
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TmdbEasy.Configurations;
 
 namespace TmdbEasy.Tests
 {
@@ -15,7 +16,9 @@ namespace TmdbEasy.Tests
         [Test]
         public void RequestConstructor_ValidParams_Creates_NonNullInstance()
         {
-            var request = new Request(_baseUrl, _globalApiKey, _defaultLanguage);
+            var options = new TmdbEasyOptions() { ApiKey = _globalApiKey, DefaultLanguage = _defaultLanguage };
+
+            var request = new Request(_baseUrl, options);
 
             Assert.IsNotNull(request);
         }
@@ -23,7 +26,7 @@ namespace TmdbEasy.Tests
         [Test]
         public void RequestConstructor_InValidParams_Creates_NonNullInstance()
         {
-            var request = new Request(null, null, null);
+            var request = new Request(null, null);
 
             Assert.IsNotNull(request);
         }
@@ -31,7 +34,7 @@ namespace TmdbEasy.Tests
         [Test]
         public void AddUrlSegment_ValidSegment_AddsSegment()
         {
-            var request = new Request(null, null, null);
+            var request = new Request(null, null);
 
             string segment = "testSegment";
 
@@ -45,7 +48,7 @@ namespace TmdbEasy.Tests
         [TestCase("")]
         public void AddUrlSegment_NullOrEmptyParams_DoesNotAddSegment(string segment)
         {
-            var request = new Request(null, null, null);
+            var request = new Request(null, null);
 
             request.AddUrlSegment(segment);
 
@@ -55,7 +58,7 @@ namespace TmdbEasy.Tests
         [Test]
         public void AddParameter_NonNUllOrEmptyValues_AddsParameter()
         {
-            var request = new Request(null, null, null);
+            var request = new Request(null, null);
 
             string parameterKey = "testParameterKey";
             string parameterValue = "testParameterValue";
@@ -70,7 +73,7 @@ namespace TmdbEasy.Tests
         [TestCase("")]
         public void AddParameter_NullOrEmptyKey_DoesNotAddParameter(string key)
         {
-            var request = new Request(null, null, null);
+            var request = new Request(null, null);
 
             string parameterValue = "testParameterValue";
 
@@ -84,7 +87,7 @@ namespace TmdbEasy.Tests
         [TestCase("")]
         public void AddParameter_NullOrEmptyValue_DoesNotAddParameter(string value)
         {
-            var request = new Request(null, null, null);
+            var request = new Request(null, null);
 
             string parameterKey = "testParameterKey";
 
@@ -96,7 +99,7 @@ namespace TmdbEasy.Tests
         [Test]
         public void AddParameter_FirstParameter_AppendsCorrectPrefix()
         {
-            var request = new Request(null, null, null);
+            var request = new Request(null, null);
 
             string parameterKey = "testParameterKey";
             string parameterValue = "testParameterValue";
@@ -113,7 +116,7 @@ namespace TmdbEasy.Tests
         [Test]
         public void AddParameter_SecondParameter_AppendsCorrectPrefix()
         {
-            var request = new Request(null, null, null);
+            var request = new Request(null, null);
 
             string parameterKey1 = "key1";
             string parameterValue1 = "value1";
@@ -132,7 +135,8 @@ namespace TmdbEasy.Tests
         [Test]
         public void AddApiKey_GlobalApiKeySet_UserApiKeyUsed_SetsUserApiKey()
         {
-            var request = new Request(_baseUrl, _globalApiKey, _defaultLanguage);
+            var options = new TmdbEasyOptions() { ApiKey = _globalApiKey };
+            var request = new Request(_baseUrl, options);
 
             string userApiKey = "userkey";
 
@@ -144,7 +148,8 @@ namespace TmdbEasy.Tests
         [Test]
         public void AddApiKey_GlobalApiKeySet_NoUserApiKeyProvided_SetsGlobalApiKey()
         {
-            var request = new Request(_baseUrl, _globalApiKey, _defaultLanguage);
+            var options = new TmdbEasyOptions() { ApiKey = _globalApiKey };
+            var request = new Request(_baseUrl, options);
 
             request.AddApiKey();
 
@@ -154,7 +159,8 @@ namespace TmdbEasy.Tests
         [Test]
         public void AddLanguage_DefaultLanguageSet_LocalLanguageUsed_SetsLocalLanguage()
         {
-            var request = new Request(_baseUrl, _globalApiKey, _defaultLanguage);
+            var options = new TmdbEasyOptions() { DefaultLanguage = _defaultLanguage };
+            var request = new Request(_baseUrl, options);
 
             string localLanguage = "localLang";
 
@@ -166,8 +172,9 @@ namespace TmdbEasy.Tests
         [Test]
         public void AddLanguage_DefaultLanguageSet_NoLocalLanguageUsed_SetsDefaultLanguage()
         {
-            var request = new Request(_baseUrl, _globalApiKey, _defaultLanguage);
-            
+            var options = new TmdbEasyOptions() { DefaultLanguage = _defaultLanguage };
+            var request = new Request(_baseUrl, options);
+
             request.AddLanguage(); ;
 
             Assert.IsTrue(request.GetUri().Contains($"?language={_defaultLanguage}"));

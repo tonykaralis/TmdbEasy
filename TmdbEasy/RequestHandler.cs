@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using TmdbEasy.Configurations;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy
@@ -6,15 +7,17 @@ namespace TmdbEasy
     public class RequestHandler : IRequestHandler
     {
         private readonly ITmdbEasyClient _client;
+        private readonly TmdbEasyOptions _options;
 
-        public RequestHandler(ITmdbEasyClient client)
+        public RequestHandler(ITmdbEasyClient client, TmdbEasyOptions options)
         {
-            _client = client;           
+            _client = client;
+            _options = options;
         }
 
         public Request CreateRequest()
         {
-            return new Request(_client.GetBaseUrl(), _client.GetApiKey(), _client.GetDefaultLanguage());
+            return new Request(_client.GetBaseUrl(), _options);
         }
 
         public async Task<TmdbEasyModel> ExecuteRequestAsync<TmdbEasyModel>(Request request)

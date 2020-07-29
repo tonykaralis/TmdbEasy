@@ -49,37 +49,5 @@ namespace TmdbEasy.Tests
 
             Assert.AreEqual(UrlConstants.TmdbUrl3Ssl, client.GetBaseUrl());
         }
-
-        [Test]
-        [TestCase("asdjhfbakjsdhb")]
-        [TestCase("")]
-        [TestCase(null)]
-        public void OptionsWithApiKey_SetsAndGetsApiKey(string apikey)
-        {
-            var options = new TmdbEasyOptions()
-            {
-                ApiKey = apikey
-            };
-
-            var client = new TmdbEasyClientv3(_jsonDeserializer, options);
-
-            Assert.AreEqual(options.ApiKey, client.GetApiKey());
-        }
-
-        [Test]
-        [TestCase("en")]
-        [TestCase("")]
-        [TestCase(null)]
-        public void OptionsWithDefaultLanguage_SetsAndGetsLanguage(string language)
-        {
-            var options = new TmdbEasyOptions()
-            {
-                DefaultLanguage = language
-            };
-
-            var client = new TmdbEasyClientv3(_jsonDeserializer, options);
-
-            Assert.AreEqual(options.DefaultLanguage, client.GetDefaultLanguage());
-        }
     }
 }
