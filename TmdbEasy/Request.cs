@@ -61,7 +61,7 @@ namespace TmdbEasy
         /// If the lanugage is null or empty, it will attempt to add the default language
         /// </summary>
         /// <returns></returns>
-        public Request AddLanguage(string language)
+        public Request AddLanguage(string language = null)
         {
             string languageToAdd = !string.IsNullOrEmpty(language) ? language : _defaultLanguage;
 
@@ -72,7 +72,7 @@ namespace TmdbEasy
         /// Adds the given apikey. If no apikey has been appended it will add the default api key if one exists.
         /// </summary>
         /// <returns></returns>
-        public Request AddApiKey(string apiKey)
+        public Request AddApiKey(string apiKey = null)
         {
             string apiKeyToAdd = !string.IsNullOrEmpty(apiKey) ? apiKey : _defaultApiKey;
 
