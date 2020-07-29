@@ -34,24 +34,22 @@ namespace TmdbEasy.Tests
         [Test]
         public async Task ExecuteRequest_CallsClient_WithCorrectUri()
         {
-            string defaultLanguage = "defaultLanguage";
             string testBaseUrl = "https://baseurl";
 
-            string expectedQuery = $"{testBaseUrl}?language={defaultLanguage}";
             string expectedResult = "fakeReturnvalue";
 
             _subClient.GetBaseUrl().Returns(testBaseUrl);
-            _subClient.GetResponseAsync<string>(expectedQuery).Returns(expectedResult);
+            _subClient.GetResponseAsync<string>(testBaseUrl).Returns(expectedResult);
 
             var handlerUnderTest = new RequestHandler(_subClient);
 
-            Request request = handlerUnderTest.CreateRequest().AddLanguage();
+            Request request = handlerUnderTest.CreateRequest();
 
             var result = await handlerUnderTest.ExecuteRequestAsync<string>(request);
 
             Assert.AreEqual(expectedResult, result);
 
-            await _subClient.Received().GetResponseAsync<string>(expectedQuery);
+            await _subClient.Received().GetResponseAsync<string>(testBaseUrl);
         }
     }
 }
