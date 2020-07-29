@@ -9,9 +9,9 @@ namespace TmdbEasy
         private readonly TmdbEasyOptions _options;
         private bool _firstParameterAdded;
 
-        public Request(string baseUrl, TmdbEasyOptions options)
+        public Request(TmdbEasyOptions options)
         {
-            _requestBuilder = new StringBuilder(baseUrl);
+            _requestBuilder = new StringBuilder();
             _options = options;
         }
 

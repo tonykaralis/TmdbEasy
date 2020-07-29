@@ -5,8 +5,6 @@ namespace TmdbEasy.Interfaces
 {
     public interface ITmdbEasyClient
     {
-        string GetBaseUrl();
-
         ApiVersion GetVersion();
 
         Task<TmdbEasyModel> GetResponseAsync<TmdbEasyModel>(string query);

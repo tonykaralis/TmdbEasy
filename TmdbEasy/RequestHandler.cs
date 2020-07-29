@@ -17,7 +17,7 @@ namespace TmdbEasy
 
         public Request CreateRequest()
         {
-            return new Request(_client.GetBaseUrl(), _options);
+            return new Request(_options);
         }
 
         public async Task<TmdbEasyModel> ExecuteAsync<TmdbEasyModel>(Request request)

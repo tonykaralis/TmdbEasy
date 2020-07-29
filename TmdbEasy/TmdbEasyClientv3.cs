@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using TmdbEasy.Configurations;
-using TmdbEasy.Constants;
 using TmdbEasy.Interfaces;
 
 namespace TmdbEasy
@@ -19,10 +18,7 @@ namespace TmdbEasy
 
             _options = options ?? throw new ArgumentNullException($"{nameof(TmdbEasyOptions)}");
 
-            _httpClient = new HttpClient()
-            {
-                BaseAddress = new Uri(_options.UseSsl ? UrlConstants.TmdbUrl3Ssl : UrlConstants.TmdbUrl3)
-            };
+            _httpClient = new HttpClient();
         }
 
         public async Task<TmdbEasyModel> GetResponseAsync<TmdbEasyModel>(string query)
@@ -30,13 +26,12 @@ namespace TmdbEasy
             if (string.IsNullOrEmpty(query) || string.IsNullOrWhiteSpace(query))
                 throw new ArgumentException($"{nameof(TmdbEasyClientv3)} query param null or empty");
 
-            var jsonResult = await _httpClient.GetStringAsync(query);
+            query = _options.GetBaseUrl() + query;
+            string jsonResult = await _httpClient.GetStringAsync(query);
 
             return _jsonDeserializer.DeserializeTo<TmdbEasyModel>(jsonResult);
         }
 
         public ApiVersion GetVersion() => ApiVersion.v3;
-
-        public string GetBaseUrl() => _httpClient.BaseAddress.ToString();
     }
 }

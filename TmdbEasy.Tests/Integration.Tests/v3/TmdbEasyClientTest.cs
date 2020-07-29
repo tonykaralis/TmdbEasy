@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using TmdbEasy.DTO.Reviews;
 using TmdbEasy.Tests.Integration.Tests.TestFixtures;
 using TmdbEasy.Interfaces;
+using TmdbEasy.Apis;
+using TmdbEasy.Configurations;
 
 namespace TmdbEasy.Tests.Integration.Tests.v3
 {
@@ -14,23 +16,25 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
     {
         [TestCase("5488c29bc3a3686f4a00004a")]
         public async Task GetResponseAsync_WithApiKey_ReturnsResult(string reviewId)
-        {           
+        {
             ITmdbEasyClient client = GetTestV3Client();
+            var options = GetDefaultOptions(sharedApiKey: null);
 
-            string queryString = $"{client.GetBaseUrl()}/review/{reviewId}?api_key={GetApiKey()}";
+            string queryString = $"/review/{reviewId}?api_key={GetApiKey()}";
 
             var result = await client.GetResponseAsync<Review>(queryString);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(reviewId, result.Id);
         }
-        
+
         [TestCase("5488c29bc3a3686f4a00004a")]
         public void GetResponseAsync_WithNoApiKey_ThrowsHttpRequestException_With_401Message(string reviewId)
         {
             ITmdbEasyClient clientWithNoApiKey = GetTestV3Client();
+            var options = GetDefaultOptions(sharedApiKey: null);
 
-            string queryStringWithNoApiKey = $"{clientWithNoApiKey.GetBaseUrl()}/review/{reviewId}";            
+            string queryStringWithNoApiKey = $"/review/{reviewId}";
 
             var exception = Assert.ThrowsAsync<HttpRequestException>(() => clientWithNoApiKey.GetResponseAsync<Review>(queryStringWithNoApiKey));
 
