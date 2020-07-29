@@ -48,7 +48,7 @@ namespace TmdbEasy.Tests
 
             Request request = handlerUnderTest.CreateRequest();
 
-            var result = await handlerUnderTest.ExecuteRequestAsync<string>(request);
+            var result = await handlerUnderTest.ExecuteAsync<string>(request);
 
             Assert.AreEqual(expectedResult, result);
 

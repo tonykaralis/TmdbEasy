@@ -20,7 +20,7 @@ namespace TmdbEasy.Apis
                 .AddUrlSegment($"review/{reviewId}")
                 .AddApiKey(apiKey);
 
-            return await _requestHandler.ExecuteRequestAsync<Review>(restRequest);
+            return await _requestHandler.ExecuteAsync<Review>(restRequest);
         }
     }
 }

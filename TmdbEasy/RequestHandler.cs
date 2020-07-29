@@ -20,7 +20,7 @@ namespace TmdbEasy
             return new Request(_client.GetBaseUrl(), _options);
         }
 
-        public async Task<TmdbEasyModel> ExecuteRequestAsync<TmdbEasyModel>(Request request)
+        public async Task<TmdbEasyModel> ExecuteAsync<TmdbEasyModel>(Request request)
         {
             return await _client.GetResponseAsync<TmdbEasyModel>(request.GetUri()).ConfigureAwait(false);
         }

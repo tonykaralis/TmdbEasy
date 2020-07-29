@@ -21,7 +21,7 @@ namespace TmdbEasy.Apis
                 .AddUrlSegment($"company/{companyId}")
                 .AddApiKey(apiKey);
 
-            return await _requestHandler.ExecuteRequestAsync<CompanyDetails>(restRequest);
+            return await _requestHandler.ExecuteAsync<CompanyDetails>(restRequest);
         }
 
         public async Task<MoviesByCompany> GetMoviesAsync(int companyId, string apiKey = null, string language = null)
@@ -32,19 +32,19 @@ namespace TmdbEasy.Apis
                 .AddLanguage(language)
                 .AddApiKey(apiKey);
 
-            return await _requestHandler.ExecuteRequestAsync<MoviesByCompany>(restRequest);
+            return await _requestHandler.ExecuteAsync<MoviesByCompany>(restRequest);
         }
 
         public async Task<CompanyList> SearchAsync(string customQuery, string apiKey = null, int page = 1)
         {
             var restRequest = _requestHandler
                 .CreateRequest()
-                .AddUrlSegment($"search/company")                
+                .AddUrlSegment($"search/company")
                 .AddApiKey(apiKey)
                 .AddCustomQuery(customQuery)
                 .AddPage(page);
 
-            return await _requestHandler.ExecuteRequestAsync<CompanyList>(restRequest);
+            return await _requestHandler.ExecuteAsync<CompanyList>(restRequest);
         }
     }
 }
