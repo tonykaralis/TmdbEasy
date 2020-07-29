@@ -6,7 +6,7 @@ using TmdbEasy.Interfaces;
 namespace TmdbEasy.Tests.Integration.Tests.TestFixtures
 {
     public abstract class TestBaseForV3
-    {                
+    {
         private const string ApiKeyVariableName = "tmdbapikey";
         protected readonly ITmdbEasyClient _client;
 
@@ -27,12 +27,7 @@ namespace TmdbEasy.Tests.Integration.Tests.TestFixtures
 
         public TmdbEasyOptions GetDefaultOptions(string sharedApiKey)
         {
-            return new TmdbEasyOptions()
-            {
-                UseSsl = true,
-                ApiKey = sharedApiKey,
-                DefaultLanguage = "en"
-            };
+            return new TmdbEasyOptions(sharedApiKey, useSsl: true, defaultLanguage: "en");
         }
 
         public string GetApiKey()

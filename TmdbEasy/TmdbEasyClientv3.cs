@@ -26,7 +26,7 @@ namespace TmdbEasy
             if (string.IsNullOrEmpty(query) || string.IsNullOrWhiteSpace(query))
                 throw new ArgumentException($"{nameof(TmdbEasyClientv3)} query param null or empty");
 
-            query = _options.GetBaseUrl() + query;
+            query = _options.BaseUri + query;
             string jsonResult = await _httpClient.GetStringAsync(query);
 
             return _jsonDeserializer.DeserializeTo<TmdbEasyModel>(jsonResult);

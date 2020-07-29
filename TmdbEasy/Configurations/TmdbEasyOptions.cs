@@ -5,12 +5,17 @@
         private const string _tmdbUrl3 = "http://api.themoviedb.org/3";
         private const string _tmdbUrl3Ssl = "https://api.themoviedb.org/3";
 
-        public bool UseSsl { get; set; }
+        public TmdbEasyOptions(string apiKey, bool useSsl = true, string defaultLanguage = "en")
+        {
+            ApiKey = apiKey;
+            BaseUri = useSsl ? _tmdbUrl3Ssl : _tmdbUrl3;
+            DefaultLanguage = defaultLanguage;
+        }
 
-        public string ApiKey { get; set; }
+        internal string ApiKey { get; }
 
-        public string DefaultLanguage { get; set; }
+        internal string BaseUri { get; }
 
-        public string GetBaseUrl() => UseSsl ? _tmdbUrl3Ssl : _tmdbUrl3;
+        internal string DefaultLanguage { get; }
     }
 }

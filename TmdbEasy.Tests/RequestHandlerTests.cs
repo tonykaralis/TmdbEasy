@@ -18,7 +18,7 @@ namespace TmdbEasy.Tests
             ITmdbEasyClient subClient = Substitute.For<ITmdbEasyClient>();
             subClient.GetResponseAsync<string>(expectedURL).Returns(expectedResult);
 
-            var options = new TmdbEasyOptions() { ApiKey = "secret", DefaultLanguage = "en" };
+            var options = new TmdbEasyOptions(apiKey: "secret");
             var handlerUnderTest = new RequestHandler(subClient, options);
             Request request = handlerUnderTest.CreateRequest();
             request.AddUrlSegment("users");
