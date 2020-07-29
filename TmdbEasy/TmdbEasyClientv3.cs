@@ -10,6 +10,8 @@ namespace TmdbEasy
     {
         private readonly IJsonDeserializer _jsonDeserializer;
         private readonly HttpClient _httpClient;
+        private static readonly  string _tmdbUrl3 = "http://api.themoviedb.org/3/";
+        private static readonly string _tmdbUrl3Ssl = "https://api.themoviedb.org/3/";
 
         public TmdbEasyClientv3(IJsonDeserializer jsonDeserializer, TmdbEasyOptions options)
         {
@@ -19,7 +21,7 @@ namespace TmdbEasy
 
             _httpClient = new HttpClient()
             {
-                BaseAddress = new Uri(options.BaseUri)
+                BaseAddress = new Uri(Options.UseSsl ? _tmdbUrl3Ssl : _tmdbUrl3)
             };
         }
 
