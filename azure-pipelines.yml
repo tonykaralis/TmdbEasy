@@ -26,3 +26,10 @@ steps:
     command: 'build'
     configuration: 'Release'
     projects: 'TmdbEasy/TmdbEasy.csproj'
+
+- task: DotNetCoreCLI@2
+  env:
+    tmdbapikey: $(tmdbkey)
+  displayName: 'Test'
+  inputs:
+    command: 'test'
