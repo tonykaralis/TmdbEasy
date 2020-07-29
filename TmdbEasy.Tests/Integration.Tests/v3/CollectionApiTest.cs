@@ -39,7 +39,7 @@ namespace TmdbEasy.Tests.Integration.Tests.v3
             Assert.AreEqual(id, images.Id);
             Assert.IsNotEmpty(images.Posters);
             Assert.IsNull(images.Stills);
-            Assert.IsNotEmpty(images.Backdrops);            
+            Assert.IsNotEmpty(images.Backdrops);
         }
     }
 }

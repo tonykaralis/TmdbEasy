@@ -1,7 +1,6 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using NUnit.Framework;
+using TmdbEasy.Configurations;
 
 namespace TmdbEasy.Tests
 {
@@ -10,34 +9,45 @@ namespace TmdbEasy.Tests
     {
         private readonly string _globalApiKey = "globalApikey";
         private readonly string _defaultLanguage = "en";
-        private readonly string _baseUrl = "https://baseurl";
 
         [Test]
         public void RequestConstructor_ValidParams_Creates_NonNullInstance()
         {
-            var request = new Request(_baseUrl, _globalApiKey, _defaultLanguage);
+            var options = new TmdbEasyOptions(_globalApiKey);
+
+            var request = new Request(options);
 
             Assert.IsNotNull(request);
         }
 
         [Test]
-        public void RequestConstructor_InValidParams_Creates_NonNullInstance()
+        public void RequestConstructor_InValidParams_ThrowsArgumentNullException()
         {
-            var request = new Request(null, null, null);
-
-            Assert.IsNotNull(request);
+            var exception = Assert.Throws<ArgumentNullException>(() => new Request(null));
+            Assert.That(exception.Message, Is.EqualTo("Value cannot be null. (Parameter 'options')"));
         }
 
         [Test]
         public void AddUrlSegment_ValidSegment_AddsSegment()
         {
-            var request = new Request(null, null, null);
+            var request = new Request(GetPlaceholderOptions());
 
             string segment = "testSegment";
 
             request.AddUrlSegment(segment);
 
-            Assert.AreEqual($"{request.GetUri()}", $"/{segment}");
+            Assert.AreEqual(segment, request.GetUri());
+        }
+
+        [Test]
+        public void AddUrlSegment_WhenCalledSecondTime_ShouldPrefixSecondSegmentWithSlash()
+        {
+            var request = new Request(GetPlaceholderOptions());
+
+            request.AddUrlSegment("users");
+            request.AddUrlSegment("6");
+
+            Assert.AreEqual("users/6", request.GetUri());
         }
 
         [Test]
@@ -45,7 +55,7 @@ namespace TmdbEasy.Tests
         [TestCase("")]
         public void AddUrlSegment_NullOrEmptyParams_DoesNotAddSegment(string segment)
         {
-            var request = new Request(null, null, null);
+            var request = new Request(GetPlaceholderOptions());
 
             request.AddUrlSegment(segment);
 
@@ -55,14 +65,14 @@ namespace TmdbEasy.Tests
         [Test]
         public void AddParameter_NonNUllOrEmptyValues_AddsParameter()
         {
-            var request = new Request(null, null, null);
+            var request = new Request(GetPlaceholderOptions());
 
             string parameterKey = "testParameterKey";
             string parameterValue = "testParameterValue";
 
             request.AddParameter(parameterKey, parameterValue);
 
-            Assert.AreEqual($"{request.GetUri()}", $"?{parameterKey}={parameterValue}");
+            Assert.AreEqual(request.GetUri(), $"?{parameterKey}={parameterValue}");
         }
 
         [Test]
@@ -70,7 +80,7 @@ namespace TmdbEasy.Tests
         [TestCase("")]
         public void AddParameter_NullOrEmptyKey_DoesNotAddParameter(string key)
         {
-            var request = new Request(null, null, null);
+            var request = new Request(GetPlaceholderOptions());
 
             string parameterValue = "testParameterValue";
 
@@ -84,7 +94,7 @@ namespace TmdbEasy.Tests
         [TestCase("")]
         public void AddParameter_NullOrEmptyValue_DoesNotAddParameter(string value)
         {
-            var request = new Request(null, null, null);
+            var request = new Request(GetPlaceholderOptions());
 
             string parameterKey = "testParameterKey";
 
@@ -96,7 +106,7 @@ namespace TmdbEasy.Tests
         [Test]
         public void AddParameter_FirstParameter_AppendsCorrectPrefix()
         {
-            var request = new Request(null, null, null);
+            var request = new Request(GetPlaceholderOptions());
 
             string parameterKey = "testParameterKey";
             string parameterValue = "testParameterValue";
@@ -107,13 +117,12 @@ namespace TmdbEasy.Tests
 
             Assert.AreEqual(expectedPositionOfPrefix, request.GetUri().IndexOf("?"));
             Assert.AreEqual("?", request.GetUri().Substring(0, 1));
-
         }
 
         [Test]
         public void AddParameter_SecondParameter_AppendsCorrectPrefix()
         {
-            var request = new Request(null, null, null);
+            var request = new Request(GetPlaceholderOptions());
 
             string parameterKey1 = "key1";
             string parameterValue1 = "value1";
@@ -125,14 +134,15 @@ namespace TmdbEasy.Tests
 
             int expectedPositionOfPrefix = 12;
 
-            Assert.AreEqual($"{request.GetUri()}", $"?{parameterKey1}={parameterValue1}&{parameterKey2}={parameterValue2}");
+            Assert.AreEqual(request.GetUri(), $"?{parameterKey1}={parameterValue1}&{parameterKey2}={parameterValue2}");
             Assert.AreEqual(expectedPositionOfPrefix, request.GetUri().IndexOf("&"));
         }
 
         [Test]
         public void AddApiKey_GlobalApiKeySet_UserApiKeyUsed_SetsUserApiKey()
         {
-            var request = new Request(_baseUrl, _globalApiKey, _defaultLanguage);
+            var options = new TmdbEasyOptions(_globalApiKey);
+            var request = new Request(options);
 
             string userApiKey = "userkey";
 
@@ -144,7 +154,8 @@ namespace TmdbEasy.Tests
         [Test]
         public void AddApiKey_GlobalApiKeySet_NoUserApiKeyProvided_SetsGlobalApiKey()
         {
-            var request = new Request(_baseUrl, _globalApiKey, _defaultLanguage);
+            var options = new TmdbEasyOptions(_globalApiKey);
+            var request = new Request(options);
 
             request.AddApiKey();
 
@@ -154,7 +165,8 @@ namespace TmdbEasy.Tests
         [Test]
         public void AddLanguage_DefaultLanguageSet_LocalLanguageUsed_SetsLocalLanguage()
         {
-            var request = new Request(_baseUrl, _globalApiKey, _defaultLanguage);
+            var options = new TmdbEasyOptions("apiKey", useSsl: true, _defaultLanguage);
+            var request = new Request(options);
 
             string localLanguage = "localLang";
 
@@ -166,11 +178,17 @@ namespace TmdbEasy.Tests
         [Test]
         public void AddLanguage_DefaultLanguageSet_NoLocalLanguageUsed_SetsDefaultLanguage()
         {
-            var request = new Request(_baseUrl, _globalApiKey, _defaultLanguage);
-            
+            var options = new TmdbEasyOptions("apiKey", useSsl: true, _defaultLanguage);
+            var request = new Request(options);
+
             request.AddLanguage(); ;
 
             Assert.IsTrue(request.GetUri().Contains($"?language={_defaultLanguage}"));
+        }
+
+        private static TmdbEasyOptions GetPlaceholderOptions()
+        {
+            return new TmdbEasyOptions(apiKey: "secret");
         }
     }
 }

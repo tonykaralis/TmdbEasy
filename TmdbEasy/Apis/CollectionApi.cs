@@ -22,7 +22,7 @@ namespace TmdbEasy.Apis
                 .AddLanguage(language)
                 .AddApiKey(apiKey);
 
-            return await _requestHandler.ExecuteRequestAsync<Collections>(restRequest);
+            return await _requestHandler.ExecuteAsync<Collections>(restRequest);
         }
 
         public async Task<Images> GetImagesAsync(int collectionId, string apiKey = null, string language = null)
@@ -34,7 +34,7 @@ namespace TmdbEasy.Apis
                .AddLanguage(language)
                .AddApiKey(apiKey);
 
-            return await _requestHandler.ExecuteRequestAsync<Images>(restRequest);
+            return await _requestHandler.ExecuteAsync<Images>(restRequest);
         }
     }
 }

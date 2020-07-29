@@ -5,13 +5,9 @@ namespace TmdbEasy.Interfaces
 {
     public interface ITmdbEasyClient
     {
-        string GetBaseUrl();
-
-        string GetApiKey();
+        TmdbEasyOptions Options { get; }
 
         ApiVersion GetVersion();
-
-        string GetDefaultLanguage();
 
         Task<TmdbEasyModel> GetResponseAsync<TmdbEasyModel>(string query);
     }
