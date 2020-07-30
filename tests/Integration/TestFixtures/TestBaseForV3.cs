@@ -8,11 +8,13 @@ namespace TmdbEasy.Tests.Integration.TestFixtures
     public abstract class TestBaseForV3
     {
         private const string ApiKeyVariableName = "tmdbapikey";
-        protected readonly ITmdbEasyClient _client;
+        protected readonly ITmdbEasyClient _clientWithNoApiKey;
+        protected readonly ITmdbEasyClient _clientWithApiKey;
 
         protected TestBaseForV3()
         {
-            _client = GetTestV3Client();
+            _clientWithNoApiKey = GetTestV3Client();
+            _clientWithApiKey = GetTestV3Client(GetApiKey());
             _userApiKey = GetApiKey();
         }
 
