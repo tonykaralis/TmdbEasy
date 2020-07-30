@@ -3,12 +3,12 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using TmdbEasy.DTO.Reviews;
-using TmdbEasy.Tests.Integration.Tests.TestFixtures;
+using TmdbEasy.Tests.Integration.TestFixtures;
 using TmdbEasy.Interfaces;
 using TmdbEasy.Apis;
 using TmdbEasy.Configurations;
 
-namespace TmdbEasy.Tests.Integration.Tests.v3
+namespace TmdbEasy.Tests.Integration
 {
     [TestFixture]
     [Category("TmdbEasyClient")]

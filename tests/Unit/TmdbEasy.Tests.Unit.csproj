@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TmdbEasy\TmdbEasy.csproj" />
+    <ProjectReference Include="..\..\src\TmdbEasy.csproj" />
   </ItemGroup>
 
 </Project>
