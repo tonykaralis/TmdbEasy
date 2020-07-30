@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Tony Karalis</Authors>
+    <PackageProjectUrl>https://github.com/tonykaralis/TMdbEasy</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/tonykaralis/TMdbEasy</RepositoryUrl>
+    <Description>A light-weight wrapper for the TMDb Api written in C#. TmdbEasy makes getting movie data a piece of cake..</Description>
+    <Copyright>TonyKaralis 2020</Copyright>
+    <PackageLicenseFile></PackageLicenseFile>
+    <PackageTags>TMDb movies tmdb-api light-weight wrapper dotnet csharp themoviedb</PackageTags>
+    <PackageReleaseNotes>Complete overhaul of the original library. Adds DI support out of the box, improves the developer experience, fixes a few bugs and adds a couple more endpoints.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
