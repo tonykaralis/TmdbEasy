@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using TmdbEasy.Apis;
 using TmdbEasy.DTO.Configuration;
-using TmdbEasy.Tests.Integration.Tests.TestFixtures;
+using TmdbEasy.Tests.Integration.TestFixtures;
 using TmdbEasy.Interfaces;
 
-namespace TmdbEasy.Tests.Integration.Tests.v3
+namespace TmdbEasy.Tests.Integration
 {
     [TestFixture]
     [Category("ConfigApi")]

@@ -3,7 +3,7 @@ using System;
 using TmdbEasy.Configurations;
 using TmdbEasy.Interfaces;
 
-namespace TmdbEasy.Tests
+namespace TmdbEasy.Tests.Unit
 {
     [TestFixture]
     public class V3TmdbEasyClientTests

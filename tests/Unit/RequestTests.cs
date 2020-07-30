@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using TmdbEasy.Configurations;
 
-namespace TmdbEasy.Tests
+namespace TmdbEasy.Tests.Unit
 {
     [TestFixture]
     public class RequestTests

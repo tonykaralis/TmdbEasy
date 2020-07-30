@@ -4,7 +4,7 @@ using System;
 using TmdbEasy.DTO.Reviews;
 using TmdbEasy.Interfaces;
 
-namespace TmdbEasy.Tests
+namespace TmdbEasy.Tests.Unit
 {
     [TestFixture]
     internal class NewtonSoftDeserializerTests

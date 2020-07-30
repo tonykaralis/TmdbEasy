@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using TmdbEasy.Apis;
 using TmdbEasy.DTO.Changes;
 using TmdbEasy.Enums;
-using TmdbEasy.Tests.Integration.Tests.TestFixtures;
+using TmdbEasy.Tests.Integration.TestFixtures;
 using TmdbEasy.Interfaces;
 
-namespace TmdbEasy.Tests.Integration.Tests.v3
+namespace TmdbEasy.Tests.Integration
 {
     [TestFixture]
     [Category("ChangesApi")]

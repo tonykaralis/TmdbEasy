@@ -5,7 +5,9 @@ trigger:
       - '*'
 
 pr:
-- master
+  branches:
+      include:
+      - '*'
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -24,8 +26,8 @@ steps:
   displayName: 'Build'
   inputs:
     command: 'build'
-    configuration: 'Release'
-    projects: 'TmdbEasy/TmdbEasy.csproj'
+    configuration: $(buildConfiguration)
+    projects: 'src/TmdbEasy.csproj'
 
 - task: DotNetCoreCLI@2
   env:
