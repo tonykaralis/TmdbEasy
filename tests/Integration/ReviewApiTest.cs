@@ -14,7 +14,7 @@ namespace TmdbEasy.Tests.Integration
         [TestCase("5488c29bc3a3686f4a00004a")]
         public async Task GetDetailsAsync_WithUserApiKey_ExistingId_ReturnsReview(string reviewId)
         {
-            var _requestHandler = new RequestHandler(_client);
+            var _requestHandler = new RequestHandler(_clientWithNoApiKey);
 
             string userApiKey = GetApiKey();
 

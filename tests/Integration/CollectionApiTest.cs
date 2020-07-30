@@ -15,7 +15,7 @@ namespace TmdbEasy.Tests.Integration
         [TestCase(10)]
         public async Task GetDetailsAsync_ValidId_ReturnsValidResult(int id)
         {
-            var _requestHandler = new RequestHandler(_client);
+            var _requestHandler = new RequestHandler(_clientWithNoApiKey);
 
             ICollectionApi apiUnderTest = new CollectionApi(_requestHandler);
 
@@ -29,7 +29,7 @@ namespace TmdbEasy.Tests.Integration
         [TestCase(10)]
         public async Task GetImagesAsync_ValidId_ReturnsValidResult(int id)
         {
-            var _requestHandler = new RequestHandler(_client);
+            var _requestHandler = new RequestHandler(_clientWithNoApiKey);
 
             ICollectionApi apiUnderTest = new CollectionApi(_requestHandler);
 

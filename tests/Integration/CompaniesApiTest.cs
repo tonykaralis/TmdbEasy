@@ -14,7 +14,7 @@ namespace TmdbEasy.Tests.Integration
         [TestCase(1)]
         public async Task GetDetailsAsync_ValidId_ReturnsValidResult(int id)
         {
-            var _requestHandler = new RequestHandler(_client);
+            var _requestHandler = new RequestHandler(_clientWithNoApiKey);
 
             ICompaniesApi apiUnderTest = new CompaniesApi(_requestHandler);
 
@@ -27,7 +27,7 @@ namespace TmdbEasy.Tests.Integration
         [TestCase(1)]
         public async Task GetMoviesAsync_ValidId_ReturnsValidResult(int id)
         {
-            var _requestHandler = new RequestHandler(_client);
+            var _requestHandler = new RequestHandler(_clientWithNoApiKey);
 
             ICompaniesApi apiUnderTest = new CompaniesApi(_requestHandler);
 
