@@ -1,21 +1,27 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using TMdbEasy.ApiInterfaces;
-//using TMdbEasy.TmdbObjects;
-//using TMdbEasy.TmdbObjects.Other;
-//using static TMdbEasy.REngine;
+﻿using System.Threading.Tasks;
+using TmdbEasy.DTO.Other;
+using TmdbEasy.Interfaces;
 
-//namespace TMdbEasy.ApiObjects
-//{
-//    internal class CreditApi : ICreditApi
-//    {
-//        public async Task<Credits> GetDetailsAsync(int id)
-//        {
-//            var content = await CallApiAsync($"{Url}credit/{id}?api_key={ApiKey}").ConfigureAwait(false);
-//            return DeserializeJson<Credits>(content);
-//        }
-//    }
-//}
+namespace TmdbEasy.Apis
+{
+    public class CreditApi : ICreditApi
+    {
+        private readonly IRequestHandler _requestHandler;
+
+        public CreditApi(IRequestHandler requestHandler)
+        {
+            _requestHandler = requestHandler;
+        }
+
+        public async Task<Credits> GetDetailsAsync(string creditId, string userApiKey = null)
+        {
+            var restRequest = _requestHandler
+              .CreateRequest()
+              .AddUrlSegment("credit")
+              .AddUrlSegment(creditId)
+              .AddApiKey(userApiKey);
+
+            return await _requestHandler.ExecuteAsync<Credits>(restRequest);
+        }
+    }
+}

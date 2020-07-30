@@ -11,6 +11,6 @@ namespace TmdbEasy.Interfaces
         /// <param name="creditId"></param>
         /// <param name="apiKey">Optional</param>
         /// <returns></returns>
-        Task<Credits> GetDetailsAsync(int creditId, string apiKey = null);
+        Task<Credits> GetDetailsAsync(string creditId, string apiKey = null);
     }
 }
