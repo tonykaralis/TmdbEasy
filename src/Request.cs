@@ -12,11 +12,8 @@ namespace TmdbEasy
 
         public Request(TmdbEasyOptions options)
         {
-            if (options == null)
-                throw new ArgumentNullException(nameof(options));
-
             _requestBuilder = new StringBuilder();
-            _options = options;
+            _options = options ?? throw new ArgumentNullException(nameof(options));
         }
 
         /// <summary>
