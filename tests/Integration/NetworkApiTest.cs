@@ -1,28 +1,39 @@
-﻿//using NUnit.Framework;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using TMdbEasy.ApiInterfaces;
-//using SUT = TMdbEasy;
+﻿using NUnit.Framework;
+using System.Threading.Tasks;
+using TmdbEasy.Apis;
+using TmdbEasy.DTO.Other;
+using TmdbEasy.Interfaces;
+using TmdbEasy.Tests.Integration.TestFixtures;
 
-//namespace TMdbEasy_Tests.APItests
-//{
-//    [Category("NetworkApi")]
-//    internal static class NetworkApiTest
-//    {
-//        [TestFixture]
-//        [Category("NetworkApi")]
-//        public class GetDetailsAsync
-//        {
-//            [TestCase(296096321)]
-//            public void IncorrectId_ThrowsException(int id)
-//            {
-//                var d = Constants.SecureTestClient.GetApi<INetworksApi>().Value;
+namespace TmdbEasy.Tests.Integration
+{
+    [Category("NetworkApi")]
+    internal class NetworkApiTest : TestBaseForV3
+    {       
+        [TestCase(213)]
+        public async Task GetDetailsAsync_ValidId_CustomApiKey_ReturnsValidResult(int id)
+        {
+            var _requestHandler = new RequestHandler(_clientWithNoApiKey);
 
-//                Assert.Throws<AggregateException>(() => { SUT.TmdbObjects.Other.Network nt = d.GetDetailsAsync(id).Result; });
-//            }
-//        }
-//    }
-//}
+            INetworksApi apiUnderTest = new NetworksApi(_requestHandler);
+
+            Network result = await apiUnderTest.GetDetailsAsync(id, _userApiKey);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(id, result.Id);
+        }
+
+        [TestCase(213)]
+        public async Task GetDetailsAsync_ValidId_DefaultApiKey_ReturnsValidResult(int id)
+        {
+            var _requestHandler = new RequestHandler(_clientWithApiKey);
+
+            INetworksApi apiUnderTest = new NetworksApi(_requestHandler);
+
+            Network result = await apiUnderTest.GetDetailsAsync(id);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(id, result.Id);
+        }
+    }
+}
