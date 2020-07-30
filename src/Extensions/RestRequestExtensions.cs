@@ -7,6 +7,11 @@
             return request.AddParameter("region", region);
         }
 
+        public static Request AddCountry(this Request request, string country)
+        {
+            return request.AddParameter("country", country);
+        }
+
         public static Request AddPage(this Request request, int page)
         {
             return request.AddParameter("page", page.ToString());
@@ -25,6 +30,31 @@
         public static Request AddEndDate(this Request request, string endDate)
         {
             return request.AddParameter("end_date", endDate?.Replace("/", "%2F"));
+        }
+
+        public static Request AddIncludeAdult(this Request request)
+        {
+            return request.AddParameter("include_adult", "true");
+        }
+
+        public static Request AddYear(this Request request, int year)
+        {
+            if (year > 0)
+            {
+                return request.AddParameter("year", $"{year}");
+            }
+
+            return request;
+        }
+
+        public static Request AddPrimaryReleaseYear(this Request request, int primaryReleaseYear)
+        {
+            if (primaryReleaseYear > 0)
+            {
+                return request.AddParameter("primary_release_year", $"{primaryReleaseYear}");
+            }
+
+            return request;
         }
     }
 }
