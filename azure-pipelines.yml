@@ -13,7 +13,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  buildConfiguration: 'Release'
+  configuration: 'Release'
 
 steps:
 - task: UseDotNet@2
@@ -26,7 +26,7 @@ steps:
   displayName: 'Build'
   inputs:
     command: 'build'
-    configuration: $(buildConfiguration)
+    configuration: $(configuration)
     projects: 'src/TmdbEasy.csproj'
 
 - task: DotNetCoreCLI@2
@@ -35,3 +35,16 @@ steps:
   displayName: 'Test'
   inputs:
     command: 'test'
+
+- task: DotNetCoreCLI@2
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  displayName: Pack
+  inputs:
+    command: 'pack'
+    configuration: $(configuration)
+    packagesToPack: 'src/TmdbEasy.csproj'
+    nobuild: true
+    versioningScheme: 'off'
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Nuget Artifact
