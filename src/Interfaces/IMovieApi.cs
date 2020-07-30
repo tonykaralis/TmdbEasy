@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using TmdbEasy.DTO;
 using TmdbEasy.DTO.Changes;
 using TmdbEasy.DTO.Images;
 using TmdbEasy.DTO.Language;
@@ -30,23 +29,22 @@ namespace TmdbEasy.Interfaces
         /// <summary>
         /// Returns all alternative titles that belong to a movie.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="movieId"></param>
         /// <param name="country"></param>
-        /// <param name="page"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<AlternativeTitle> GetAlternativeTitlesAsync(int id, string country = null, int page = 1, string apiKey = null);
+        Task<AlternativeTitle> GetAlternativeTitlesAsync(int movieId, string country = null, string apiKey = null);
         /// <summary>
         /// Get the changes for a movie. By default only the last 24 hours are returned.
         /// You can query up to 14 days in a single query by using the start_date and end_date query parameters.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="movieId"></param>
         /// <param name="end_date"></param>
         /// <param name="start_date"></param>
         /// <param name="page"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<MovieChangeList> GetChangesAsync(int id, string end_date = null, string start_date = null, int page = 1, string apiKey = null);
+        Task<MovieChangeList> GetChangesAsync(int movieId, string end_date = null, string start_date = null, int page = 1, string apiKey = null);
         /// <summary>
         /// Get the cast and crew for a movie.
         /// </summary>

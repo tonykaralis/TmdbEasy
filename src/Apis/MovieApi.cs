@@ -1,151 +1,288 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using TMdbEasy.ApiInterfaces;
-//using TMdbEasy.TmdbObjects.Changes;
-//using TMdbEasy.TmdbObjects.Images;
-//using TMdbEasy.TmdbObjects.Language;
-//using TMdbEasy.TmdbObjects.Movies;
-//using TMdbEasy.TmdbObjects.Other;
-//using static TMdbEasy.REngine;
+﻿using System.Threading.Tasks;
+using TmdbEasy.DTO.Changes;
+using TmdbEasy.DTO.Images;
+using TmdbEasy.DTO.Language;
+using TmdbEasy.DTO.Movies;
+using TmdbEasy.DTO.Other;
+using TmdbEasy.DTO.Reviews;
+using TmdbEasy.Extensions;
+using TmdbEasy.Interfaces;
 
-//namespace TMdbEasy.ApiObjects
-//{
-//    sealed class MovieApi : IMovieApi
-//    {
-//        public async Task<MovieFullDetails> GetDetailsAsync(int id, string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}movie/{id}?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<MovieFullDetails>(content);
-//        }
+namespace TmdbEasy.Apis
+{
+    public class MovieApi : IMovieApi
+    {
+        private readonly IRequestHandler _requestHandler;
 
-//        public async Task<Images> GetImagesAsync(int id, string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}movie/{id}/images?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<Images>(content);
-//        }
+        public MovieApi(IRequestHandler requestHandler)
+        {
+            _requestHandler = requestHandler;
+        }
 
-//        public async Task<AlternativeTitle> GetAlternativeTitlesAsync(int id, string country = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}movie/{id}/alternative_titles?api_key={ApiKey}&language={country}").ConfigureAwait(false);
-//            return DeserializeJson<AlternativeTitle>(content);
-//        }
-//        //not tested
-//        public async Task<MovieChangeList> GetChangesAsync(int id, string start_date, string end_date, int page = 1)
-//        {
-//            string query = $"{Url}movie/{id}/changes?api_key={ApiKey}";
-//            query.BuildDates(start_date, end_date);
-//            query += $"&page={page}";
-//            var content = await CallApiAsync(query).ConfigureAwait(false);
-//            return DeserializeJson<MovieChangeList>(content);
-//        }
-//        //not tested
-//        public async Task<MovieCredits> GetCreditsAsync(int id)
-//        {
-//            var content = await CallApiAsync($"{Url}movie/{id}/credits?api_key={ApiKey}").ConfigureAwait(false);
-//            return DeserializeJson<MovieCredits>(content);
-//        }
-//        //not tested
-//        public async Task<MovieExternalId> GetExternalIdsAsync(int id)
-//        {
-//            var content = await CallApiAsync($"{Url}movie/{id}/external_ids?api_key={ApiKey}").ConfigureAwait(false);
-//            return DeserializeJson<MovieExternalId>(content);
-//        }
-//        //not tested
-//        public async Task<MovieReleaseDateList> GetReleaseDatesAsync(int id)
-//        {
-//            var content = await CallApiAsync($"{Url}movie/{id}/release_dates?api_key={ApiKey}").ConfigureAwait(false);
-//            return DeserializeJson<MovieReleaseDateList>(content);
-//        }
-//        //not tested
-//        public async Task<VideoList> GetVideosAsync(int id)
-//        {
-//            var content = await CallApiAsync($"{Url}movie/{id}/videos?api_key={ApiKey}").ConfigureAwait(false);
-//            return DeserializeJson<VideoList>(content);
-//        }
-//        //not tested
-//        public async Task<TranslationsList> GetTranslationsAsync(int id)
-//        {
-//            var content = await CallApiAsync($"{Url}movie/{id}/translations?api_key={ApiKey}").ConfigureAwait(false);
-//            return DeserializeJson<TranslationsList>(content);
-//        }
-//        //not tested
-//        public async Task<MovieList> GetRecommendationsAsync(int id, string language="en", int page=1)
-//        {
-//            var content = await CallApiAsync($"{Url}movie/{id}/recommendations?api_key={ApiKey}&language={language}&page={page}").ConfigureAwait(false);
-//            return DeserializeJson<MovieList>(content);
-//        }
-//        //not tested
-//        public async Task<MovieList> GetSimilarMoviesAsync(int id, string language = "en", int page = 1)
-//        {
-//            var content = await CallApiAsync($"{Url}movie/{id}/similar?api_key={ApiKey}&language={language}&page={page}").ConfigureAwait(false);
-//            return DeserializeJson<MovieList>(content);
-//        }
-//        //not tested
-//        public async Task<UserReviews> GetUserReviewsAsync(int id, string language = "en", int page = 1)
-//        {
-//            var content = await CallApiAsync($"{Url}movie/{id}reviews?api_key={ApiKey}&language={language}&page={page}").ConfigureAwait(false);
-//            return DeserializeJson<UserReviews>(content);
-//        }
-//        //not tested
-//        public async Task<MovieFullDetails> GetLatestAsync(string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}movie/latest?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<MovieFullDetails>(content);
-//        }
-//        //not tested
-//        public async Task<DatedMovieList> GetNowPlayingAsync(string language = "en", int page=1, string region="US")
-//        {
-//            var content = await CallApiAsync($"{Url}movie/now_playing?api_key={ApiKey}&language={language}&page={page}&region={region}").ConfigureAwait(false);
-//            return DeserializeJson<DatedMovieList>(content);
-//        }
-//        //not tested
-//        public async Task<MovieList> GetPopularAsync(string language = "en", int page=1, string region = "US")
-//        {
-//            var content = await CallApiAsync($"{Url}movie/popular?api_key={ApiKey}&language={language}&page={page}&region={region}").ConfigureAwait(false);
-//            return DeserializeJson<MovieList>(content);
-//        }
-//        //not tested
-//        public async Task<MovieList> GetTopRatedAsync(string language = "en", int page=1, string region = "US")
-//        {
-//            var content = await CallApiAsync($"{Url}movie/top_rated?api_key={ApiKey}&language={language}&page={page}&region={region}").ConfigureAwait(false);
-//            return DeserializeJson<MovieList>(content);
-//        }
-//        //not tested
-//        public async Task<DatedMovieList> GetUpcomingAsync(string language = "en", int page=1, string region = "US")
-//        {
-//            var content = await CallApiAsync($"{Url}movie/upcoming?api_key={ApiKey}&language={language}&page={page}&region={region}").ConfigureAwait(false);
-//            return DeserializeJson<DatedMovieList>(content);
-//        }
-//        //not tested
-//        public async Task<MovieList> SearchMoviesAsync(string query, string language = "en", int page = 1, bool include_adult = false, string region = "US", int year = 0, int primary_release_year = 0)
-//        {
-//            var content = await CallApiAsync($"{Url}search/movie?api_key={ApiKey}&language={language}&query={query}" +
-//                $"&page={page}&include_adult={include_adult}&region={region}").ConfigureAwait(false);
-//            if (year > 0 && primary_release_year > 0)
-//            {
-//                content += $"&year={year}&primary_release_year={primary_release_year}";
-//            }
+        public async Task<MovieFullDetails> GetDetailsAsync(int movieId, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment("movie")
+                .AddUrlSegment($"{movieId}")
+                .AddLanguage(language)
+                .AddApiKey(apiKey);
 
-//            return DeserializeJson<MovieList>(content);
-//        }
-//        /// <summary>
-//        /// Search by actor
-//        /// </summary>
-//        /// <param name="query"></param>
-//        /// <param name="language"></param>
-//        /// <param name="page"></param>
-//        /// <param name="include_adult"></param>
-//        /// <param name="region"></param>
-//        /// <returns></returns>
-//        public async Task<MovieList> SearchByActorAsync(string query, string language = "en", int page = 1, bool include_adult = false, string region = "US")
-//        {
-//            var content = await CallApiAsync($"{Url}search/person?api_key={ApiKey}&language={language}&query={query}" +
-//                $"&page={page}&include_adult={include_adult}&region={region}").ConfigureAwait(false);
+            return await _requestHandler.ExecuteAsync<MovieFullDetails>(restRequest);
+        }
 
-//            return DeserializeJson<MovieList>(content);
-//        }
-//    }
-//}
+        public async Task<Images> GetImagesAsync(int movieId, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment("movie")
+                .AddUrlSegment($"{movieId}")
+                .AddUrlSegment("images")
+                .AddApiKey(language)
+                .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<Images>(restRequest);
+        }
+
+        public async Task<AlternativeTitle> GetAlternativeTitlesAsync(int movieId, string country = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment($"{movieId}")
+               .AddUrlSegment("alternative_titles")
+               .AddCountry(country)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<AlternativeTitle>(restRequest);
+        }
+        //not tested
+        public async Task<MovieChangeList> GetChangesAsync(int movieId, string end_date = null, string start_date = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment($"{movieId}")
+               .AddStartDate(start_date)
+               .AddEndDate(end_date)
+               .AddPage(1)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieChangeList>(restRequest);
+        }
+        //not tested
+        public async Task<MovieCredits> GetCreditsAsync(int movieId, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment($"{movieId}")
+               .AddUrlSegment("credits")
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieCredits>(restRequest);
+        }
+        //not tested
+        public async Task<MovieExternalId> GetExternalIdsAsync(int movieId, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment($"{movieId}")
+               .AddUrlSegment("external_ids")
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieExternalId>(restRequest);
+        }
+        //not tested
+        public async Task<MovieReleaseDateList> GetReleaseDatesAsync(int movieId, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment($"{movieId}")
+               .AddUrlSegment("release_dates")
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieReleaseDateList>(restRequest);
+        }
+        //not tested
+        public async Task<VideoList> GetVideosAsync(int movieId, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment($"{movieId}")
+               .AddUrlSegment("videos")
+   
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<VideoList>(restRequest);
+        }
+        //not tested
+        public async Task<TranslationList> GetTranslationsAsync(int movieId, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment($"{movieId}")
+               .AddUrlSegment("translations")
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<TranslationList>(restRequest);
+        }
+        //not tested
+        public async Task<MovieList> GetRecommendationsAsync(int movieId, string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment($"{movieId}")
+               .AddUrlSegment("recommendations")
+               .AddLanguage(language)
+               .AddPage(page)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieList>(restRequest);
+        }
+        //not tested
+        public async Task<MovieList> GetSimilarMoviesAsync(int movieId, string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment($"{movieId}")
+               .AddUrlSegment("similar")
+               .AddLanguage(language)
+               .AddPage(page)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieList>(restRequest);
+        }
+        //not tested
+        public async Task<UserReview> GetUserReviewsAsync(int movieId, string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment($"{movieId}")
+               .AddUrlSegment("reviews")
+               .AddLanguage(language)
+               .AddPage(page)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<UserReview>(restRequest);
+        }
+        //not tested
+        public async Task<MovieFullDetails> GetLatestAsync(string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment("latest")
+               .AddLanguage(language)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieFullDetails>(restRequest);
+        }
+        //not tested
+        public async Task<DatedMovieList> GetNowPlayingAsync(string region = null, string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment("now_playing")
+               .AddLanguage(language)
+               .AddPage(page)
+               .AddRegion(region)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<DatedMovieList>(restRequest);
+        }
+        //not tested
+        public async Task<MovieList> GetPopularAsync(string region = null, string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment("popular")
+               .AddLanguage(language)
+               .AddPage(page)
+               .AddRegion(region)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieList>(restRequest);
+        }
+        //not tested
+        public async Task<MovieList> GetTopRatedAsync(string region = null, string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment("top_rated")
+               .AddLanguage(language)
+               .AddPage(page)
+               .AddRegion(region)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieList>(restRequest);
+        }
+        //not tested
+        public async Task<DatedMovieList> GetUpcomingAsync(string region = null, string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("movie")
+               .AddUrlSegment("upcoming")
+               .AddLanguage(language)
+               .AddPage(page)
+               .AddRegion(region)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<DatedMovieList>(restRequest);
+        }
+        //not tested
+        public async Task<MovieList> SearchMoviesAsync(string query, string language = null, int page = 1, bool include_adult = false, string region = null,
+            int year = default, int primary_release_year = default, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("search")
+               .AddUrlSegment("movie")
+               .AddCustomQuery(query)
+               .AddLanguage()
+               .AddPage(page)
+               .AddRegion(region)
+               .AddLanguage(language)
+               .AddYear(year)
+               .AddPrimaryReleaseYear(primary_release_year)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieList>(restRequest);
+        }
+        /// <summary>
+        /// Search by actor
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="language"></param>
+        /// <param name="page"></param>
+        /// <param name="include_adult"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public async Task<MovieList> SearchByActorAsync(string query, string language = null, int page = 1, bool include_adult = false, string region = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("search")
+               .AddUrlSegment("person")
+               .AddApiKey(apiKey)
+               .AddLanguage(language)
+               .AddPage(page)
+               .AddCustomQuery(query)
+               .AddRegion(region)
+               .AddIncludeAdult();
+
+            return await _requestHandler.ExecuteAsync<MovieList>(restRequest);
+        }
+    }
+}
