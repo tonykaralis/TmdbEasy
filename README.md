@@ -40,7 +40,8 @@ public void ConfigureServices(IServiceCollection services)
     
     // Adds TmdbEasy to your app
     services.AddTmdbEasy();
-
+    
+    // Other service registrations    
     services.AddAuthentication();
 
     services.AddMvc();
@@ -51,7 +52,7 @@ public void ConfigureServices(IServiceCollection services)
 
 The `AddTmdbEasy()` method accepts an immutable options parameter that allows configuration of TmdbEasy at a global level.
 ``` csharp
-public TmdbEasyOptions(string apiKey, bool useSsl = true, string defaultLanguage = "en")
+public TmdbEasyOptions(string apiKey = null, bool useSsl = true, string defaultLanguage = "en")
 {
     ApiKey = apiKey;
     UseSsl = useSsl;
@@ -60,18 +61,78 @@ public TmdbEasyOptions(string apiKey, bool useSsl = true, string defaultLanguage
 ```
 All requests will default to using the `apiKey` and `language` properties set at this level. This can however be overriden on a *per request* basis, should your app opt to use different api keys/languages for different users.
 
+## Supported Services
+As of ***v1*** the following services are supported. We aim to add more over the coming months.
+- IMovieApi
+- IConfigApi
+- IReviewApi
+- IChangesApi
+- ICompaniesApi
+- ICollectionApi
+- ICreditApi
+- INetworksApi
+- ITelevisionApi - *Untested*
 ## Usage
+We have attempted to mirror the TMDb api as closely as possible and believe the methods are super simple to use. There really isnt that much to say. Inject the service api of your choice and off you go. Lets look at a few examples:
 
+Inject the `IMovieApi` into a controller and find a specific movie
+``` csharp
+public class MovieController : Controller
+{
+    private readonly IMovieApi _movieApi;
 
+    public HomeController(IMovieApi movieApi)
+    {
+        _movieApi = movieApi;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        int movieId = 550; //taken from the UI or wherever
+        
+        var movie = await _movieApi.GetDetailsAsync(movieId);
+
+        return View(movie);
+    }
+}
+```
+
+This time we will override the default `apiKey`and `language`.
+``` csharp
+public class MovieController : Controller
+{
+    private readonly IMovieApi _movieApi;
+    private readonly IUserService _userService;
+    
+    public HomeController(IMovieApi movieApi, IUserService userService)
+    {
+        _movieApi = movieApi;
+        _userService = userService;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        int movieId = 550; //taken from the UI or wherever
+        
+        string apiKey = "xyz123"; // tyically you'd get this from the HttpContext or Database etc
+        
+        string language = "en"; // get the users chosen language from somewhere
+        
+        var movie = await _movieApi.GetDetailsAsync(movieId, language, apiKey);
+
+        return View(movie);
+    }
+}
+```
 
 ## JSON Deserialization 
 [Newtonsoft](https://www.newtonsoft.com/json) is used for the deserialization of all http responses.
 
-If for whatever reason, you wish to use a different deserializer with TmdbEasy, this can be done easily by implementing the `IJsonDeserializer` interface and registering the implementation with your DI container.
+If for whatever reason, you wish to use a different JSON deserializer with TmdbEasy, this can be done easily by implementing the `IJsonDeserializer` interface and registering the implementation with your IOC container.
 
 ## How to contribute
 1. Fork the repo
-2. Create an account on the [The Movie Database](https://www.themoviedb.org/)
+2. Create an account on the (The Movie DB - https://www.themoviedb.org/)
 3. Get a free Api Key under Profile & Settings -> Settings -> API -> API KEY (v3 auth)
 4. Add the key as an environment variable on your machine with the name `tmdbapikey` (you'll need this to run integration tests)
 5. Make changes and test (update tests appropriately)
