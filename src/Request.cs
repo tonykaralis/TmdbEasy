@@ -81,6 +81,10 @@ namespace TmdbEasy
         /// <returns></returns>
         public Request AddApiKey(string apiKey = null)
         {
+            if (_options.ApiKey == null && apiKey == null)
+            {
+                throw new ArgumentNullException(nameof(apiKey), "No per-request nor global API key set!");
+            }
             string apiKeyToAdd = !string.IsNullOrEmpty(apiKey) ? apiKey : _options.ApiKey;
 
             return AddParameter("api_key", apiKeyToAdd);

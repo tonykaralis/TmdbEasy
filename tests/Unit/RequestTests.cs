@@ -163,6 +163,16 @@ namespace TmdbEasy.Tests.Unit
         }
 
         [Test]
+        public void AddApiKey_GlobalApiKeyUnset_NoUserApiKeyProvided_ThrowsArgumentNullException()
+        {
+            var options = new TmdbEasyOptions();
+            var request = new Request(options);
+
+            var exception = Assert.Throws<ArgumentNullException>(() => request.AddApiKey());
+            Assert.That(exception.Message, Is.EqualTo("No per-request nor global API key set! (Parameter 'apiKey')"));
+        }
+
+        [Test]
         public void AddLanguage_DefaultLanguageSet_LocalLanguageUsed_SetsLocalLanguage()
         {
             var options = new TmdbEasyOptions("apiKey", useSsl: true, _defaultLanguage);
