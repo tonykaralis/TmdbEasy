@@ -64,7 +64,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="language"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<MovieCredits> GetCreditsAsync(string tvId, string language = "en", string apiKey = null);
+        Task<MovieCredits> GetCreditsAsync(string tvId, string language = null, string apiKey = null);
         /// <summary>
         /// Get the external ids for a TV show. Support for facebook, instagram, twitter and IMDB.
         /// </summary>
@@ -72,7 +72,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="language"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<MovieExternalId> GetExternalIdsAsync(string tvId, string language = "en", string apiKey = null);
+        Task<MovieExternalId> GetExternalIdsAsync(string tvId, string language = null, string apiKey = null);
         /// <summary>
         /// Get the videos that have been added to a TV show.
         /// </summary>
@@ -80,7 +80,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="language"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<VideoList> GetVideosAsync(string tvId, string language = "en", string apiKey = null);
+        Task<VideoList> GetVideosAsync(string tvId, string language = null, string apiKey = null);
         /// <summary>
         /// Returns all translations that belong to a TV show.
         /// </summary>
@@ -96,7 +96,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="page"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<TvShowList> GetRecommendationsAsync(string tvId, string language = "en", int page = 1, string apiKey = null);
+        Task<TvShowList> GetRecommendationsAsync(string tvId, string language = null, int page = 1, string apiKey = null);
         /// <summary>
         /// Get a list of similar TV shows. This is not the same as the "Recommendation" system you see on the website.
         /// These items are assembled by looking at keywords and genres.
@@ -106,7 +106,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="page"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<TvShowList> GetSimilarTVShowsAsync(string tvId, string language = "en", int page = 1, string apiKey = null);
+        Task<TvShowList> GetSimilarTVShowsAsync(string tvId, string language = null, int page = 1, string apiKey = null);
         /// <summary>
         /// Get the user reviews for a TV show.
         /// </summary>
@@ -115,14 +115,14 @@ namespace TmdbEasy.Interfaces
         /// <param name="page"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<UserReview> GetUserReviewsAsync(string tvId, string language = "en", int page = 1, string apiKey = null);
+        Task<UserReview> GetUserReviewsAsync(string tvId, string language = null, int page = 1, string apiKey = null);
         /// <summary>
         /// Get the most newly created TV show. This is a live response and will continuously change.
         /// </summary>
         /// <param name="language"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>        
-        Task<Tv> GetLatestAsync(string language = "en", string apiKey = null);
+        Task<Tv> GetLatestAsync(string language = null, string apiKey = null);
         /// <summary>
         /// Get a list of shows that are currently on the air. This query looks for any TV show that has an episode with an air date in the next 7 days.
         /// </summary>
@@ -130,7 +130,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="page"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>        
-        Task<TvShowList> GetTVOnTheAir(string language = "en", int page = 1, string apiKey = null);
+        Task<TvShowList> GetTVOnTheAir(string language = null, int page = 1, string apiKey = null);
         /// <summary>
         /// Get a list of shows that are currently on the air. This query looks for any TV show that has an episode with an air date in the next 7 days.
         /// </summary>
@@ -138,7 +138,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="page"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<TvShowList> GetTVAiringToday(string language = "en", int page = 1, string apiKey = null);
+        Task<TvShowList> GetTVAiringToday(string language = null, int page = 1, string apiKey = null);
         /// <summary>
         /// Get a list of the current popular movies on TMDb. This list updates daily.
         /// </summary>
@@ -146,7 +146,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="page"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<TvShowList> GetPopularAsync(string language = "en", int page = 1, string apiKey = null);
+        Task<TvShowList> GetPopularAsync(string language = null, int page = 1, string apiKey = null);
         /// <summary>
         /// Get a list of the top rated TV shows on TMDb.
         /// </summary>
@@ -154,7 +154,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="page"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>        
-        Task<TvShowList> GetTopRatedAsync(string language = "en", int page = 1, string apiKey = null);
+        Task<TvShowList> GetTopRatedAsync(string language = null, int page = 1, string apiKey = null);
         /// <summary>
         /// Get the TV season details by id.
         /// </summary>
@@ -163,7 +163,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="language"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<TvSeason> GetSeasonDetailsAsync(int seasonId, int seasonNumber, string language = "en", string apiKey = null);
+        Task<TvSeason> GetSeasonDetailsAsync(int seasonId, int seasonNumber, string language = null, string apiKey = null);
         /// <summary>
         /// Get the credits for TV season.
         /// </summary>
@@ -172,7 +172,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="language"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<MovieCredits> GetSeasonCreditsAsync(int seasonId, int seasonNumber, string language = "en", string apiKey = null);
+        Task<MovieCredits> GetSeasonCreditsAsync(int seasonId, int seasonNumber, string language = null, string apiKey = null);
         /// <summary>
         /// Get the external ids for a TV season. Support for facebook, instagram, twitter and IMDB.
         /// </summary>
@@ -189,7 +189,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="language"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<Images> GetSeasonImagesAsync(int seasonId, int seasonNumber, string language = "en", string apiKey = null);
+        Task<Images> GetSeasonImagesAsync(int seasonId, int seasonNumber, string language = null, string apiKey = null);
         /// <summary>
         /// Returns all videos that belong to a TV season.
         /// </summary>
@@ -198,7 +198,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="language"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<VideoList> GetSeasonVideosAsync(int seasonId, int seasonNumber, string language = "en", string apiKey = null);
+        Task<VideoList> GetSeasonVideosAsync(int seasonId, int seasonNumber, string language = null, string apiKey = null);
         /// <summary>
         /// Returns the TV episode details by id.
         /// </summary>
@@ -208,7 +208,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="language"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<Episode> GetEpisodeDetailsAsync(int id, int seasonNumber, int episodeNumber, string language = "en", string apiKey = null);
+        Task<Episode> GetEpisodeDetailsAsync(int id, int seasonNumber, int episodeNumber, string language = null, string apiKey = null);
         /// <summary>
         /// Returns the TV episode details by id.
         /// </summary>
@@ -216,7 +216,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="seasonNumber"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<MovieCredits> GetEpisodeCreditsAsync(int id, int seasonNumber, string apiKey = null);
+        Task<MovieCredits> GetEpisodeCreditsAsync(int id, int seasonNumber, int episodeNumber, string apiKey = null);
         /// <summary>
         /// Get the external ids for a TV episode. Support for facebook, instagram, twitter and IMDB.
         /// </summary>
@@ -224,7 +224,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="seasonNumber"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<MovieExternalId> GetEpisodeExternalIdsAsync(int id, int seasonNumber, string apiKey = null);
+        Task<MovieExternalId> GetEpisodeExternalIdsAsync(int id, int seasonNumber, int episodeNumber, string apiKey = null);
         /// <summary>
         /// Returns all images that belong to a TV episode.
         /// </summary>
@@ -232,7 +232,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="seasonNumber"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<Images> GetEpisodeImagesAsync(int id, int seasonNumber, string apiKey = null);
+        Task<Images> GetEpisodeImagesAsync(int id, int seasonNumber, int episodeNumber, string apiKey = null);
         /// <summary>
         /// Returns the translation data for an episode.
         /// </summary>
@@ -240,7 +240,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="seasonNumber"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<TranslationList> GetEpisodeTranslationsAsync(int id, int seasonNumber, string apiKey = null);
+        Task<TranslationList> GetEpisodeTranslationsAsync(int id, int seasonNumber, int episodeNumber, string apiKey = null);
         /// <summary>
         /// Returns all the videos that have been added to a TV episode.
         /// </summary>
@@ -250,7 +250,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="language"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<VideoList> GetSeasonVideosAsync(int id, int seasonNumber, int episodeNumber, string language = "en", string apiKey = null);
+        Task<VideoList> GetSeasonVideosAsync(int id, int seasonNumber, int episodeNumber, string language = null, string apiKey = null);
         /// <summary>
         /// Search for a TV show.
         /// </summary>
@@ -260,6 +260,6 @@ namespace TmdbEasy.Interfaces
         /// <param name="first_air_date_year">The first air date year.</param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<TvShowList> SearchTVShowsAsync(string query, string language = "en", int page = 1, int first_air_date_year = 0, string apiKey = null);
+        Task<TvShowList> SearchTVShowsAsync(string query, string language = null, int page = 1, int first_air_date_year = 0, string apiKey = null);
     }
 }
