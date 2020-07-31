@@ -1,210 +1,407 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using TMdbEasy.ApiInterfaces;
-//using TMdbEasy.TmdbObjects.Changes;
-//using TMdbEasy.TmdbObjects.Images;
-//using TMdbEasy.TmdbObjects.Language;
-//using TMdbEasy.TmdbObjects.Movies;
-//using TMdbEasy.TmdbObjects.Other;
-//using TMdbEasy.TmdbObjects.TV;
-//using TMdbEasy.TmdbObjects.Certifications;
-//using static TMdbEasy.REngine;
+﻿using System.Threading.Tasks;
+using TmdbEasy.DTO.Certifications;
+using TmdbEasy.DTO.Changes;
+using TmdbEasy.DTO.Images;
+using TmdbEasy.DTO.Language;
+using TmdbEasy.DTO.Movies;
+using TmdbEasy.DTO.Other;
+using TmdbEasy.DTO.Reviews;
+using TmdbEasy.DTO.Television;
+using TmdbEasy.DTO.TV;
+using TmdbEasy.Extensions;
+using TmdbEasy.Interfaces;
 
+namespace TMdbEasy.ApiObjects
+{
+    public class TelevisionApi : ITelevisionApi
+    {
+        private readonly IRequestHandler _requestHandler;
 
-//namespace TMdbEasy.ApiObjects
-//{
-//    sealed class TelevisionApi : ITelevisionApi
-//    {
-//        public async Task<Tv> GetDetailsAsync(int id, string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<Tv>(content);
-//        }
+        public TelevisionApi(IRequestHandler requestHandler)
+        {
+            _requestHandler = requestHandler;
+        }
 
-//        public async Task<TvRatingList> GetContentRatingsAsync(int id, string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/content_ratings?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<TvRatingList>(content);
-//        }
+        public async Task<Tv> GetDetailsAsync(string tvId, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment("tv")
+                .AddUrlSegment($"{tvId}")
+                .AddLanguage(language)
+                .AddApiKey(apiKey);
 
-//        public async Task<Images> GetImagesAsync(int id, string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/images?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<Images>(content);
-//        }
+            return await _requestHandler.ExecuteAsync<Tv>(restRequest);
+        }
 
-//        public async Task<AlternativeTitle> GetAlternativeTitlesAsync(int id, string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/alternative_titles?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<AlternativeTitle>(content);
-//        }
-//        //not tested
-//        public async Task<TVChangeList> GetChangesAsync(int id, string start_date, string end_date, int page)
-//        {
-//            string query = $"{Url}tv/{id}/changes?api_key={ApiKey}";
-//            query.BuildDates(start_date, end_date);
-//            query += $"&page={page}";
-//            var content = await CallApiAsync(query).ConfigureAwait(false);
-//            return DeserializeJson<TVChangeList>(content);
-//        }
-//        //not tested
-//        public async Task<MovieCredits> GetCreditsAsync(int id, string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/credits?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<MovieCredits>(content);
-//        }
+        public async Task<TvRatingList> GetContentRatingsAsync(string tvId, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment("tv")
+                .AddUrlSegment($"{tvId}")
+                .AddUrlSegment("content_ratings")
+                .AddLanguage(language)
+                .AddApiKey(apiKey);
 
-//        public async Task<MovieExternalId> GetExternalIdsAsync(int id, string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/external_ids?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<MovieExternalId>(content);
-//        }
-//        //not tested
-//        public async Task<VideoList> GetVideosAsync(int id, string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/videos?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<VideoList>(content);
-//        }
-//        //not tested
-//        public async Task<TranslationsList> GetTranslationsAsync(int id)
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/translations?api_key={ApiKey}").ConfigureAwait(false);
-//            return DeserializeJson<TranslationsList>(content);
-//        }
-//        //not tested
-//        public async Task<TVShowList> GetRecommendationsAsync(int id, string language = "en", int page = 1)
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/recommendations?api_key={ApiKey}&language={language}&page={page}").ConfigureAwait(false);
-//            return DeserializeJson<TVShowList>(content);
-//        }
-//        //not tested
-//        public async Task<TVShowList> GetSimilarTVShowsAsync(int id, string language = "en", int page = 1)
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/similar?api_key={ApiKey}&language={language}&page={page}").ConfigureAwait(false);
-//            return DeserializeJson<TVShowList>(content);
-//        }
-//        //not tested
-//        public async Task<UserReviews> GetUserReviewsAsync(int id, string language = "en", int page = 1)
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/reviews?api_key={ApiKey}&language={language}&page={page}").ConfigureAwait(false);
-//            return DeserializeJson<UserReviews>(content);
-//        }
-//        //not tested
-//        public async Task<Tv> GetLatestAsync(string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}tv/latest?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<Tv>(content);
-//        }
+            return await _requestHandler.ExecuteAsync<TvRatingList>(restRequest);
+        }
 
-//        public async Task<TVShowList> GetTVOnTheAir(string language = "en", int page = 1)
-//        {
-//            var content = await CallApiAsync($"{Url}tv/on_the_air?api_key={ApiKey}&language={language}&page={page}").ConfigureAwait(false);
-//            return DeserializeJson<TVShowList>(content);
-//        }
+        public async Task<Images> GetImagesAsync(string tvId, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment("tv")
+                .AddUrlSegment($"{tvId}")
+                .AddUrlSegment("images")
+                .AddLanguage(language)
+                .AddApiKey(apiKey);
 
-//        public async Task<TVShowList> GetTVAiringToday(string language = "en", int page = 1)
-//        {
-//            var content = await CallApiAsync($"{Url}tv/airing_today?api_key={ApiKey}&language={language}&page={page}").ConfigureAwait(false);
-//            return DeserializeJson<TVShowList>(content);
-//        }
+            return await _requestHandler.ExecuteAsync<Images>(restRequest);
+        }
 
-//        public async Task<TVShowList> GetPopularAsync(string language = "en", int page = 1)
-//        {
-//            var content = await CallApiAsync($"{Url}tv/popular?api_key={ApiKey}&language={language}&page={page}").ConfigureAwait(false);
-//            return DeserializeJson<TVShowList>(content);
-//        }
-//        //not tested
-//        public async Task<TVShowList> GetTopRatedAsync(string language = "en", int page = 1)
-//        {
-//            var content = await CallApiAsync($"{Url}tv/top_rated?api_key={ApiKey}&language={language}&page={page}").ConfigureAwait(false);
-//            return DeserializeJson<TVShowList>(content);
-//        }
+        public async Task<AlternativeTitle> GetAlternativeTitlesAsync(string tvId, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment("tv")
+                .AddUrlSegment($"{tvId}")
+                .AddUrlSegment("alternative_titles")
+                .AddLanguage(language)
+                .AddApiKey(apiKey);
 
-//        public async Task<TvSeason> GetSeasonDetailsAsync(int id, int seasonNumber, string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/season/{seasonNumber}?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<TvSeason>(content);
-//        }
-//        //not tested
-//        public async Task<MovieCredits> GetSeasonCreditsAsync(int id, int seasonNumber, string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/season/{seasonNumber}/credits?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<MovieCredits>(content);
-//        }
-//        //not tested
-//        public async Task<MovieExternalId> GetSeasonExternalIdsAsync(int id, int seasonNumber)
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/season/{seasonNumber}/external_ids?api_key={ApiKey}").ConfigureAwait(false);
-//            return DeserializeJson<MovieExternalId>(content);
-//        }
+            return await _requestHandler.ExecuteAsync<AlternativeTitle>(restRequest);
+        }
+        //not tested
+        public async Task<ChangeList> GetChangesAsync(int tvId, string start_date = null, string end_date = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment("tv")
+                .AddUrlSegment($"{tvId}")
+                .AddUrlSegment("changes")
+                .AddPage(page)
+                .AddStartDate(start_date)
+                .AddEndDate(end_date)
+                .AddApiKey(apiKey);
 
-//        public async Task<Images> GetSeasonImagesAsync(int id, int seasonNumber, string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/season/{seasonNumber}/images?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<Images>(content);
-//        }
-//        //not tested
-//        public async Task<VideoList> GetSeasonVideosAsync(int id, int seasonNumber, string language = "en")
-//        {
-//            var content = await CallApiAsync($"{Url}tv/{id}/season/{seasonNumber}/videos?api_key={ApiKey}&language={language}").ConfigureAwait(false);
-//            return DeserializeJson<VideoList>(content);
-//        }
+            return await _requestHandler.ExecuteAsync<ChangeList>(restRequest);
+        }
+        //not tested
+        public async Task<MovieCredits> GetCreditsAsync(string tvId, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("tv")
+               .AddUrlSegment($"{tvId}")
+               .AddUrlSegment("credits")
+               .AddLanguage(language)
+               .AddApiKey(apiKey);
 
-//        public async Task<Episode> GetEpisodeDetailsAsync(int id, int seasonNumber, int episodeNumber, string language = "en")
-//        {
-//            string query = $"{Url}tv/{id}/season/{seasonNumber}/episode/{episodeNumber}?api_key={ApiKey}&language={language}";
-//            var content = await CallApiAsync(query).ConfigureAwait(false);
-//            return DeserializeJson<Episode>(content);
-//        }
-//        //not tested
-//        public async Task<MovieCredits> GetEpisodeCreditsAsync(int id, int seasonNumber, int episodeNumber)
-//        {
-//            string query = $"{Url}tv/{id}/season/{seasonNumber}/episode/{episodeNumber}/credits?api_key={ApiKey}";
-//            var content = await CallApiAsync(query).ConfigureAwait(false);
-//            return DeserializeJson<MovieCredits>(content);
-//        }
-//        //not tested
-//        public async Task<MovieExternalId> GetEpisodeExternalIdsAsync(int id, int seasonNumber, int episodeNumber)
-//        {
-//            string query = $"{Url}tv/{id}/season/{seasonNumber}/episode/{episodeNumber}/external_ids?api_key={ApiKey}";
-//            var content = await CallApiAsync(query).ConfigureAwait(false);
-//            return DeserializeJson<MovieExternalId>(content);
-//        }
-//        //not tested
-//        public async Task<Images> GetEpisodeImagesAsync(int id, int seasonNumber, int episodeNumber)
-//        {
-//            string query = $"{Url}tv/{id}/season/{seasonNumber}/episode/{episodeNumber}/images?api_key={ApiKey}";
-//            var content = await CallApiAsync(query).ConfigureAwait(false);
-//            return DeserializeJson<Images>(content);
-//        }
+            return await _requestHandler.ExecuteAsync<MovieCredits>(restRequest);
+        }
 
-//        public async Task<TranslationsList> GetEpisodeTranslationsAsync(int id, int seasonNumber, int episodeNumber)
-//        {
-//            string query = $"{Url}tv/{id}/season/{seasonNumber}/episode/{episodeNumber}/translations?api_key={ApiKey}";
-//            var content = await CallApiAsync(query).ConfigureAwait(false);
-//            return DeserializeJson<TranslationsList>(content);
-//        }
-//        //not tested
-//        public async Task<VideoList> GetSeasonVideosAsync(int id, int seasonNumber, int episodeNumber, string language = "en")
-//        {
-//            string query = $"{Url}tv/{id}/season/{seasonNumber}/episode/{episodeNumber}/videos?api_key={ApiKey}&language={language}";
-//            var content = await CallApiAsync(query).ConfigureAwait(false);
-//            return DeserializeJson<VideoList>(content);
-//        }
+        public async Task<MovieExternalId> GetExternalIdsAsync(string tvId, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("tv")
+               .AddUrlSegment($"{tvId}")
+               .AddUrlSegment("external_ids")
+               .AddLanguage(language)
+               .AddApiKey(apiKey);
 
-//        public async Task<TVShowList> SearchTVShowsAsync(string query, string language = "en", int page = 1, int first_air_date_year = 0)
-//        {
-//            var content = await CallApiAsync($"{Url}search/tv?api_key={ApiKey}&language={language}&query={query}" +
-//                $"&page={page}").ConfigureAwait(false);
-//            if (first_air_date_year > 0)
-//            {
-//                content += $"&first_air_date_year={first_air_date_year}";
-//            }
+            return await _requestHandler.ExecuteAsync<MovieExternalId>(restRequest);
+        }
+        //not tested
+        public async Task<VideoList> GetVideosAsync(string tvId, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+              .CreateRequest()
+              .AddUrlSegment("tv")
+              .AddUrlSegment($"{tvId}")
+              .AddUrlSegment("videos")
+              .AddLanguage(language)
+              .AddApiKey(apiKey);
 
-//            return DeserializeJson<TVShowList>(content);
-//        }
-//    }
-//}
+            return await _requestHandler.ExecuteAsync<VideoList>(restRequest);
+        }
+        //not tested
+        public async Task<TranslationList> GetTranslationsAsync(string tvId, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+              .CreateRequest()
+              .AddUrlSegment("tv")
+              .AddUrlSegment($"{tvId}")
+              .AddUrlSegment("translations")
+              .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<TranslationList>(restRequest);
+        }
+        //not tested
+        public async Task<TvShowList> GetRecommendationsAsync(string tvId, string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("tv")
+               .AddUrlSegment($"{tvId}")
+               .AddUrlSegment("recommendations")
+               .AddLanguage(language)
+               .AddPage(page)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<TvShowList>(restRequest);
+        }
+        //not tested
+        public async Task<TvShowList> GetSimilarTVShowsAsync(string tvId, string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+              .CreateRequest()
+              .AddUrlSegment("tv")
+              .AddUrlSegment($"{tvId}")
+              .AddUrlSegment("similar")
+              .AddLanguage(language)
+              .AddPage(page)
+              .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<TvShowList>(restRequest);
+        }
+        //not tested
+        public async Task<UserReview> GetUserReviewsAsync(string tvId, string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+              .CreateRequest()
+              .AddUrlSegment("tv")
+              .AddUrlSegment($"{tvId}")
+              .AddUrlSegment("reviews")
+              .AddLanguage(language)
+              .AddPage(page)
+              .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<UserReview>(restRequest);
+        }
+        //not tested
+        public async Task<Tv> GetLatestAsync(string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("tv")
+               .AddUrlSegment("latest")
+               .AddLanguage(language)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<Tv>(restRequest);
+        }
+        //not tested
+        public async Task<TvShowList> GetTVOnTheAir(string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment("tv")
+               .AddUrlSegment("on_the_air")
+               .AddLanguage(language)
+               .AddPage(page)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<TvShowList>(restRequest);
+        }
+        //not tested
+        public async Task<TvShowList> GetTVAiringToday(string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+              .CreateRequest()
+              .AddUrlSegment("tv")
+              .AddUrlSegment("airing_today")
+              .AddLanguage(language)
+              .AddPage(page)
+              .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<TvShowList>(restRequest);
+        }
+        //not tested
+        public async Task<TvShowList> GetPopularAsync(string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+              .CreateRequest()
+              .AddUrlSegment("tv")
+              .AddUrlSegment("popular")
+              .AddLanguage(language)
+              .AddPage(page)
+              .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<TvShowList>(restRequest);
+        }
+        //not tested
+        public async Task<TvShowList> GetTopRatedAsync(string language = null, int page = 1, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+              .CreateRequest()
+              .AddUrlSegment("tv")
+              .AddUrlSegment("top_rated")
+              .AddLanguage(language)
+              .AddPage(page)
+              .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<TvShowList>(restRequest);
+        }
+        //not tested
+        public async Task<TvSeason> GetSeasonDetailsAsync(int tvId, int seasonNumber, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment($"tv/{tvId}")
+               .AddUrlSegment($"season/{seasonNumber}")
+               .AddLanguage(language)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<TvSeason>(restRequest);
+
+        }
+        //not tested
+        public async Task<MovieCredits> GetSeasonCreditsAsync(int tvId, int seasonNumber, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+               .CreateRequest()
+               .AddUrlSegment($"tv/{tvId}")
+               .AddUrlSegment($"season/{seasonNumber}")
+               .AddUrlSegment("credits")
+               .AddLanguage(language)
+               .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieCredits>(restRequest);
+
+        }
+        //not tested
+        public async Task<MovieExternalId> GetSeasonExternalIdsAsync(int tvId, int seasonNumber, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+              .CreateRequest()
+              .AddUrlSegment($"tv/{tvId}")
+              .AddUrlSegment($"season/{seasonNumber}")
+              .AddUrlSegment("external_ids")
+              .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieExternalId>(restRequest);
+        }
+        //not tested
+        public async Task<Images> GetSeasonImagesAsync(int tvId, int seasonNumber, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+            .CreateRequest()
+            .AddUrlSegment($"tv/{tvId}")
+            .AddUrlSegment($"season/{seasonNumber}")
+            .AddUrlSegment($"images")
+            .AddLanguage(language)
+            .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<Images>(restRequest);
+        }
+        //not tested
+        public async Task<VideoList> GetSeasonVideosAsync(int tvId, int seasonNumber, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment($"tv/{tvId}")
+                .AddUrlSegment($"season/{seasonNumber}")
+                .AddUrlSegment($"videos")
+                .AddLanguage(language)
+                .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<VideoList>(restRequest);
+        }
+
+        public async Task<Episode> GetEpisodeDetailsAsync(int tvId, int seasonNumber, int episodeNumber, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment($"tv/{tvId}")
+                .AddUrlSegment($"season/{seasonNumber}")
+                .AddUrlSegment($"episode/{episodeNumber}")
+                .AddLanguage(language)
+                .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<Episode>(restRequest);
+        }
+        //not tested
+        public async Task<MovieCredits> GetEpisodeCreditsAsync(int tvId, int seasonNumber, int episodeNumber, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment($"tv/{tvId}")
+                .AddUrlSegment($"season/{seasonNumber}")
+                .AddUrlSegment($"episode/{episodeNumber}")
+                .AddUrlSegment($"credits")
+                .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieCredits>(restRequest);
+        }
+        //not tested
+        public async Task<MovieExternalId> GetEpisodeExternalIdsAsync(int tvId, int seasonNumber, int episodeNumber, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment($"tv/{tvId}")
+                .AddUrlSegment($"season/{seasonNumber}")
+                .AddUrlSegment($"episode/{episodeNumber}")
+                .AddUrlSegment("external_ids")
+                .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<MovieExternalId>(restRequest);
+        }
+        //not tested
+        public async Task<Images> GetEpisodeImagesAsync(int tvId, int seasonNumber, int episodeNumber, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment($"tv/{tvId}")
+                .AddUrlSegment($"season/{seasonNumber}")
+                .AddUrlSegment($"episode/{episodeNumber}")
+                .AddUrlSegment("images")
+                .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<Images>(restRequest);
+        }
+
+        public async Task<TranslationList> GetEpisodeTranslationsAsync(int tvId, int seasonNumber, int episodeNumber, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment($"tv/{tvId}")
+                .AddUrlSegment($"season/{seasonNumber}")
+                .AddUrlSegment($"episode/{episodeNumber}")
+                .AddUrlSegment($"translations")
+                .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<TranslationList>(restRequest);
+        }
+        //not tested
+        public async Task<VideoList> GetSeasonVideosAsync(int tvId, int seasonNumber, int episodeNumber, string language = null, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment($"tv/{tvId}")
+                .AddUrlSegment($"season/{seasonNumber}")
+                .AddUrlSegment($"episode/{episodeNumber}")
+                .AddUrlSegment($"videos")
+                .AddLanguage(language)
+                .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<VideoList>(restRequest);
+        }
+
+        public async Task<TvShowList> SearchTVShowsAsync(string query, string language = null, int page = 1, int first_air_date_year = 0, string apiKey = null)
+        {
+            var restRequest = _requestHandler
+                .CreateRequest()
+                .AddUrlSegment("search")
+                .AddUrlSegment("tv")
+                .AddLanguage(language)
+                .AddCustomQuery(query)
+                .AddFirstAirDateYear(first_air_date_year)
+                .AddPage(page)
+                .AddApiKey(apiKey);
+
+            return await _requestHandler.ExecuteAsync<TvShowList>(restRequest);
+        }
+    }
+}
