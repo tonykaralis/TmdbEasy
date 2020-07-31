@@ -127,5 +127,25 @@ namespace TmdbEasy.Tests.Unit
 
             Assert.IsEmpty(request.GetUri());
         }
+
+        [Test]
+        public void AddFirstAirDateYear_ValueGreaterThanZero_AddsCorrectParameter()
+        {
+            var request = new Request(_defaultOptions);
+
+            request.AddFirstAirDateYear(1000);
+
+            Assert.AreEqual($"?first_air_date_year=1000", request.GetUri());
+        }
+
+        [Test]
+        public void AddFirstAirDateYear_ValueLessThanZero_DoesNotAddParameter()
+        {
+            var request = new Request(_defaultOptions);
+
+            request.AddFirstAirDateYear(0);
+
+            Assert.IsEmpty(request.GetUri());
+        }
     }
 }
