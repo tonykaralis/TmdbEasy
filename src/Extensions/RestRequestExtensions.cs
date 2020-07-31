@@ -56,5 +56,15 @@
 
             return request;
         }
+
+        public static Request AddFirstAirDateYear(this Request request, int firstAirDateYear)
+        {
+            if (firstAirDateYear > 0)
+            {
+                return request.AddParameter("first_air_date_year", $"{firstAirDateYear}");
+            }
+
+            return request;
+        }
     }
 }
