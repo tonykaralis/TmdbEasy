@@ -8,7 +8,7 @@ namespace TmdbEasy
 {
     public static class TmdbEasyServiceCollectionExtensions
     {
-        public static IServiceCollection AddTmdbEasyClient(this IServiceCollection serviceCollection, TmdbEasyOptions options)
+        public static IServiceCollection AddTmdbEasy(this IServiceCollection serviceCollection, TmdbEasyOptions options)
         {
             var sessionDescriptor = new ServiceDescriptor(
                     typeof(ITmdbEasyClient), c =>
@@ -21,19 +21,18 @@ namespace TmdbEasy
 
             serviceCollection.TryAdd(sessionDescriptor);
 
-            return serviceCollection;
-        }
-
-        public static IServiceCollection UseTmdbEasyApiv3(this IServiceCollection serviceCollection)
-        {
             serviceCollection.AddScoped<IRequestHandler, RequestHandler>();
-            serviceCollection.AddScoped<IJsonDeserializer, NewtonSoftDeserializer>();            
+            serviceCollection.AddScoped<IJsonDeserializer, NewtonSoftDeserializer>();
 
             serviceCollection.AddScoped<IReviewApi, ReviewApi>();
             serviceCollection.AddScoped<IChangesApi, ChangesApi>();
             serviceCollection.AddScoped<ICompaniesApi, CompaniesApi>();
             serviceCollection.AddScoped<ICollectionApi, CollectionApi>();
             serviceCollection.AddScoped<IConfigApi, ConfigApi>();
+            serviceCollection.AddScoped<ICreditApi, CreditApi>();
+            serviceCollection.AddScoped<IMovieApi, MovieApi>();
+            serviceCollection.AddScoped<INetworksApi, NetworksApi>();
+            serviceCollection.AddScoped<ITelevisionApi, TelevisionApi>();
 
             return serviceCollection;
         }
