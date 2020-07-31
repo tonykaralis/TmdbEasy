@@ -11,7 +11,7 @@ using TmdbEasy.DTO.TV;
 using TmdbEasy.Extensions;
 using TmdbEasy.Interfaces;
 
-namespace TMdbEasy.ApiObjects
+namespace TmdbEasy.Apis
 {
     public class TelevisionApi : ITelevisionApi
     {
