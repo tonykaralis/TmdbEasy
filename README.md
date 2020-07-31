@@ -150,4 +150,4 @@ TmdbEasy is provided as-is under the MIT license. For more information see [LICE
 All film-related data and metadata gathered via this library is supplied by [The Movie Database](https://www.themoviedb.org/) (TMDb).
 TmdbEasy uses the TMDb API but is not endorsed or certified in any way by TMDb.
 
-![https://www.themoviedb.org/](https://github.com/tonykaralis/TMdbEasy/blob/v1-refactor/TheMovieDb-logo.png)
+![https://www.themoviedb.org/](https://github.com/tonykaralis/TMdbEasy/blob/master/TheMovieDb-logo.png)
