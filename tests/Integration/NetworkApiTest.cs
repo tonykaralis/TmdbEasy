@@ -8,7 +8,7 @@ using TmdbEasy.Tests.Integration.TestFixtures;
 namespace TmdbEasy.Tests.Integration
 {
     [Category("NetworkApi")]
-    internal class NetworkApiTest : TestBaseForV3
+    internal class NetworkApiTest : TestBase
     {       
         [TestCase(213)]
         public async Task GetDetailsAsync_ValidId_CustomApiKey_ReturnsValidResult(int id)

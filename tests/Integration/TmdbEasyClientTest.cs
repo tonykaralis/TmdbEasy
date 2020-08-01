@@ -12,12 +12,12 @@ namespace TmdbEasy.Tests.Integration
 {
     [TestFixture]
     [Category("TmdbEasyClient")]
-    public class TmdbEasyClientTest : TestBaseForV3
+    public class TmdbEasyClientTest : TestBase
     {
         [TestCase("5488c29bc3a3686f4a00004a")]
         public async Task GetResponseAsync_WithApiKey_ReturnsResult(string reviewId)
         {
-            ITmdbEasyClient client = GetTestV3Client();
+            ITmdbEasyClient client = GetTestClient();
             var options = GetDefaultOptions(sharedApiKey: null);
 
             string queryString = $"review/{reviewId}?api_key={GetApiKey()}";
@@ -31,7 +31,7 @@ namespace TmdbEasy.Tests.Integration
         [TestCase("5488c29bc3a3686f4a00004a")]
         public void GetResponseAsync_WithNoApiKey_ThrowsHttpRequestException_With_401Message(string reviewId)
         {
-            ITmdbEasyClient clientWithNoApiKey = GetTestV3Client();
+            ITmdbEasyClient clientWithNoApiKey = GetTestClient();
             var options = GetDefaultOptions(sharedApiKey: null);
 
             string queryStringWithNoApiKey = $"review/{reviewId}";
@@ -45,7 +45,7 @@ namespace TmdbEasy.Tests.Integration
         [TestCase(null)]
         public void GetResponseAsync_NullOrEmptyQuery_ThrowsArgumentException(string query)
         {
-            ITmdbEasyClient client = GetTestV3Client();
+            ITmdbEasyClient client = GetTestClient();
 
             Assert.ThrowsAsync<ArgumentException>(() => client.GetResponseAsync<Review>(query));
         }

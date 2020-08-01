@@ -10,7 +10,7 @@ namespace TmdbEasy.Tests.Integration
 {
     [TestFixture]
     [Category("MovieApi")]
-    internal class MovieApiTest : TestBaseForV3
+    internal class MovieApiTest : TestBase
     {
         [TestCase(505)]
         public async Task GetDetailsAsync_ValidId_CustomApiKey_ReturnsValidResult(int id)

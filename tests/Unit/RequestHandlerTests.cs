@@ -17,7 +17,7 @@ namespace TmdbEasy.Tests.Unit
         [Test]
         public void CreateRequest_CreatesValidRequest()
         {
-            var handlerUnderTest = new RequestHandler(new TmdbEasyClientv3(null, new TmdbEasyOptions("apiKey")));
+            var handlerUnderTest = new RequestHandler(new TmdbEasyClient(null, new TmdbEasyOptions("apiKey")));
 
             Request request = handlerUnderTest.CreateRequest();
 

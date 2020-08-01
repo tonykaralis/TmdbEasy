@@ -8,7 +8,7 @@ using TmdbEasy.Tests.Integration.TestFixtures;
 namespace TmdbEasy.Tests.Integration
 {
     [Category("CreditApi")]
-    internal class CreditApiTest : TestBaseForV3
+    internal class CreditApiTest : TestBase
     {
         [TestCase("52542282760ee313280017f9")]
         public async Task GetDetailsAsync_ValidId_CustomApiKey_ReturnsValidResult(string id)

@@ -11,7 +11,7 @@ namespace TmdbEasy.Tests.Integration
 {
     [TestFixture]
     [Category("ConfigApi")]
-    public class ConfigApiTest : TestBaseForV3
+    public class ConfigApiTest : TestBase
     {
         [Test]
         public async Task GetConfigurationAsync_ReturnsConfiguration()

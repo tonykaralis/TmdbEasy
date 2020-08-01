@@ -10,7 +10,7 @@ namespace TmdbEasy.Tests.Integration
 {
     [TestFixture]
     [Category("CollectionApi")]
-    public class CollectionApiTest : TestBaseForV3
+    public class CollectionApiTest : TestBase
     {
         [TestCase(10)]
         public async Task GetDetailsAsync_ValidId_ReturnsValidResult(int id)

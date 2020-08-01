@@ -9,7 +9,7 @@ namespace TmdbEasy.Tests.Integration
 {
     [TestFixture]
     [Category("ReviewApi")]
-    public class ReviewApiTest : TestBaseForV3
+    public class ReviewApiTest : TestBase
     {
         [TestCase("5488c29bc3a3686f4a00004a")]
         public async Task GetDetailsAsync_WithUserApiKey_ExistingId_ReturnsReview(string reviewId)
@@ -31,7 +31,7 @@ namespace TmdbEasy.Tests.Integration
         {
             string sharedApiKey = GetApiKey();
 
-            ITmdbEasyClient client = GetTestV3Client(sharedApiKey);
+            ITmdbEasyClient client = GetTestClient(sharedApiKey);
 
             var _requestHandler = new RequestHandler(client);
 

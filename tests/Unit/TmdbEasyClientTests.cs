@@ -6,11 +6,11 @@ using TmdbEasy.Interfaces;
 namespace TmdbEasy.Tests.Unit
 {
     [TestFixture]
-    public class V3TmdbEasyClientTests
+    public class TmdbEasyClientTests
     {
         private readonly IJsonDeserializer _jsonDeserializer;
 
-        public V3TmdbEasyClientTests()
+        public TmdbEasyClientTests()
         {
             _jsonDeserializer = new NewtonSoftDeserializer();
         }
@@ -20,7 +20,7 @@ namespace TmdbEasy.Tests.Unit
         {
             TmdbEasyOptions options = null;
 
-            Assert.Throws<ArgumentNullException>(() => new TmdbEasyClientv3(_jsonDeserializer, options));
+            Assert.Throws<ArgumentNullException>(() => new TmdbEasyClient(_jsonDeserializer, options));
         }
     }
 }

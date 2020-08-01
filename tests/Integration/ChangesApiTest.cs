@@ -10,7 +10,7 @@ namespace TmdbEasy.Tests.Integration
 {
     [TestFixture]
     [Category("ChangesApi")]
-    public class ChangesApiTest : TestBaseForV3
+    public class ChangesApiTest : TestBase
     {
         [Test]
         public async Task GetChangeListAsync_SpecificDateRange_ReturnsChangeList()

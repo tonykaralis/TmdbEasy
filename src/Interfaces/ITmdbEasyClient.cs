@@ -7,8 +7,6 @@ namespace TmdbEasy.Interfaces
     {
         TmdbEasyOptions Options { get; }
 
-        ApiVersion GetVersion();
-
         Task<TmdbEasyModel> GetResponseAsync<TmdbEasyModel>(string query);
     }
 }
