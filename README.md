@@ -24,29 +24,19 @@ dotnet add package TMdbEasy
 
 ## .NET Core Configuration
 
-If your application uses an IOC container then the simplest and advised way to set up TmdbEasy is to register all the key services with the IOC container. *TmdbEasy also works just fine with apps that dont use an IOC container.*
+If your application uses an IOC container then the simplest and advised way to set up TmdbEasy is to register all the key services with the IOC container. *TmdbEasy also works just fine with apps that don't use an IOC container.*
 
 TmdbEasy comes with baked in support for ASP.NET Core's default IOC container via an extension method called `AddTmdbEasy()`.
 
 Using the method as shown below will register all the required TmdbEasy services for you.
 ``` csharp
 public void ConfigureServices(IServiceCollection services)
-{
-    services.Configure<CookiePolicyOptions>(options =>
-    {
-        options.CheckConsentNeeded = context => true;
-        options.MinimumSameSitePolicy = SameSiteMode.None;
-    });
+{   
+    // Typically get these options from IConfiguration, Environment variables etc
+    var options = new TmdbEasyOptions();
     
     // Adds TmdbEasy to your app
-    services.AddTmdbEasy();
-    
-    // Other service registrations    
-    services.AddAuthentication();
-
-    services.AddMvc();
-
-    services.AddAntiforgery();
+    services.AddTmdbEasy(options);
 }
 ```
 
@@ -63,17 +53,18 @@ All requests will default to using the `apiKey` and `language` properties set at
 
 ## Supported Services
 As of ***v1*** the following services are supported. We aim to add more over the coming months.
-- IMovieApi
-- IConfigApi
-- IReviewApi
-- IChangesApi
-- ICompaniesApi
-- ICollectionApi
-- ICreditApi
-- INetworksApi
-- ITelevisionApi - *Untested*
+- [IMovieApi](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/IMovieApi.cs)
+- [IConfigApi](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/IConfigApi.cs)
+- [IReviewApi](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/IReviewApi.cs)
+- [IChangesApi](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/IChangesApi.cs)
+- [ICompaniesApi](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/ICompaniesApi.cs)
+- [ICollectionApi](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/ICollectionApi.cs)
+- [ICreditApi](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/ICreditApi.cs)
+- [INetworksApi](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/INetworksApi.cs)
+- [ITelevisionApi - *Untested*](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/ITelevisionApi.cs)
+
 ## Usage
-We have attempted to mirror the TMDb api as closely as possible and believe the methods are super simple to use. There really isnt that much to say. Inject the service api of your choice and off you go. Lets look at a few examples:
+We have attempted to mirror the TMDb api as closely as possible and believe the methods are super simple to use. There really isn't that much to say. Inject the service api of your choice and off you go. Lets look at a few examples:
 
 Inject the `IMovieApi` into a controller and find a specific movie
 ``` csharp
@@ -97,17 +88,15 @@ public class MovieController : Controller
 }
 ```
 
-This time we will override the default `apiKey`and `language`.
+This time we override the default `apiKey`and `language`.
 ``` csharp
 public class MovieController : Controller
 {
     private readonly IMovieApi _movieApi;
-    private readonly IUserService _userService;
     
-    public HomeController(IMovieApi movieApi, IUserService userService)
+    public HomeController(IMovieApi movieApi)
     {
         _movieApi = movieApi;
-        _userService = userService;
     }
 
     public async Task<IActionResult> Index()
@@ -116,7 +105,7 @@ public class MovieController : Controller
         
         string apiKey = "xyz123"; // tyically you'd get this from the HttpContext or Database etc
         
-        string language = "en"; // get the users chosen language from somewhere
+        string language = "en"; // get the users chosen language from somewhere or set a default
         
         var movie = await _movieApi.GetDetailsAsync(movieId, language, apiKey);
 
