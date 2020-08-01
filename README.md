@@ -8,7 +8,7 @@
 
 [![License](https://badgen.net/badge/license/MIT/blue)](LICENSE)
 
-A simple and lightweight class library that wraps [The Movie Database](https://www.themoviedb.org/) api and makes it super easy to get movie/tv/actor data and more.
+A simple and lightweight library that wraps [The Movie Database](https://www.themoviedb.org/) api and makes it super easy to get movie/tv/actor data and more.
 
 ## Installation
 
