@@ -9,7 +9,7 @@ namespace TmdbEasy.Configurations
             ApiKey = apiKey;
             UseSsl = useSsl;
             DefaultLanguage = defaultLanguage;
-            JsonDeserializer = customJsonSerializer;
+            JsonDeserializer = customJsonSerializer ?? new NewtonSoftDeserializer();
         }
 
         internal string ApiKey { get; }

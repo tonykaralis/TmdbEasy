@@ -15,7 +15,7 @@ namespace TmdbEasy
         {          
             Options = options ?? throw new ArgumentNullException(nameof(options));
 
-            _jsonDeserializer = options.JsonDeserializer ?? new NewtonSoftDeserializer();
+            _jsonDeserializer = options.JsonDeserializer;
 
             _httpClient = new HttpClient()
             {

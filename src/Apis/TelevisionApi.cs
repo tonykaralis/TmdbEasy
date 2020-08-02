@@ -16,10 +16,12 @@ namespace TmdbEasy.Apis
     public class TelevisionApi : ITelevisionApi
     {
         private readonly IRequestHandler _requestHandler;
+        private readonly ITmdbEasyClient _client;
 
-        public TelevisionApi(IRequestHandler requestHandler)
+        public TelevisionApi(ITmdbEasyClient client)
         {
-            _requestHandler = requestHandler;
+            _client = client;
+            _requestHandler = new RequestHandler(_client);
         }
 
         public async Task<Tv> GetDetailsAsync(string tvId, string language = null, string apiKey = null)

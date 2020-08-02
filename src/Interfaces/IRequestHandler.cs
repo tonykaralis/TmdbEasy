@@ -2,7 +2,7 @@
 
 namespace TmdbEasy.Interfaces
 {
-    public interface IRequestHandler
+    internal interface IRequestHandler
     {
         Request CreateRequest();
 

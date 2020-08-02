@@ -13,10 +13,12 @@ namespace TmdbEasy.Apis
     public class MovieApi : IMovieApi
     {
         private readonly IRequestHandler _requestHandler;
+        private readonly ITmdbEasyClient _client;
 
-        public MovieApi(IRequestHandler requestHandler)
+        public MovieApi(ITmdbEasyClient client)
         {
-            _requestHandler = requestHandler;
+            _client = client;
+            _requestHandler = new RequestHandler(_client);
         }
 
         public async Task<MovieFullDetails> GetDetailsAsync(int movieId, string language = null, string apiKey = null)

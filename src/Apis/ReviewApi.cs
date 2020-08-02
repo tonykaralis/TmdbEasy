@@ -7,10 +7,12 @@ namespace TmdbEasy.Apis
     public class ReviewApi : IReviewApi
     {
         private readonly IRequestHandler _requestHandler;
+        private readonly ITmdbEasyClient _client;
 
-        public ReviewApi(IRequestHandler requestHandler)
+        public ReviewApi(ITmdbEasyClient client)
         {
-            _requestHandler = requestHandler;
+            _client = client;
+            _requestHandler = new RequestHandler(_client);
         }
 
         public async Task<Review> GetReviewDetailsAsync(string reviewId, string apiKey = null)

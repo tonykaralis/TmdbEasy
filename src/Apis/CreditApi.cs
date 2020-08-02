@@ -7,10 +7,12 @@ namespace TmdbEasy.Apis
     public class CreditApi : ICreditApi
     {
         private readonly IRequestHandler _requestHandler;
+        private readonly ITmdbEasyClient _client;
 
-        public CreditApi(IRequestHandler requestHandler)
+        public CreditApi(ITmdbEasyClient client)
         {
-            _requestHandler = requestHandler;
+            _client = client;
+            _requestHandler = new RequestHandler(_client);
         }
 
         public async Task<Credits> GetDetailsAsync(string creditId, string userApiKey = null)
