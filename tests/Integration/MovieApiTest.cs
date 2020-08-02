@@ -47,6 +47,7 @@ namespace TmdbEasy.Tests.Integration
 
             Assert.IsNotNull(result);
             Assert.AreEqual(id, result.Id);
+            Assert.IsNotEmpty(result.Titles);
         }
 
         [TestCase(550)]

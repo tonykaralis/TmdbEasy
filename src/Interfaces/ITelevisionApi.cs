@@ -176,11 +176,11 @@ namespace TmdbEasy.Interfaces
         /// <summary>
         /// Get the external ids for a TV season. Support for facebook, instagram, twitter and IMDB.
         /// </summary>
-        /// <param name="seasonId"></param>
+        /// <param name="tvId"></param>
         /// <param name="seasonNumber"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<MovieExternalId> GetSeasonExternalIdsAsync(int seasonId, int seasonNumber, string apiKey = null);
+        Task<MovieExternalId> GetSeasonExternalIdsAsync(int tvId, int seasonNumber, string apiKey = null);
         /// <summary>
         /// Returns all images that belong to a TV season.
         /// </summary>
