@@ -8,10 +8,12 @@ namespace TmdbEasy.Apis
     public class CompaniesApi : ICompaniesApi
     {
         private readonly IRequestHandler _requestHandler;
+        private readonly ITmdbEasyClient _client;
 
-        public CompaniesApi(IRequestHandler requestHandler)
+        public CompaniesApi(ITmdbEasyClient client)
         {
-            _requestHandler = requestHandler;
+            _client = client;
+            _requestHandler = new RequestHandler(_client);
         }
 
         public async Task<CompanyDetails> GetDetailsAsync(int companyId, string apiKey = null)

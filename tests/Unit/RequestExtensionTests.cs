@@ -1,7 +1,9 @@
 ﻿using NUnit.Framework;
+using System.Runtime.CompilerServices;
 using TmdbEasy.Configurations;
 using TmdbEasy.Extensions;
 
+[assembly: InternalsVisibleTo("TmdbEasy.Tests.Unit")]
 namespace TmdbEasy.Tests.Unit
 {
     [TestFixture]

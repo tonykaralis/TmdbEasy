@@ -8,10 +8,12 @@ namespace TmdbEasy.Apis
     public class ConfigApi : IConfigApi
     {
         private readonly IRequestHandler _requestHandler;
+        private readonly ITmdbEasyClient _client;
 
-        public ConfigApi(IRequestHandler requestHandler)
+        public ConfigApi(ITmdbEasyClient client)
         {
-            _requestHandler = requestHandler;
+            _client = client;
+            _requestHandler = new RequestHandler(_client);
         }
 
         public async Task<Configuration> GetConfigurationAsync(string userApiKey = null)

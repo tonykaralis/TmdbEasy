@@ -15,9 +15,7 @@ namespace TmdbEasy.Tests.Integration
         [TestCase(505)]
         public async Task GetDetailsAsync_ValidId_CustomApiKey_ReturnsValidResult(int id)
         {
-            var _requestHandler = new RequestHandler(_clientWithNoApiKey);
-
-            IMovieApi apiUnderTest = new MovieApi(_requestHandler);
+            IMovieApi apiUnderTest = new MovieApi(_clientWithNoApiKey);
 
             MovieFullDetails result = await apiUnderTest.GetDetailsAsync(id, apiKey: _userApiKey);
 
@@ -28,9 +26,7 @@ namespace TmdbEasy.Tests.Integration
         [TestCase(550)]
         public async Task GetImagesAsync_IncorrectId_ThrowsException(int id)
         {
-            var _requestHandler = new RequestHandler(_clientWithNoApiKey);
-
-            IMovieApi apiUnderTest = new MovieApi(_requestHandler);
+            IMovieApi apiUnderTest = new MovieApi(_clientWithNoApiKey);
 
             Images result = await apiUnderTest.GetImagesAsync(id, _userApiKey);
 
@@ -41,9 +37,7 @@ namespace TmdbEasy.Tests.Integration
         [TestCase(550)]
         public async Task GetAlternativetitlesAsync_IncorrectId_ThrowsException(int id)
         {
-            var _requestHandler = new RequestHandler(_clientWithNoApiKey);
-
-            IMovieApi apiUnderTest = new MovieApi(_requestHandler);
+            IMovieApi apiUnderTest = new MovieApi(_clientWithNoApiKey);
 
             AlternativeTitle result = await apiUnderTest.GetAlternativeTitlesAsync(id, apiKey: _userApiKey);
 
@@ -54,9 +48,7 @@ namespace TmdbEasy.Tests.Integration
         [TestCase("Brad Pitt")]
         public async Task SearchByActorAsync_FamousActor_ReturnResults(string actorName)
         {
-            var _requestHandler = new RequestHandler(_clientWithNoApiKey);
-
-            IMovieApi apiUnderTest = new MovieApi(_requestHandler);
+            IMovieApi apiUnderTest = new MovieApi(_clientWithNoApiKey);
 
             MovieList result = await apiUnderTest.SearchByActorAsync(actorName, apiKey: _userApiKey);
 

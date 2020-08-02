@@ -8,10 +8,12 @@ namespace TmdbEasy.Apis
     public class CollectionApi : ICollectionApi
     {
         private readonly IRequestHandler _requestHandler;
+        private readonly ITmdbEasyClient _client;
 
-        public CollectionApi(IRequestHandler requestHandler)
+        public CollectionApi(ITmdbEasyClient client)
         {
-            _requestHandler = requestHandler;
+            _client = client;
+            _requestHandler = new RequestHandler(_client);
         }
 
         public async Task<Collections> GetDetailsAsync(int collectionId, string apiKey = null, string language = null)

@@ -1,6 +1,6 @@
 ﻿namespace TmdbEasy.Extensions
 {
-    public static class RestRequestExtensions
+    internal static class RestRequestExtensions
     {
         public static Request AddRegion(this Request request, string region)
         {

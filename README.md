@@ -42,14 +42,19 @@ public void ConfigureServices(IServiceCollection services)
 
 The `AddTmdbEasy()` method accepts an immutable options parameter that allows configuration of TmdbEasy at a global level.
 ``` csharp
-public TmdbEasyOptions(string apiKey = null, bool useSsl = true, string defaultLanguage = "en")
+public TmdbEasyOptions(string apiKey = null, bool useSsl = true, string defaultLanguage = "en", IJsonDeserializer customJsonSerializer = null)
 {
     ApiKey = apiKey;
     UseSsl = useSsl;
     DefaultLanguage = defaultLanguage;
+    JsonDeserializer = customJsonSerializer ?? new NewtonSoftDeserializer();
 }
 ```
 All requests will default to using the `apiKey` and `language` properties set at this level. This can however be overriden on a *per request* basis, should your app opt to use different api keys/languages for different users.
+
+[Newtonsoft](https://www.newtonsoft.com/json) is used by default for the deserialization of all http responses.
+
+If for whatever reason, you wish to use a different JSON deserializer with TmdbEasy, this can be done easily by providing a new instance of `IJsonDeserializer` on the options.
 
 ## Supported Services
 As of ***v1*** the following services are supported. We aim to add more over the coming months.
@@ -114,10 +119,19 @@ public class MovieController : Controller
 }
 ```
 
-## JSON Deserialization 
-[Newtonsoft](https://www.newtonsoft.com/json) is used for the deserialization of all http responses.
+Lets try a console app.
+```csharp
+// configure the library
+var options = new TmdbEasyOptions();
+var client =  new tmdbEasyClient(options);
 
-If for whatever reason, you wish to use a different JSON deserializer with TmdbEasy, this can be done easily by implementing the `IJsonDeserializer` interface and registering the implementation with your IOC container.
+// Get an endpoint
+var movieApi = new MovieApi(client);
+
+// Get the data
+var jobs = await movieApi.GetJobsAsync();
+```
+
 
 ## How to contribute
 1. Fork the repo

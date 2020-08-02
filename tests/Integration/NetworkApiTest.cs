@@ -13,9 +13,7 @@ namespace TmdbEasy.Tests.Integration
         [TestCase(213)]
         public async Task GetDetailsAsync_ValidId_CustomApiKey_ReturnsValidResult(int id)
         {
-            var _requestHandler = new RequestHandler(_clientWithNoApiKey);
-
-            INetworksApi apiUnderTest = new NetworksApi(_requestHandler);
+            INetworksApi apiUnderTest = new NetworksApi(_clientWithNoApiKey);
 
             Network result = await apiUnderTest.GetDetailsAsync(id, _userApiKey);
 
@@ -26,9 +24,7 @@ namespace TmdbEasy.Tests.Integration
         [TestCase(213)]
         public async Task GetDetailsAsync_ValidId_DefaultApiKey_ReturnsValidResult(int id)
         {
-            var _requestHandler = new RequestHandler(_clientWithApiKey);
-
-            INetworksApi apiUnderTest = new NetworksApi(_requestHandler);
+            INetworksApi apiUnderTest = new NetworksApi(_clientWithApiKey);
 
             Network result = await apiUnderTest.GetDetailsAsync(id);
 

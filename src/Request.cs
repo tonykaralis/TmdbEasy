@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Text;
 using TmdbEasy.Configurations;
 
+[assembly: InternalsVisibleTo("TmdbEasy.Tests.Unit")]
 namespace TmdbEasy
 {
-    public sealed class Request
+    internal class Request
     {
         private readonly StringBuilder _requestBuilder;
         private readonly TmdbEasyOptions _options;

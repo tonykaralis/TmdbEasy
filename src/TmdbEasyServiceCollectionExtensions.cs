@@ -19,8 +19,6 @@ namespace TmdbEasy
 
             serviceCollection.TryAdd(sessionDescriptor);
 
-            serviceCollection.AddScoped<IRequestHandler, RequestHandler>();
-
             serviceCollection.AddScoped<IReviewApi, ReviewApi>();
             serviceCollection.AddScoped<IChangesApi, ChangesApi>();
             serviceCollection.AddScoped<ICompaniesApi, CompaniesApi>();

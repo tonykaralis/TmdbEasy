@@ -9,10 +9,12 @@ namespace TmdbEasy.Apis
     public class ChangesApi : IChangesApi
     {
         private readonly IRequestHandler _requestHandler;
+        private readonly ITmdbEasyClient _client;
 
-        public ChangesApi(IRequestHandler requestHandler)
-        {
-            _requestHandler = requestHandler;
+        public ChangesApi(ITmdbEasyClient client)
+        {            
+            _client = client;
+            _requestHandler = new RequestHandler(_client);
         }
 
         public async Task<ChangeList> GetChangeListAsync(ChangeType type, string end_date = null, string start_date = null, int page = 1, string apiKey = null)
