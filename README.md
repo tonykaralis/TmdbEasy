@@ -66,7 +66,7 @@ As of ***v1*** the following services are supported. We aim to add more over the
 - [ICollectionApi](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/ICollectionApi.cs)
 - [ICreditApi](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/ICreditApi.cs)
 - [INetworksApi](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/INetworksApi.cs)
-- [ITelevisionApi - *Untested*](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/ITelevisionApi.cs)
+- [ITelevisionApi](https://github.com/tonykaralis/TMdbEasy/blob/master/src/Interfaces/ITelevisionApi.cs)
 
 ## Usage
 We have attempted to mirror the TMDb api as closely as possible and believe the methods are super simple to use. There really isn't that much to say. Inject the service api of your choice and off you go. Lets look at a few examples:
