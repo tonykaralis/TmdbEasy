@@ -11,11 +11,11 @@ namespace TmdbEasy
         private readonly IJsonDeserializer _jsonDeserializer;
         private readonly HttpClient _httpClient;
 
-        public TmdbEasyClient(IJsonDeserializer jsonDeserializer, TmdbEasyOptions options)
-        {
-            _jsonDeserializer = jsonDeserializer;
-
+        public TmdbEasyClient(TmdbEasyOptions options)
+        {          
             Options = options ?? throw new ArgumentNullException(nameof(options));
+
+            _jsonDeserializer = options.JsonDeserializer ?? new NewtonSoftDeserializer();
 
             _httpClient = new HttpClient()
             {

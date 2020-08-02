@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Runtime.CompilerServices;
 using TmdbEasy.Interfaces;
 
+[assembly: InternalsVisibleTo("TmdbEasy.Tests.Unit")]
 namespace TmdbEasy
 {
-    public class NewtonSoftDeserializer : IJsonDeserializer
+    internal class NewtonSoftDeserializer : IJsonDeserializer
     {
         public TmdbEasyModel DeserializeTo<TmdbEasyModel>(string json)
         {

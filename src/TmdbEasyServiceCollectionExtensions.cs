@@ -13,16 +13,13 @@ namespace TmdbEasy
             var sessionDescriptor = new ServiceDescriptor(
                     typeof(ITmdbEasyClient), c =>
                     {
-                        var jsonDeserializer = c.GetService<IJsonDeserializer>();
-
-                        return new TmdbEasyClient(jsonDeserializer, options);
+                        return new TmdbEasyClient(options);
 
                     }, ServiceLifetime.Singleton);
 
             serviceCollection.TryAdd(sessionDescriptor);
 
             serviceCollection.AddScoped<IRequestHandler, RequestHandler>();
-            serviceCollection.AddScoped<IJsonDeserializer, NewtonSoftDeserializer>();
 
             serviceCollection.AddScoped<IReviewApi, ReviewApi>();
             serviceCollection.AddScoped<IChangesApi, ChangesApi>();

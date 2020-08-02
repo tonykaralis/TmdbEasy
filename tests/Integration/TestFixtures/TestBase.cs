@@ -22,9 +22,7 @@ namespace TmdbEasy.Tests.Integration.TestFixtures
 
         public ITmdbEasyClient GetTestClient(string sharedApiKey = null)
         {
-            var jsonSerializer = new NewtonSoftDeserializer();
-
-            return new TmdbEasyClient(jsonSerializer, GetDefaultOptions(sharedApiKey));
+            return new TmdbEasyClient(GetDefaultOptions(sharedApiKey));
         }
 
         public TmdbEasyOptions GetDefaultOptions(string sharedApiKey)
