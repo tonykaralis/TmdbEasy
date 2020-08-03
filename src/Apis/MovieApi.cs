@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using TmdbEasy.DTO.Changes;
 using TmdbEasy.DTO.Images;
 using TmdbEasy.DTO.Language;
@@ -59,18 +60,20 @@ namespace TmdbEasy.Apis
             return await _requestHandler.ExecuteAsync<AlternativeTitle>(restRequest);
         }
         
-        public async Task<MovieChangeList> GetChangesAsync(int movieId, string end_date = null, string start_date = null, int page = 1, string apiKey = null)
+        public async Task<List<Change>> GetChangesAsync(int movieId, string end_date = null, string start_date = null, int page = 1, string apiKey = null)
         {
             var restRequest = _requestHandler
                .CreateRequest()
                .AddUrlSegment("movie")
                .AddUrlSegment($"{movieId}")
+               .AddUrlSegment("changes")
                .AddStartDate(start_date)
                .AddEndDate(end_date)
                .AddPage(1)
                .AddApiKey(apiKey);
 
-            return await _requestHandler.ExecuteAsync<MovieChangeList>(restRequest);
+            var movieChangeList = await _requestHandler.ExecuteAsync<MovieChangeList>(restRequest);
+            return movieChangeList?.Changes;
         }
         
         public async Task<MovieCredits> GetCreditsAsync(int movieId, string apiKey = null)
