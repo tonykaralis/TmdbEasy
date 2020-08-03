@@ -10,7 +10,7 @@
     <PackageLicenseFile></PackageLicenseFile>
     <PackageTags>TMDb movies tmdb-api light-weight wrapper dotnet csharp themoviedb</PackageTags>
     <PackageReleaseNotes>Complete overhaul of the original library, this includes internals and public api. Adds DI support out of the box, improves the developer experience, fixes a few bugs and adds a couple more endpoints.</PackageReleaseNotes>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
