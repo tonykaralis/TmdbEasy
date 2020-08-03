@@ -10,6 +10,7 @@ using TmdbEasy.DTO.Television;
 using TmdbEasy.DTO.TV;
 using TmdbEasy.Extensions;
 using TmdbEasy.Interfaces;
+using AlternativeTitle = TmdbEasy.DTO.Television.AlternativeTitle;
 
 namespace TmdbEasy.Apis
 {

@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using TmdbEasy.DTO;
 using TmdbEasy.DTO.Certifications;
 using TmdbEasy.DTO.Changes;
 using TmdbEasy.DTO.Images;
@@ -9,6 +8,7 @@ using TmdbEasy.DTO.Other;
 using TmdbEasy.DTO.Reviews;
 using TmdbEasy.DTO.Television;
 using TmdbEasy.DTO.TV;
+using AlternativeTitle = TmdbEasy.DTO.Television.AlternativeTitle;
 
 namespace TmdbEasy.Interfaces
 {
