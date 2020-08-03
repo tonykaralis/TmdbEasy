@@ -58,11 +58,11 @@ namespace TmdbEasy.Tests.Integration
         {
             ITelevisionApi apiUnderTest = new TelevisionApi(_clientWithNoApiKey);
 
-            AlternativeTitle result = await apiUnderTest.GetAlternativeTitlesAsync(id, apiKey: _userApiKey);
+            DTO.Television.AlternativeTitle result = await apiUnderTest.GetAlternativeTitlesAsync(id, apiKey: _userApiKey);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(id, result.Id.ToString());
-            //Assert.IsNotEmpty(result.Titles);
+            Assert.IsNotEmpty(result.Results);
         }
 
         [TestCase(1399)]
