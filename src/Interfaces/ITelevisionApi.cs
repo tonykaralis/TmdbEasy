@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using TmdbEasy.DTO.Certifications;
 using TmdbEasy.DTO.Changes;
 using TmdbEasy.DTO.Images;
@@ -37,7 +38,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="language"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<TvRatingList> GetContentRatingsAsync(string tvId, string language = null, string apiKey = null);
+        Task<List<TvContentRating>> GetContentRatingsAsync(string tvId, string language = null, string apiKey = null);
         /// <summary>
         /// Returns all alternative titles that belong to a TV show.
         /// </summary>

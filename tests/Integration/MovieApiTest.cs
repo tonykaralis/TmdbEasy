@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TmdbEasy.Apis;
 using TmdbEasy.DTO.Changes;
@@ -55,9 +56,9 @@ namespace TmdbEasy.Tests.Integration
         {
             IMovieApi apiUnderTest = new MovieApi(_clientWithNoApiKey);
 
-            MovieChangeList result = await apiUnderTest.GetChangesAsync(id, apiKey: _userApiKey);
+            List<Change> result = await apiUnderTest.GetChangesAsync(id, "30/05/2019", "20/05/2019", apiKey: _userApiKey);
 
-            Assert.IsNotNull(result);
+            Assert.IsNotEmpty(result);
         }
 
         [TestCase(550)]

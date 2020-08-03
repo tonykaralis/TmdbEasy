@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("TmdbEasy.Tests.Integration")]
 namespace TmdbEasy.DTO.Certifications
 {
     public class TvContentRating
@@ -8,7 +10,7 @@ namespace TmdbEasy.DTO.Certifications
         public string Rating { get; set; }
     }
 
-    public class TvRatingList
+    internal class TvRatingList
     {
         public List<TvContentRating> Results { get; set; }
     }

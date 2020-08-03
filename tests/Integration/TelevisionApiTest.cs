@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TmdbEasy.Apis;
 using TmdbEasy.DTO.Certifications;
@@ -35,10 +36,9 @@ namespace TmdbEasy.Tests.Integration
         {
             ITelevisionApi apiUnderTest = new TelevisionApi(_clientWithNoApiKey);
 
-            TvRatingList result = await apiUnderTest.GetContentRatingsAsync(id, apiKey: _userApiKey);
+            List<TvContentRating> result = await apiUnderTest.GetContentRatingsAsync(id, apiKey: _userApiKey);
 
-            Assert.IsNotNull(result);
-            Assert.IsNotEmpty(result.Results);
+            Assert.IsNotEmpty(result);
         }
 
         [TestCase("1399")]

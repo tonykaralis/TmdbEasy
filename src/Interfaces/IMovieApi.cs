@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using TmdbEasy.DTO.Changes;
 using TmdbEasy.DTO.Images;
 using TmdbEasy.DTO.Language;
@@ -44,7 +45,7 @@ namespace TmdbEasy.Interfaces
         /// <param name="page"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        Task<MovieChangeList> GetChangesAsync(int movieId, string end_date = null, string start_date = null, int page = 1, string apiKey = null);
+        Task<List<Change>> GetChangesAsync(int movieId, string end_date = null, string start_date = null, int page = 1, string apiKey = null);
         /// <summary>
         /// Get the cast and crew for a movie.
         /// </summary>

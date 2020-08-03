@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using TmdbEasy.DTO.Certifications;
 using TmdbEasy.DTO.Changes;
 using TmdbEasy.DTO.Images;
@@ -37,7 +38,7 @@ namespace TmdbEasy.Apis
             return await _requestHandler.ExecuteAsync<Tv>(restRequest);
         }
 
-        public async Task<TvRatingList> GetContentRatingsAsync(string tvId, string language = null, string apiKey = null)
+        public async Task<List<TvContentRating>> GetContentRatingsAsync(string tvId, string language = null, string apiKey = null)
         {
             var restRequest = _requestHandler
                 .CreateRequest()
@@ -47,7 +48,9 @@ namespace TmdbEasy.Apis
                 .AddLanguage(language)
                 .AddApiKey(apiKey);
 
-            return await _requestHandler.ExecuteAsync<TvRatingList>(restRequest);
+            var tvRatingList = await _requestHandler.ExecuteAsync<TvRatingList>(restRequest);
+
+            return tvRatingList?.Results;
         }
 
         public async Task<Images> GetImagesAsync(string tvId, string language = null, string apiKey = null)
